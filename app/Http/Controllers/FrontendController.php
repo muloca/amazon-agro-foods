@@ -4,10 +4,56 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Configuration;
+use App\Models\News;
 use Illuminate\Http\Request;
+use App\Models\ContactMessage;
 
 class FrontendController extends Controller
 {
+    /**
+     * Get configuration values
+     */
+    private function getConfigurations()
+    {
+        $primaryColor = Configuration::getValue('primary_color', '#03662c');
+        $secondaryColor = Configuration::getValue('secondary_color', '#58ac43');
+        $heroStartColor = Configuration::getValue('hero_background_start_color', $primaryColor);
+        $heroEndColor = Configuration::getValue('hero_background_end_color', $heroStartColor);
+
+        return [
+            'site_name' => Configuration::getValue('site_name', 'Amazon Frigorífico'),
+            'site_description' => Configuration::getValue('site_description', 'Especialistas em produtos de qualidade'),
+            'hero_title' => Configuration::getValue('hero_title', __('frontend.home.hero.default_title')),
+            'hero_subtitle' => Configuration::getValue('hero_subtitle', __('frontend.home.hero.default_subtitle')),
+            'cta_button_text' => Configuration::getValue('cta_button_text', __('frontend.home.hero.primary_cta')),
+            'primary_color' => $primaryColor,
+            'secondary_color' => $secondaryColor,
+            'accent_color' => Configuration::getValue('accent_color', '#e5d830'),
+            'contact_phone' => Configuration::getValue('contact_phone', '(11) 99999-9999'),
+            'contact_email' => Configuration::getValue('contact_email', 'contato@amazonfrigorifico.com.br'),
+            'contact_address' => Configuration::getValue('contact_address', 'Rua das Flores, 123 - Centro - São Paulo/SP'),
+            'social_facebook' => Configuration::getValue('social_facebook', ''),
+            'social_instagram' => Configuration::getValue('social_instagram', ''),
+            'social_whatsapp' => Configuration::getValue('social_whatsapp', ''),
+            'text_heading_color' => Configuration::getValue('text_heading_color', '#111827'),
+            'text_body_color' => Configuration::getValue('text_body_color', '#1f2937'),
+            'text_secondary_color' => Configuration::getValue('text_secondary_color', '#374151'),
+            'text_muted_color' => Configuration::getValue('text_muted_color', '#6b7280'),
+            'hero_heading_color' => Configuration::getValue('hero_heading_color', '#ffffff'),
+            'hero_text_color' => Configuration::getValue('hero_text_color', '#f8fafc'),
+            'hero_background_start_color' => $heroStartColor,
+            'hero_background_end_color' => $heroEndColor,
+            'card_title_color' => Configuration::getValue('card_title_color', '#111827'),
+            'card_text_color' => Configuration::getValue('card_text_color', '#4b5563'),
+            'footer_heading_color' => Configuration::getValue('footer_heading_color', '#ffffff'),
+            'footer_text_color' => Configuration::getValue('footer_text_color', '#d1d5db'),
+            'meta_title' => Configuration::getValue('meta_title', __('frontend.home.meta.title')),
+            'meta_description' => Configuration::getValue('meta_description', __('frontend.home.meta.description')),
+            'meta_keywords' => Configuration::getValue('meta_keywords', 'frigorífico, produtos, qualidade'),
+        ];
+    }
+
     public function home()
     {
         $categories = Category::where('is_active', true)
@@ -20,7 +66,9 @@ class FrontendController extends Controller
             ->take(8)
             ->get();
 
-        return view('frontend.home', compact('categories', 'featuredProducts'));
+        $config = $this->getConfigurations();
+
+        return view('frontend.home', compact('categories', 'featuredProducts', 'config'));
     }
 
     public function categories()
@@ -29,7 +77,9 @@ class FrontendController extends Controller
             ->withCount('products')
             ->get();
 
-        return view('frontend.categories', compact('categories'));
+        $config = $this->getConfigurations();
+
+        return view('frontend.categories', compact('categories', 'config'));
     }
 
     public function products(Request $request)
@@ -48,8 +98,9 @@ class FrontendController extends Controller
         
         $products = $query->paginate(12);
         $categories = Category::where('is_active', true)->get();
+        $config = $this->getConfigurations();
 
-        return view('frontend.products', compact('products', 'categories'));
+        return view('frontend.products', compact('products', 'categories', 'config'));
     }
 
     public function product(Product $product)
@@ -64,7 +115,9 @@ class FrontendController extends Controller
             ->take(4)
             ->get();
 
-        return view('frontend.product', compact('product', 'relatedProducts'));
+        $config = $this->getConfigurations();
+
+        return view('frontend.product', compact('product', 'relatedProducts', 'config'));
     }
 
     public function category(Category $category)
@@ -77,26 +130,72 @@ class FrontendController extends Controller
             ->where('is_active', true)
             ->paginate(12);
 
-        return view('frontend.category', compact('category', 'products'));
+        $config = $this->getConfigurations();
+
+        return view('frontend.category', compact('category', 'products', 'config'));
     }
 
     public function about()
     {
-        return view('frontend.about');
+        $config = $this->getConfigurations();
+        return view('frontend.about', compact('config'));
     }
 
     public function history()
     {
-        return view('frontend.history');
+        $config = $this->getConfigurations();
+        return view('frontend.history', compact('config'));
     }
 
     public function news()
     {
-        return view('frontend.news');
+        $newsItems = News::query()
+            ->orderByDesc('published_at')
+            ->orderByDesc('created_at')
+            ->paginate(9);
+
+        $config = $this->getConfigurations();
+        return view('frontend.news', compact('config', 'newsItems'));
+    }
+
+    public function newsShow(News $news)
+    {
+        $config = $this->getConfigurations();
+
+        $relatedNews = News::query()
+            ->where('id', '!=', $news->id)
+            ->orderByDesc('published_at')
+            ->orderByDesc('created_at')
+            ->take(6)
+            ->get();
+
+        return view('frontend.news-show', [
+            'config' => $config,
+            'news' => $news,
+            'relatedNews' => $relatedNews,
+        ]);
     }
 
     public function contact()
     {
-        return view('frontend.contact');
+        $config = $this->getConfigurations();
+        return view('frontend.contact', compact('config'));
+    }
+
+    public function submitContact(Request $request)
+    {
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'phone' => ['nullable', 'string', 'max:50'],
+            'subject' => ['nullable', 'string', 'max:255'],
+            'message' => ['required', 'string'],
+        ]);
+
+        ContactMessage::create($data);
+
+        return redirect()
+            ->route('frontend.contact')
+            ->with('status', 'Mensagem enviada com sucesso! Em breve entraremos em contato.');
     }
 }

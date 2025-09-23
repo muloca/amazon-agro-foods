@@ -28,10 +28,13 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->colors([
-                'primary' => Color::Blue,
+                'primary' => Color::hex('#03662c'),
+                'secondary' => Color::hex('#58ac43'),
+                'info' => Color::hex('#07668f'),
+                'warning' => Color::hex('#e5d830'),
             ])
             ->brandName('Amazon Frigorífico')
-            ->brandLogo(asset('images/logo.png'))
+            ->brandLogo(asset('images/logo.svg'))
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([

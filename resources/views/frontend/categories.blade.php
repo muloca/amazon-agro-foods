@@ -9,7 +9,6 @@
         title="Nossas Categorias"
         subtitle="Explore nossa variedade de categorias de produtos frescos"
         icon="categories"
-        background="blue"
         :show-pattern="false" />
 
     <!-- Categories Grid -->

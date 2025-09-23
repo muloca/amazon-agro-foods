@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
@@ -13,7 +14,11 @@ Route::get('/categoria/{category}', [FrontendController::class, 'category'])->na
 Route::get('/sobre', [FrontendController::class, 'about'])->name('frontend.about');
 Route::get('/historia', [FrontendController::class, 'history'])->name('frontend.history');
 Route::get('/noticias', [FrontendController::class, 'news'])->name('frontend.news');
+Route::get('/noticias/{news:slug}', [FrontendController::class, 'newsShow'])->name('frontend.news.show');
 Route::get('/contato', [FrontendController::class, 'contact'])->name('frontend.contact');
+Route::post('/contato', [FrontendController::class, 'submitContact'])->name('frontend.contact.submit');
+
+Route::get('/locale/{locale}', LocaleController::class)->name('locale.switch');
 
 // Redirect dashboard to admin (Filament)
 Route::get('/dashboard', function () {

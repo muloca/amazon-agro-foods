@@ -29,7 +29,7 @@
         
         <!-- Category Badge -->
         <div class="absolute top-4 left-4">
-            <span class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+            <span class="bg-gradient-to-r from-amazon-verde-600 to-amazon-verde-700 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                 {{ $product->category->name }}
             </span>
         </div>
@@ -38,7 +38,7 @@
     <!-- Product Info - Flex container para distribuir espaço -->
     <div class="p-6 flex flex-col flex-grow">
         <div class="h-16 mb-4">
-            <h3 class="{{ $titleSize }} font-bold text-gray-900 line-clamp-2 group-hover:text-blue-600 transition-colors leading-tight">
+            <h3 class="{{ $titleSize }} font-bold text-gray-900 line-clamp-2 group-hover:text-amazon-verde-600 transition-colors leading-tight" style="color: var(--card-title-color) !important;">
                 {{ $product->name }}
             </h3>
         </div>
@@ -46,12 +46,12 @@
         <!-- Descrição - Altura fixa para 4 linhas -->
         <div class="flex-grow mb-6">
             @if($product->description)
-                <p class="text-gray-700 text-sm line-clamp-4 leading-relaxed">
+                <p class="text-gray-700 text-sm line-clamp-4 leading-relaxed" style="color: var(--card-text-color) !important;">
                     {{ $product->description }}
                 </p>
             @else
-                <p class="text-gray-500 text-sm line-clamp-4 leading-relaxed italic">
-                    Descrição não disponível
+                <p class="text-gray-500 text-sm line-clamp-4 leading-relaxed italic" style="color: var(--card-text-color) !important;">
+                    {{ __('frontend.product_card.description_unavailable') }}
                 </p>
             @endif
         </div>
@@ -59,8 +59,8 @@
         <!-- View Button - Sempre na parte inferior -->
         <div class="mt-auto">
             <a href="{{ route('frontend.product', $product) }}" 
-               class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-4 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 font-semibold text-center block shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                Ver Detalhes
+               class="w-full bg-gradient-to-r from-amazon-verde-600 to-amazon-verde-700 text-white py-3 px-4 rounded-xl hover:from-amazon-verde-700 hover:to-amazon-verde-800 transition-all duration-300 font-semibold text-center block shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                {{ __('frontend.product_card.view_details') }}
             </a>
         </div>
     </div>

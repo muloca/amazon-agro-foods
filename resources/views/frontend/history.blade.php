@@ -4,17 +4,11 @@
 
 @section('content')
 <div class="min-h-screen bg-gray-50">
-    <!-- Hero Section -->
-    <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">Nossa História</h1>
-                <p class="text-xl text-blue-100 max-w-2xl mx-auto">
-                    Uma trajetória de tradição, qualidade e inovação
-                </p>
-            </div>
-        </div>
-    </div>
+    <x-hero-section 
+        title="Nossa História"
+        subtitle="Uma trajetória de tradição, qualidade e inovação"
+        icon="history"
+        :show-pattern="true" />
 
     <!-- Main Content -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">

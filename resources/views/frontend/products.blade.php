@@ -9,7 +9,6 @@
         title="Nossos Produtos"
         subtitle="Descubra nossa seleção de produtos frescos e de qualidade, cuidadosamente selecionados para sua família"
         icon="products"
-        background="blue"
         :show-pattern="true" />
 
     <!-- Filters Section -->
@@ -24,7 +23,7 @@
                                    name="search" 
                                    value="{{ request('search') }}"
                                    placeholder="Buscar produtos..."
-                                   class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-gray-900 placeholder-gray-500 bg-white">
+                                   class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-amazon-verde-500 focus:border-amazon-verde-500 transition-all duration-200 text-gray-900 placeholder-gray-500 bg-white">
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                                 <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -35,7 +34,7 @@
 
                     <!-- Category Filter -->
                     <div class="lg:w-80">
-                        <select name="category" class="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-gray-900 bg-white">
+                        <select name="category" class="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-amazon-verde-500 focus:border-amazon-verde-500 transition-all duration-200 text-gray-900 bg-white">
                             <option value="">Todas as categorias</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
@@ -46,7 +45,7 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <button type="submit" class="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    <button type="submit" class="px-8 py-4 bg-gradient-to-r from-amazon-verde-600 to-amazon-verde-700 text-white rounded-xl hover:from-amazon-verde-700 hover:to-amazon-verde-800 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                         <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z"></path>
                         </svg>
@@ -85,10 +84,10 @@
                 <h3 class="text-2xl font-bold text-gray-900 mb-4">Nenhum produto encontrado</h3>
                 <p class="text-gray-600 text-lg mb-8 max-w-md mx-auto">Tente ajustar os filtros ou buscar por outros termos para encontrar o que procura.</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="{{ route('frontend.products') }}" class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-3 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    <a href="{{ route('frontend.products') }}" class="bg-gradient-to-r from-amazon-verde-600 to-amazon-verde-700 text-white px-8 py-3 rounded-xl hover:from-amazon-verde-700 hover:to-amazon-verde-800 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                         Ver Todos os Produtos
                     </a>
-                    <a href="{{ route('frontend.categories') }}" class="bg-white text-blue-600 px-8 py-3 rounded-xl hover:bg-gray-50 transition-all duration-300 font-semibold border-2 border-blue-600 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    <a href="{{ route('frontend.categories') }}" class="bg-white text-amazon-verde-600 px-8 py-3 rounded-xl hover:bg-gray-50 transition-all duration-300 font-semibold border-2 border-amazon-verde-600 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                         Ver Categorias
                     </a>
                 </div>
@@ -124,7 +123,7 @@
 
 /* Garantir contraste adequado para todos os textos */
 body {
-    color: #1f2937 !important;
+    color: var(--text-body-color) !important;
 }
 
 /* Textos no header azul - FORÇAR BRANCO COM SOMBRA */
@@ -134,18 +133,18 @@ body {
 .bg-gradient-to-br h4,
 .bg-gradient-to-br h5,
 .bg-gradient-to-br h6 {
-    color: #ffffff !important;
+    color: var(--hero-heading-color) !important;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3) !important;
 }
 
 .bg-gradient-to-br p {
-    color: #ffffff !important;
+    color: var(--hero-text-color) !important;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.3) !important;
 }
 
 /* Forçar branco em qualquer elemento dentro do header azul */
 .bg-gradient-to-br * {
-    color: #ffffff !important;
+    color: var(--hero-text-color) !important;
 }
 
 /* Específico para o container do header */
@@ -158,7 +157,7 @@ body {
 .relative.bg-gradient-to-br p,
 .relative.bg-gradient-to-br span,
 .relative.bg-gradient-to-br div {
-    color: #ffffff !important;
+    color: var(--hero-text-color) !important;
 }
 
 /* Textos nos cards de produtos */
@@ -168,11 +167,11 @@ body {
 .bg-white h4,
 .bg-white h5,
 .bg-white h6 {
-    color: #1f2937 !important; /* text-gray-900 */
+    color: var(--text-heading-color) !important;
 }
 
 .bg-white p {
-    color: #374151 !important; /* text-gray-700 */
+    color: var(--text-secondary-color) !important;
 }
 
 /* Inputs e selects */
@@ -181,25 +180,25 @@ input[type="email"],
 input[type="password"],
 select,
 textarea {
-    color: #1f2937 !important;
+    color: var(--text-body-color) !important;
     background-color: #ffffff !important;
 }
 
 input::placeholder {
-    color: #6b7280 !important; /* text-gray-500 */
+    color: var(--text-muted-color) !important;
 }
 
 /* Garantir que todos os textos tenham contraste */
 .text-gray-900 {
-    color: #1f2937 !important;
+    color: var(--text-heading-color) !important;
 }
 
 .text-gray-700 {
-    color: #374151 !important;
+    color: var(--text-secondary-color) !important;
 }
 
 .text-gray-600 {
-    color: #4b5563 !important;
+    color: var(--text-muted-color) !important;
 }
 
 .text-white {

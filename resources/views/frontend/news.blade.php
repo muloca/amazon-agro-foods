@@ -4,264 +4,126 @@
 
 @section('content')
 <div class="min-h-screen bg-gray-50">
-    <!-- Hero Section -->
-    <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">Notícias</h1>
-                <p class="text-xl text-blue-100 max-w-2xl mx-auto">
-                    Fique por dentro das novidades e tendências do setor
-                </p>
-            </div>
-        </div>
-    </div>
+    <x-hero-section 
+        title="Notícias"
+        subtitle="Fique por dentro das novidades e tendências do setor"
+        icon="news"
+        :show-pattern="true" />
 
-    <!-- Main Content -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <!-- Featured News -->
-        <div class="mb-16">
-            <h2 class="text-3xl font-bold text-gray-900 mb-8">Destaque</h2>
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                <div class="grid grid-cols-1 lg:grid-cols-2">
-                    <div class="h-64 lg:h-auto bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
-                        <div class="text-center">
-                            <div class="text-6xl mb-4">📰</div>
-                            <p class="text-gray-600">Imagem da notícia</p>
+        @php use Illuminate\Support\Str; @endphp
+
+        @if($newsItems->count())
+            @php
+                $featured = $newsItems->first();
+                $otherNews = $newsItems->slice(1);
+            @endphp
+
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8">Destaque</h2>
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                    <div class="grid grid-cols-1 lg:grid-cols-2">
+                        <div class="h-64 lg:h-auto overflow-hidden">
+                            <img src="{{ $featured->primary_image_url }}" alt="{{ $featured->title }}" class="w-full h-full object-cover">
                         </div>
-                    </div>
-                    <div class="p-8">
-                        <div class="flex items-center mb-4">
-                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
-                                Destaque
-                            </span>
-                            <span class="ml-4 text-gray-500 text-sm">15 de Janeiro, 2024</span>
+                        <div class="p-8 flex flex-col">
+                            <div class="flex items-center gap-3 mb-4 text-sm text-gray-500">
+                                <span class="inline-flex items-center bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-semibold">Destaque</span>
+                                <span>{{ optional($featured->published_at ?? $featured->created_at)->format('d/m/Y H:i') }}</span>
+                            </div>
+                            <h3 class="text-3xl font-bold text-gray-900 mb-4">{{ $featured->title }}</h3>
+                            <p class="text-gray-600 leading-relaxed mb-6">
+                                {{ $featured->summary ?: Str::limit(strip_tags($featured->content), 220) }}
+                            </p>
+                            <div class="mt-auto flex flex-wrap items-center gap-3">
+                                <a href="{{ route('frontend.news.show', $featured->slug) }}" class="inline-flex items-center bg-gradient-to-r from-amazon-verde-600 to-amazon-verde-700 text-white px-5 py-2.5 rounded-lg font-semibold hover:from-amazon-verde-700 hover:to-amazon-verde-800 transition-all duration-200 shadow-lg hover:shadow-xl">
+                                    Ler no site
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </a>
+                                @if($featured->link)
+                                    <a href="{{ $featured->link }}" target="_blank" rel="noopener" class="inline-flex items-center text-amazon-verde-600 hover:text-amazon-verde-700 font-semibold">
+                                        Link externo
+                                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </a>
+                                @endif
+                                <span class="inline-flex items-center text-sm text-gray-400">
+                                    Publicado em {{ optional($featured->published_at ?? $featured->created_at)->format('d \d\e F \d\e Y') }}
+                                </span>
+                            </div>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">
-                            Amazon Frigorífico investe em tecnologia sustentável
-                        </h3>
-                        <p class="text-gray-600 mb-6 leading-relaxed">
-                            A empresa anuncia novos investimentos em tecnologia verde, incluindo sistemas 
-                            de energia solar e processos de reciclagem avançados, reforçando seu compromisso 
-                            com a sustentabilidade ambiental.
-                        </p>
-                        <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
-                            Ler mais
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- News Grid -->
-        <div class="mb-12">
-            <h2 class="text-3xl font-bold text-gray-900 mb-8">Últimas Notícias</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- News Item 1 -->
-                <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                    <div class="h-48 bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
-                        <div class="text-center">
-                            <div class="text-4xl mb-2">🌱</div>
-                            <p class="text-gray-600 text-sm">Imagem da notícia</p>
-                        </div>
+            @if($otherNews->count())
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-8">Últimas Notícias</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        @foreach($otherNews as $news)
+                            <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 flex flex-col">
+                                <div class="h-48 overflow-hidden">
+                                    <img src="{{ $news->primary_image_url }}" alt="{{ $news->title }}" class="w-full h-full object-cover">
+                                </div>
+                                <div class="p-6 flex flex-col flex-grow">
+                                    <div class="flex items-center justify-between text-sm text-gray-500 mb-3">
+                                        <span>{{ optional($news->published_at ?? $news->created_at)->format('d/m/Y H:i') }}</span>
+                                        @if($news->additional_images_urls)
+                                            <span class="inline-flex items-center bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
+                                                {{ count($news->additional_images_urls) }} imagem(ns)
+                                            </span>
+                                        @endif
+                                    </div>
+                                    <h3 class="text-lg font-semibold mb-3 line-clamp-2" style="color: var(--card-title-color) !important;">{{ $news->title }}</h3>
+                                    <p class="text-sm mb-4 line-clamp-3" style="color: var(--card-text-color) !important;">
+                                        {{ $news->summary ?: Str::limit(strip_tags($news->content), 140) }}
+                                    </p>
+                                    <div class="mt-auto">
+                                        <div class="flex items-center justify-between">
+                                            <a href="{{ route('frontend.news.show', $news->slug) }}" class="inline-flex items-center text-amazon-verde-600 hover:text-amazon-verde-700 font-semibold">
+                                                Ler no site
+                                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                                </svg>
+                                            </a>
+                                            @if($news->link)
+                                                <a href="{{ $news->link }}" target="_blank" rel="noopener" class="inline-flex items-center text-sm text-gray-500 hover:text-amazon-verde-600">
+                                                    Link externo
+                                                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                                    </svg>
+                                                </a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        @endforeach
                     </div>
-                    <div class="p-6">
-                        <div class="flex items-center mb-3">
-                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">
-                                Sustentabilidade
-                            </span>
-                            <span class="ml-3 text-gray-500 text-sm">12 de Janeiro, 2024</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-3 line-clamp-2">
-                            Programa de sustentabilidade ganha reconhecimento nacional
-                        </h3>
-                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">
-                            Nossas práticas sustentáveis foram reconhecidas pela Associação Brasileira 
-                            de Frigoríficos, destacando nosso compromisso com o meio ambiente.
-                        </p>
-                        <a href="#" class="text-blue-600 hover:text-blue-700 text-sm font-medium">
-                            Ler mais →
-                        </a>
-                    </div>
-                </article>
+                </div>
+            @endif
 
-                <!-- News Item 2 -->
-                <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                    <div class="h-48 bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center">
-                        <div class="text-center">
-                            <div class="text-4xl mb-2">🏆</div>
-                            <p class="text-gray-600 text-sm">Imagem da notícia</p>
-                        </div>
+            @if($newsItems->hasPages())
+                <div class="flex justify-center">
+                    <div class="bg-white px-4 py-3 rounded-xl shadow-lg">
+                        {{ $newsItems->onEachSide(1)->links() }}
                     </div>
-                    <div class="p-6">
-                        <div class="flex items-center mb-3">
-                            <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs font-medium">
-                                Qualidade
-                            </span>
-                            <span class="ml-3 text-gray-500 text-sm">10 de Janeiro, 2024</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-3 line-clamp-2">
-                            Certificação de qualidade renovada com sucesso
-                        </h3>
-                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">
-                            Renovamos nossa certificação ISO 9001, confirmando nosso compromisso 
-                            com a excelência em todos os processos produtivos.
-                        </p>
-                        <a href="#" class="text-blue-600 hover:text-blue-700 text-sm font-medium">
-                            Ler mais →
-                        </a>
-                    </div>
-                </article>
-
-                <!-- News Item 3 -->
-                <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                    <div class="h-48 bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center">
-                        <div class="text-center">
-                            <div class="text-4xl mb-2">🤝</div>
-                            <p class="text-gray-600 text-sm">Imagem da notícia</p>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center mb-3">
-                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs font-medium">
-                                Parceria
-                            </span>
-                            <span class="ml-3 text-gray-500 text-sm">8 de Janeiro, 2024</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-3 line-clamp-2">
-                            Nova parceria com produtores locais
-                        </h3>
-                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">
-                            Firmamos parceria com 20 novos produtores locais, garantindo 
-                            matéria-prima de qualidade e fortalecendo a economia regional.
-                        </p>
-                        <a href="#" class="text-blue-600 hover:text-blue-700 text-sm font-medium">
-                            Ler mais →
-                        </a>
-                    </div>
-                </article>
-
-                <!-- News Item 4 -->
-                <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                    <div class="h-48 bg-gradient-to-br from-red-100 to-red-200 flex items-center justify-center">
-                        <div class="text-center">
-                            <div class="text-4xl mb-2">🔬</div>
-                            <p class="text-gray-600 text-sm">Imagem da notícia</p>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center mb-3">
-                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs font-medium">
-                                Tecnologia
-                            </span>
-                            <span class="ml-3 text-gray-500 text-sm">5 de Janeiro, 2024</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-3 line-clamp-2">
-                            Laboratório de qualidade ampliado
-                        </h3>
-                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">
-                            Investimos em novos equipamentos para nosso laboratório, 
-                            garantindo ainda mais rigor nos controles de qualidade.
-                        </p>
-                        <a href="#" class="text-blue-600 hover:text-blue-700 text-sm font-medium">
-                            Ler mais →
-                        </a>
-                    </div>
-                </article>
-
-                <!-- News Item 5 -->
-                <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                    <div class="h-48 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
-                        <div class="text-center">
-                            <div class="text-4xl mb-2">👥</div>
-                            <p class="text-gray-600 text-sm">Imagem da notícia</p>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center mb-3">
-                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">
-                                Recursos Humanos
-                            </span>
-                            <span class="ml-3 text-gray-500 text-sm">3 de Janeiro, 2024</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-3 line-clamp-2">
-                            Programa de capacitação da equipe
-                        </h3>
-                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">
-                            Iniciamos novo programa de capacitação para nossa equipe, 
-                            investindo no desenvolvimento profissional dos colaboradores.
-                        </p>
-                        <a href="#" class="text-blue-600 hover:text-blue-700 text-sm font-medium">
-                            Ler mais →
-                        </a>
-                    </div>
-                </article>
-
-                <!-- News Item 6 -->
-                <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                    <div class="h-48 bg-gradient-to-br from-yellow-100 to-yellow-200 flex items-center justify-center">
-                        <div class="text-center">
-                            <div class="text-4xl mb-2">📈</div>
-                            <p class="text-gray-600 text-sm">Imagem da notícia</p>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center mb-3">
-                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium">
-                                Mercado
-                            </span>
-                            <span class="ml-3 text-gray-500 text-sm">1 de Janeiro, 2024</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-3 line-clamp-2">
-                            Crescimento recorde no último trimestre
-                        </h3>
-                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">
-                            Registramos crescimento de 25% nas vendas no último trimestre, 
-                            consolidando nossa posição no mercado regional.
-                        </p>
-                        <a href="#" class="text-blue-600 hover:text-blue-700 text-sm font-medium">
-                            Ler mais →
-                        </a>
-                    </div>
-                </article>
+                </div>
+            @endif
+        @else
+            <div class="bg-white rounded-2xl shadow-lg p-12 text-center">
+                <div class="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-6">
+                    <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V7a2 2 0 012-2h4l2-2h4l2 2h4a2 2 0 012 2v11a2 2 0 01-2 2z" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Nenhuma notícia publicada</h3>
+                <p class="text-gray-600">Em breve disponibilizaremos novidades e atualizações por aqui.</p>
             </div>
-        </div>
-
-        <!-- Newsletter Signup -->
-        <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-2xl p-8 text-center">
-            <h3 class="text-2xl font-bold mb-4">Receba nossas notícias</h3>
-            <p class="text-blue-100 mb-6 max-w-2xl mx-auto">
-                Cadastre-se em nossa newsletter e receba as principais notícias e novidades 
-                do Amazon Frigorífico diretamente em seu e-mail.
-            </p>
-            <form class="max-w-md mx-auto flex gap-4">
-                <input type="email" 
-                       placeholder="Seu e-mail" 
-                       class="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:ring-2 focus:ring-blue-300 focus:outline-none">
-                <button type="submit" 
-                        class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                    Cadastrar
-                </button>
-            </form>
-        </div>
+        @endif
     </div>
 </div>
-
-<style>
-.line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-</style>
 @endsection

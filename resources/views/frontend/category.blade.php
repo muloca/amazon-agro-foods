@@ -81,12 +81,12 @@
 
                         <!-- Product Info -->
                         <div class="p-6">
-                            <h3 class="text-xl font-semibold text-gray-900 mb-2 line-clamp-2">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2 line-clamp-2" style="color: var(--card-title-color) !important;">
                                 {{ $product->name }}
                             </h3>
                             
                             @if($product->description)
-                                <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+                                <p class="text-gray-600 text-sm mb-4 line-clamp-3" style="color: var(--card-text-color) !important;">
                                     {{ $product->description }}
                                 </p>
                             @endif

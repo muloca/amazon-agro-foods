@@ -1,36 +1,35 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Início - Amazon Frigorífico')
-@section('description', 'Sistema completo de gestão para frigoríficos')
+@section('title', $config['meta_title'] ?? __('frontend.home.meta.title'))
+@section('description', $config['meta_description'] ?? __('frontend.home.meta.description'))
 
 @section('content')
 <!-- Hero Section -->
-<section class="relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white overflow-hidden">
+<section class="relative hero-primary-gradient text-white overflow-hidden hero-section">
     <!-- Background Pattern -->
     <div class="absolute inset-0 opacity-10">
         <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
     </div>
     
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div class="text-center">
-            <div class="inline-flex items-center justify-center w-20 h-20 bg-white bg-opacity-20 rounded-full mb-8">
-                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-white bg-opacity-20 rounded-full mb-6">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
                 </svg>
             </div>
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                Amazon Frigorífico
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white hero-title" style="color: var(--hero-heading-color) !important; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                {{ $config['hero_title'] ?? __('frontend.home.hero.default_title') }}
             </h1>
-            <p class="text-xl md:text-2xl mb-12 text-blue-100 max-w-3xl mx-auto leading-relaxed">
-                Tradição, qualidade e inovação em cada produto. 
-                Levamos frescor e excelência até sua mesa há décadas.
+            <p class="text-xl text-white max-w-3xl mx-auto leading-relaxed hero-text" style="color: var(--hero-text-color) !important; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">
+                {{ $config['hero_subtitle'] ?? __('frontend.home.hero.default_subtitle') }}
             </p>
             <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                <a href="{{ route('frontend.products') }}" class="bg-white text-blue-600 px-10 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                    Ver Produtos
+                <a href="{{ route('frontend.products') }}" class="border-2 border-white text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-amazon-verde-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    {{ $config['cta_button_text'] ?? __('frontend.home.hero.primary_cta') }}
                 </a>
-                <a href="{{ route('frontend.categories') }}" class="border-2 border-white text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                    Ver Categorias
+                <a href="{{ route('frontend.categories') }}" class="border-2 border-white text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-amazon-verde-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    {{ __('frontend.home.hero.secondary_cta') }}
                 </a>
             </div>
         </div>
@@ -44,11 +43,10 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-20">
             <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Nossos Produtos
+                {{ __('frontend.home.sections.products.title') }}
             </h2>
             <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Conheça nossa linha completa de produtos frescos e de qualidade, 
-                cuidadosamente selecionados para sua família
+                {{ __('frontend.home.sections.products.subtitle') }}
             </p>
         </div>
 
@@ -65,8 +63,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
                     </svg>
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">Categorias em breve</h3>
-                <p class="text-gray-600 text-lg">Em breve teremos categorias de produtos para você explorar.</p>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">{{ __('frontend.home.sections.products.empty_title') }}</h3>
+                <p class="text-gray-600 text-lg">{{ __('frontend.home.sections.products.empty_text') }}</p>
             </div>
         @endif
     </div>
@@ -78,11 +76,10 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-20">
             <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Produtos em Destaque
+                {{ __('frontend.home.sections.products.featured_title') }}
             </h2>
             <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Conheça alguns dos nossos produtos mais populares, 
-                selecionados especialmente para você
+                {{ __('frontend.home.sections.products.featured_subtitle') }}
             </p>
         </div>
 
@@ -94,8 +91,8 @@
 
         <div class="text-center mt-16">
             <a href="{{ route('frontend.products') }}" 
-               class="inline-flex items-center bg-white text-blue-600 px-10 py-4 rounded-xl font-bold text-lg hover:bg-gray-50 transition-all duration-300 border-2 border-blue-600 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                Ver Todos os Produtos
+               class="inline-flex items-center bg-white text-amazon-verde-600 px-10 py-4 rounded-xl font-bold text-lg hover:bg-gray-50 transition-all duration-300 border-2 border-amazon-verde-600 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                {{ __('frontend.home.sections.products.cta_all') }}
                 <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
@@ -106,7 +103,7 @@
 @endif
 
 <!-- CTA Section -->
-<section class="py-24 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white relative overflow-hidden">
+<section class="py-24 bg-gradient-to-br from-amazon-verde-600 via-amazon-verde-700 to-amazon-verde-800 text-white relative overflow-hidden">
     <!-- Background Pattern -->
     <div class="absolute inset-0 opacity-10">
         <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
@@ -119,18 +116,17 @@
             </svg>
         </div>
         <h2 class="text-4xl md:text-5xl font-bold mb-6">
-            Conheça Nossos Produtos
+            {{ __('frontend.home.sections.cta.title') }}
         </h2>
-        <p class="text-xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Qualidade e frescor garantidos em cada produto. 
-            Descubra nossa seleção completa de carnes, laticínios e produtos frescos.
+        <p class="text-xl text-amazon-verde-100 mb-12 max-w-3xl mx-auto leading-relaxed">
+            {{ __('frontend.home.sections.cta.subtitle') }}
         </p>
         <div class="flex flex-col sm:flex-row gap-6 justify-center">
-            <a href="{{ route('frontend.products') }}" class="bg-white text-blue-600 px-10 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                Ver Todos os Produtos
+            <a href="{{ route('frontend.products') }}" class="bg-white text-amazon-verde-600 px-10 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                {{ __('frontend.home.sections.cta.cta_products') }}
             </a>
-            <a href="{{ route('frontend.contact') }}" class="border-2 border-white text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                Entre em Contato
+            <a href="{{ route('frontend.contact') }}" class="border-2 border-white text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-amazon-verde-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                {{ __('frontend.home.sections.cta.cta_contact') }}
             </a>
         </div>
     </div>
@@ -141,15 +137,15 @@
 <style>
 /* Garantir que os textos estejam visíveis */
 body {
-    color: #1f2937 !important;
+    color: var(--text-body-color) !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #1f2937 !important;
+    color: var(--text-heading-color) !important;
 }
 
 p {
-    color: #4b5563 !important;
+    color: var(--text-secondary-color) !important;
 }
 
 .line-clamp-2 {
@@ -164,6 +160,26 @@ p {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+.text-white,
+span.text-white {
+    color: #ffffff !important;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3) !important;
+}
+
+.hero-section .hero-title {
+    color: var(--hero-heading-color) !important;
+}
+
+.hero-section .hero-text,
+.hero-section .hero-text span,
+.hero-section .hero-text p {
+    color: var(--hero-text-color) !important;
+}
+
+.hero-section a {
+    color: var(--hero-text-color) !important;
 }
 </style>
 @endpush
