@@ -121,7 +121,7 @@
                 <!-- Contact Cards -->
                 <div class="space-y-6">
                     <!-- Phone -->
-                    @if (contact_phone())
+                    @if (contact_phone() || contact_phone_secondary())
                         <div class="bg-white rounded-xl shadow-lg p-6">
                             <div class="flex items-center">
                                 <div class="bg-blue-100 rounded-full p-3 mr-4">
@@ -131,7 +131,12 @@
                                 </div>
                                 <div>
                                     <h3 class="text-lg font-semibold text-gray-900">Telefone</h3>
-                                    <p class="text-gray-600">{{ contact_phone() }}</p>
+                                    @if(contact_phone())
+                                        <p class="text-gray-600">{{ contact_phone() }}</p>
+                                    @endif
+                                    @if(contact_phone_secondary())
+                                        <p class="text-gray-600">{{ contact_phone_secondary() }}</p>
+                                    @endif
                                     <p class="text-sm text-gray-500">Segunda à sexta-feira - 8h às 18h</p>
                                 </div>
                             </div>
@@ -176,16 +181,17 @@
                 </div>
 
                 <!-- Map Placeholder -->
-                @if (contact_address())
+                @php
+                    $mapEmbedUrl = contact_map_embed_url();
+                    $mapExternalLink = contact_map_external_link();
+                @endphp
+
+                @if ($mapEmbedUrl)
                     <div class="mt-8">
                         <h3 class="text-xl font-semibold text-gray-900 mb-4">Onde Estamos</h3>
-                        @php
-                            $mapAddress = urlencode(contact_address());
-                            $mapUrl = "https://www.google.com/maps?&q={$mapAddress}&output=embed";
-                        @endphp
                         <div class="overflow-hidden rounded-xl shadow-lg border border-gray-200">
                             <iframe 
-                                src="{{ $mapUrl }}"
+                                src="{{ $mapEmbedUrl }}"
                                 width="100%"
                                 height="320"
                                 style="border:0;"
@@ -193,7 +199,18 @@
                                 loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
-                        <p class="text-sm text-gray-500 mt-3">{{ contact_address() }}</p>
+
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-3 gap-3">
+                            @if (contact_address())
+                                <p class="text-sm text-gray-500">{{ contact_address() }}</p>
+                            @endif
+
+                            @if ($mapExternalLink)
+                                <a href="{{ $mapExternalLink }}" target="_blank" rel="noopener" class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition">
+                                    Abrir no Google Maps
+                                </a>
+                            @endif
+                        </div>
                     </div>
                 @endif
 

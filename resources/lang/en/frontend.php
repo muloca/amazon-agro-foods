@@ -11,6 +11,14 @@ return [
         'label' => 'Language',
     ],
 
+    'language_prompt' => [
+        'title' => 'Choose your language',
+        'description' => 'We noticed your location might prefer :language. How would you like to continue?',
+        'recommended' => 'Continue in :language',
+        'other_options' => 'Or pick another option:',
+        'note' => 'We will remember your choice for future visits.',
+    ],
+
     'nav' => [
         'home' => 'Home',
         'products' => 'Products',
@@ -21,6 +29,8 @@ return [
         'contact' => 'Contact',
         'login' => 'Login',
         'register' => 'Sign Up',
+        'logout' => 'Log out',
+        'menu' => 'Menu',
         'admin' => 'Admin Panel',
     ],
 

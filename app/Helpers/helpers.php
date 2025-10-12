@@ -120,6 +120,12 @@ if (!function_exists('contact_phone')) {
     }
 }
 
+if (!function_exists('contact_phone_secondary')) {
+    function contact_phone_secondary() {
+        return \App\Helpers\ConfigHelper::contactPhoneSecondary();
+    }
+}
+
 if (!function_exists('contact_email')) {
     function contact_email() {
         return \App\Helpers\ConfigHelper::contactEmail();
@@ -129,5 +135,17 @@ if (!function_exists('contact_email')) {
 if (!function_exists('contact_address')) {
     function contact_address() {
         return \App\Helpers\ConfigHelper::contactAddress();
+    }
+}
+
+if (!function_exists('contact_map_embed_url')) {
+    function contact_map_embed_url() {
+        return \App\Helpers\ConfigHelper::contactMapEmbedUrl();
+    }
+}
+
+if (!function_exists('contact_map_external_link')) {
+    function contact_map_external_link() {
+        return \App\Helpers\ConfigHelper::contactMapExternalLink();
     }
 }

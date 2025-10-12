@@ -16,7 +16,17 @@ class LocaleController extends Controller
         }
 
         session(['locale' => $locale]);
+        session()->forget('locale_prompt_suggested');
 
-        return redirect()->back();
+        $redirectUrl = $request->headers->get('referer') ?? route('home');
+        $remember = $request->boolean('remember', true);
+
+        $response = redirect()->to($redirectUrl);
+
+        if ($remember) {
+            $response->withCookie(cookie('preferred_locale', $locale, 60 * 24 * 365));
+        }
+
+        return $response;
     }
 }

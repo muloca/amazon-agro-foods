@@ -116,11 +116,61 @@
         .site-footer .text-gray-500 {
             color: var(--footer-text-color) !important;
         }
+
+        [x-cloak] {
+            display: none !important;
+        }
     </style>
 </head>
 <body class="font-sans antialiased bg-white text-gray-900 {{ ($isRtl ?? false) ? 'rtl' : '' }}">
+    @php
+        $localePromptData = $localePrompt ?? [];
+        $languageNames = [
+            'pt_BR' => __('frontend.language_names.pt_BR'),
+            'en' => __('frontend.language_names.en'),
+            'ar' => __('frontend.language_names.ar'),
+        ];
+        $suggestedLocale = $localePromptData['suggested'] ?? app()->getLocale();
+    @endphp
+
+    @if(($localePromptData['show'] ?? false) && !request()->routeIs('filament.*'))
+        <div
+            x-data="{ open: true }"
+            x-init="$watch('open', value => document.body.classList.toggle('overflow-hidden', value))"
+            x-cloak
+            x-show="open"
+            class="fixed inset-0 z-[999] flex items-center justify-center px-4"
+        >
+            <div class="absolute inset-0 bg-black/80 backdrop-blur-md transition-opacity" aria-hidden="true"></div>
+            <div class="relative z-10 bg-white shadow-2xl rounded-2xl max-w-xl w-full p-8">
+                <h2 class="text-2xl font-bold text-gray-900">{{ __('frontend.language_prompt.title') }}</h2>
+                <p class="mt-2 text-gray-600">{{ __('frontend.language_prompt.description', ['language' => $languageNames[$suggestedLocale] ?? $suggestedLocale]) }}</p>
+
+                <div class="mt-6 space-y-5">
+                    <a href="{{ route('locale.switch', ['locale' => $suggestedLocale, 'remember' => 1]) }}" class="block w-full text-center px-5 py-3 rounded-xl text-white font-semibold bg-gradient-to-r from-amazon-verde-600 to-amazon-verde-700 hover:from-amazon-verde-700 hover:to-amazon-verde-800 transition">
+                        {{ __('frontend.language_prompt.recommended', ['language' => $languageNames[$suggestedLocale] ?? $suggestedLocale]) }}
+                    </a>
+
+                    <div>
+                        <p class="text-sm font-medium text-gray-500 mb-3">{{ __('frontend.language_prompt.other_options') }}</p>
+                        <div class="flex flex-wrap gap-3">
+                            @foreach(($localePromptData['available'] ?? []) as $option)
+                                @continue($option === $suggestedLocale)
+                                <a href="{{ route('locale.switch', ['locale' => $option, 'remember' => 1]) }}" class="flex-1 min-w-[130px] text-center px-4 py-2.5 rounded-lg border border-gray-200 hover:border-amazon-verde-500 hover:bg-amazon-verde-50 text-gray-700 font-medium transition">
+                                    {{ $languageNames[$option] ?? $option }}
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <p class="text-xs text-gray-500">{{ __('frontend.language_prompt.note') }}</p>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <!-- Header -->
-    <header class="bg-white shadow-lg border-b border-gray-100">
+    <header x-data="{ mobileMenuOpen: false }" @keydown.window.escape="mobileMenuOpen = false" class="bg-white shadow-lg border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
@@ -174,31 +224,85 @@
                 </div>
 
                 <!-- Auth Links -->
-                <div class="flex items-center space-x-3 rtl:space-x-reverse">
-                    @auth
-                        <a href="{{ route('filament.admin.pages.dashboard') }}" class="bg-gradient-to-r from-amazon-verde-600 to-amazon-verde-700 text-white px-6 py-2.5 rounded-lg text-sm font-semibold hover:from-amazon-verde-700 hover:to-amazon-verde-800 transition-all duration-200 shadow-md hover:shadow-lg">
-                            {{ __('frontend.nav.admin') }}
-                        </a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-gray-700 hover:text-amazon-verde-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200">
-                            {{ __('frontend.nav.login') }}
-                        </a>
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="bg-gradient-to-r from-amazon-verde-600 to-amazon-verde-700 text-white px-6 py-2.5 rounded-lg text-sm font-semibold hover:from-amazon-verde-700 hover:to-amazon-verde-800 transition-all duration-200 shadow-md hover:shadow-lg">
-                                {{ __('frontend.nav.register') }}
+                @guest
+                    <div class="hidden md:flex items-center space-x-3 rtl:space-x-reverse">
+                        @auth
+                            <a href="{{ route('filament.admin.pages.dashboard') }}" class="text-gray-700 hover:text-amazon-verde-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200">
+                                {{ __('frontend.nav.admin') }}
                             </a>
-                        @endif
-                    @endauth
-                </div>
+                        @endauth
+                        @auth
+                            <a href="{{ route('filament.admin.auth.logout') }}" class="bg-gradient-to-r from-amazon-verde-600 to-amazon-verde-700 text-white px-6 py-2.5 rounded-lg text-sm font-semibold hover:from-amazon-verde-700 hover:to-amazon-verde-800 transition-all duration-200 shadow-md hover:shadow-lg" onclick="event.preventDefault(); document.getElementById('logout-form-desktop').submit();">
+                                {{ __('frontend.nav.logout') }}
+                            </a>
+                            <form id="logout-form-desktop" action="{{ route('filament.admin.auth.logout') }}" method="POST" class="hidden">
+                                @csrf
+                            </form>
+                        @endauth
+                    </div>
+                @endguest
 
-                <div class="flex md:hidden items-center space-x-2 rtl:space-x-reverse">
-                    @foreach($localeOptions as $code => $option)
-                        <a href="{{ route('locale.switch', $code) }}"
-                           class="flex items-center justify-center w-9 h-9 border {{ $currentLocale === $code ? 'border-amazon-verde-600 bg-amazon-verde-50 text-amazon-verde-700' : 'border-gray-200 text-gray-500 hover:border-amazon-verde-300 hover:text-amazon-verde-600' }} rounded-full transition-all duration-200"
-                           aria-label="{{ $option['label'] }}">
-                            <span class="text-base" role="img" aria-hidden="true">{{ $option['flag'] }}</span>
-                        </a>
-                    @endforeach
+                <div class="flex md:hidden items-center rtl:space-x-reverse">
+                    <button type="button" @click="mobileMenuOpen = !mobileMenuOpen" :aria-expanded="mobileMenuOpen.toString()" aria-controls="mobile-primary-navigation" aria-label="{{ __('frontend.nav.menu') }}" class="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-amazon-verde-600 hover:bg-amazon-verde-50 focus:outline-none focus:ring-2 focus:ring-amazon-verde-500 focus:ring-offset-2 focus:ring-offset-white transition-colors duration-200">
+                        <svg x-cloak x-show="!mobileMenuOpen" class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg x-cloak x-show="mobileMenuOpen" class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                        <span class="sr-only">{{ __('frontend.nav.menu') }}</span>
+                    </button>
+                </div>
+            </div>
+
+            <div x-cloak x-show="mobileMenuOpen" x-transition class="md:hidden border-t border-gray-100" id="mobile-primary-navigation">
+                <div class="py-4 space-y-4">
+                    <nav class="px-4 space-y-2">
+                        @foreach($navLinks as $link)
+                            @php $isActive = request()->routeIs($link['route']); @endphp
+                            <a href="{{ route($link['route']) }}"
+                               @click="mobileMenuOpen = false"
+                               class="block px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 {{ $isActive ? 'bg-amazon-verde-50 text-amazon-verde-700' : 'text-gray-700 hover:bg-amazon-verde-50 hover:text-amazon-verde-600' }}">
+                                {{ $link['label'] }}
+                            </a>
+                        @endforeach
+                    </nav>
+
+                    <div class="border-t border-gray-100"></div>
+
+                    <div class="px-4 space-y-3">
+                        <p class="text-xs font-semibold text-gray-500">{{ __('frontend.language_switcher.label') }}</p>
+                        <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                            @foreach($localeOptions as $code => $option)
+                                <a href="{{ route('locale.switch', $code) }}"
+                                   @click="mobileMenuOpen = false"
+                                   class="flex items-center justify-center w-10 h-10 border {{ $currentLocale === $code ? 'border-amazon-verde-600 bg-amazon-verde-50 text-amazon-verde-700' : 'border-gray-200 text-gray-500 hover:border-amazon-verde-300 hover:text-amazon-verde-600' }} rounded-full transition-all duration-200"
+                                   aria-label="{{ $option['label'] }}">
+                                    <span class="text-lg" role="img" aria-hidden="true">{{ $option['flag'] }}</span>
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    @guest
+                        <div class="border-t border-gray-100"></div>
+
+                        <div class="px-4 space-y-2">
+                            @auth
+                                <a href="{{ route('filament.admin.pages.dashboard') }}" @click="mobileMenuOpen = false" class="block text-gray-700 hover:text-amazon-verde-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200">
+                                    {{ __('frontend.nav.admin') }}
+                                </a>
+                            @endauth
+                            @auth
+                                <a href="{{ route('filament.admin.auth.logout') }}" @click.prevent="mobileMenuOpen = false; document.getElementById('logout-form-mobile').submit();" class="block bg-gradient-to-r from-amazon-verde-600 to-amazon-verde-700 text-white px-4 py-2.5 rounded-lg text-sm font-semibold hover:from-amazon-verde-700 hover:to-amazon-verde-800 transition-all duration-200 shadow-md hover:shadow-lg">
+                                    {{ __('frontend.nav.logout') }}
+                                </a>
+                                <form id="logout-form-mobile" action="{{ route('filament.admin.auth.logout') }}" method="POST" class="hidden">
+                                    @csrf
+                                </form>
+                            @endauth
+                        </div>
+                    @endguest
                 </div>
             </div>
         </div>
@@ -278,6 +382,15 @@
                                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
                             </svg>
                             <span class="text-gray-300">{{ contact_phone() }}</span>
+                        </li>
+                        @endif
+
+                        @if(contact_phone_secondary())
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                            </svg>
+                            <span class="text-gray-300">{{ contact_phone_secondary() }}</span>
                         </li>
                         @endif
                         

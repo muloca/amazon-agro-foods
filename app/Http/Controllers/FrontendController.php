@@ -11,9 +11,6 @@ use App\Models\ContactMessage;
 
 class FrontendController extends Controller
 {
-    /**
-     * Get configuration values
-     */
     private function getConfigurations()
     {
         $primaryColor = Configuration::getValue('primary_color', '#03662c');
@@ -31,8 +28,12 @@ class FrontendController extends Controller
             'secondary_color' => $secondaryColor,
             'accent_color' => Configuration::getValue('accent_color', '#e5d830'),
             'contact_phone' => Configuration::getValue('contact_phone', '(11) 99999-9999'),
+            'contact_phone_secondary' => Configuration::getValue('contact_phone_secondary'),
             'contact_email' => Configuration::getValue('contact_email', 'contato@amazonfrigorifico.com.br'),
             'contact_address' => Configuration::getValue('contact_address', 'Rua das Flores, 123 - Centro - São Paulo/SP'),
+            'contact_map_latitude' => Configuration::getValue('contact_map_latitude'),
+            'contact_map_longitude' => Configuration::getValue('contact_map_longitude'),
+            'contact_map_url' => Configuration::getValue('contact_map_url'),
             'social_facebook' => Configuration::getValue('social_facebook', ''),
             'social_instagram' => Configuration::getValue('social_instagram', ''),
             'social_whatsapp' => Configuration::getValue('social_whatsapp', ''),
@@ -196,6 +197,6 @@ class FrontendController extends Controller
 
         return redirect()
             ->route('frontend.contact')
-            ->with('status', 'Mensagem enviada com sucesso! Em breve entraremos em contato.');
+            ->with('status', 'Em breve entraremos em contato.');
     }
 }

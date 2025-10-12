@@ -166,6 +166,11 @@ class ConfigHelper
         return self::get('contact_phone', '(11) 99999-9999');
     }
 
+    public static function contactPhoneSecondary()
+    {
+        return self::get('contact_phone_secondary');
+    }
+
     /**
      * Get contact email
      */
@@ -180,6 +185,76 @@ class ConfigHelper
     public static function contactAddress()
     {
         return self::get('contact_address', 'Rua das Flores, 123 - Centro - São Paulo/SP');
+    }
+
+    public static function contactMapLatitude(): ?string
+    {
+        return self::get('contact_map_latitude');
+    }
+
+    public static function contactMapLongitude(): ?string
+    {
+        return self::get('contact_map_longitude');
+    }
+
+    public static function contactMapUrl(): ?string
+    {
+        return self::get('contact_map_url');
+    }
+
+    public static function contactMapEmbedUrl(): ?string
+    {
+        $lat = self::contactMapLatitude();
+        $lng = self::contactMapLongitude();
+
+        if ($lat && $lng) {
+            $locale = str_replace('_', '-', app()->getLocale());
+            return sprintf('https://maps.google.com/maps?q=%s,%s&hl=%s&z=15&output=embed', $lat, $lng, $locale);
+        }
+
+        $custom = self::contactMapUrl();
+
+        if ($custom) {
+            if (str_contains($custom, 'output=embed')) {
+                return $custom;
+            }
+
+            // Attempt to convert a standard Google Maps URL into an embed URL
+            if (preg_match('/@(-?\d+\.\d+),(-?\d+\.\d+)/', $custom, $matches)) {
+                $lat = $matches[1];
+                $lng = $matches[2];
+                $locale = str_replace('_', '-', app()->getLocale());
+
+                return sprintf('https://maps.google.com/maps?q=%s,%s&hl=%s&z=15&output=embed', $lat, $lng, $locale);
+            }
+
+            return $custom;
+        }
+
+        if ($address = self::contactAddress()) {
+            $mapAddress = urlencode($address);
+            return "https://www.google.com/maps?&q={$mapAddress}&output=embed";
+        }
+
+        return null;
+    }
+
+    public static function contactMapExternalLink(): ?string
+    {
+        $lat = self::contactMapLatitude();
+        $lng = self::contactMapLongitude();
+
+        $custom = self::contactMapUrl();
+
+        if ($custom) {
+            return $custom;
+        }
+
+        if ($lat && $lng) {
+            return sprintf('https://www.google.com/maps?q=%s,%s', $lat, $lng);
+        }
+
+        return null;
     }
 
     /**
