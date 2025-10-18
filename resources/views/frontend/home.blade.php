@@ -13,10 +13,10 @@
     
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div class="text-center">
-            <div class="inline-flex items-center justify-center w-16 h-16 bg-white bg-opacity-20 rounded-full mb-6">
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-                </svg>
+            <div class="flex justify-center mb-6">
+                <div class="inline-flex items-center justify-center w-24 h-24 bg-white bg-opacity-20 rounded-full shadow-lg">
+                    <x-application-logo class="w-16 h-16" />
+                </div>
             </div>
             <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white hero-title" style="color: var(--hero-heading-color) !important; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
                 {{ $config['hero_title'] ?? __('frontend.home.hero.default_title') }}
@@ -28,8 +28,8 @@
                 <a href="{{ route('frontend.products') }}" class="border-2 border-white text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-amazon-verde-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                     {{ $config['cta_button_text'] ?? __('frontend.home.hero.primary_cta') }}
                 </a>
-                <a href="{{ route('frontend.categories') }}" class="border-2 border-white text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-amazon-verde-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                    {{ __('frontend.home.hero.secondary_cta') }}
+                <a href="{{ route('frontend.contact') }}" class="border-2 border-white text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-amazon-verde-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    {{ __('frontend.common.contact_us') }}
                 </a>
             </div>
         </div>
@@ -103,7 +103,7 @@
 @endif
 
 <!-- CTA Section -->
-<section class="py-24 bg-gradient-to-br from-amazon-verde-600 via-amazon-verde-700 to-amazon-verde-800 text-white relative overflow-hidden">
+<section class="py-24 bg-gradient-to-br from-amazon-verde-600 via-amazon-verde-700 to-amazon-verde-800 text-white relative overflow-hidden cta-highlight">
     <!-- Background Pattern -->
     <div class="absolute inset-0 opacity-10">
         <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
@@ -115,10 +115,10 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
             </svg>
         </div>
-        <h2 class="text-4xl md:text-5xl font-bold mb-6">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">
             {{ __('frontend.home.sections.cta.title') }}
         </h2>
-        <p class="text-xl text-amazon-verde-100 mb-12 max-w-3xl mx-auto leading-relaxed">
+        <p class="text-xl text-white mb-12 max-w-3xl mx-auto leading-relaxed">
             {{ __('frontend.home.sections.cta.subtitle') }}
         </p>
         <div class="flex flex-col sm:flex-row gap-6 justify-center">
@@ -180,6 +180,13 @@ span.text-white {
 
 .hero-section a {
     color: var(--hero-text-color) !important;
+}
+
+.cta-highlight h2,
+.cta-highlight h2 *,
+.cta-highlight p,
+.cta-highlight p * {
+    color: #ffffff !important;
 }
 </style>
 @endpush

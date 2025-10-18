@@ -72,17 +72,6 @@ class FrontendController extends Controller
         return view('frontend.home', compact('categories', 'featuredProducts', 'config'));
     }
 
-    public function categories()
-    {
-        $categories = Category::where('is_active', true)
-            ->withCount('products')
-            ->get();
-
-        $config = $this->getConfigurations();
-
-        return view('frontend.categories', compact('categories', 'config'));
-    }
-
     public function products(Request $request)
     {
         $query = Product::where('is_active', true)->with('category');
@@ -119,21 +108,6 @@ class FrontendController extends Controller
         $config = $this->getConfigurations();
 
         return view('frontend.product', compact('product', 'relatedProducts', 'config'));
-    }
-
-    public function category(Category $category)
-    {
-        if (!$category->is_active) {
-            abort(404);
-        }
-        
-        $products = $category->products()
-            ->where('is_active', true)
-            ->paginate(12);
-
-        $config = $this->getConfigurations();
-
-        return view('frontend.category', compact('category', 'products', 'config'));
     }
 
     public function about()

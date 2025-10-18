@@ -22,7 +22,6 @@ return [
     'nav' => [
         'home' => 'Início',
         'products' => 'Produtos',
-        'categories' => 'Categorias',
         'about' => 'Sobre',
         'history' => 'História',
         'news' => 'Notícias',
@@ -40,6 +39,7 @@ return [
         'products_count' => '{0} Nenhum produto|[1] :count produto|[2,*] :count produtos',
         'coming_soon' => 'Em breve',
         'learn_more' => 'Saiba mais',
+        'view_all_products' => 'Ver Todos os Produtos',
     ],
 
     'home' => [
@@ -51,7 +51,6 @@ return [
             'default_title' => 'Bem-vindo ao Amazon Frigorífico',
             'default_subtitle' => 'Descubra nossos produtos de qualidade e tradição familiar.',
             'primary_cta' => 'Ver Produtos',
-            'secondary_cta' => 'Ver Categorias',
         ],
         'sections' => [
             'products' => [
@@ -84,9 +83,141 @@ return [
             'about' => 'Sobre',
             'history' => 'História',
             'products' => 'Produtos',
-            'categories' => 'Categorias',
             'news' => 'Notícias',
             'contact' => 'Contato',
+        ],
+    ],
+
+    'pages' => [
+        'products' => [
+            'meta' => [
+                'title' => 'Nossos Produtos - Amazon Frigorífico',
+                'description' => 'Explore a linha completa de produtos frescos e selecionados do Amazon Frigorífico.',
+            ],
+            'hero' => [
+                'title' => 'Nossos Produtos',
+                'subtitle' => 'Descubra nossa seleção de produtos frescos e de qualidade, cuidadosamente selecionados para sua família.',
+            ],
+            'filter' => [
+                'search_placeholder' => 'Buscar produtos...',
+                'all_categories' => 'Todas as categorias',
+            ],
+            'empty' => [
+                'title' => 'Nenhum produto encontrado',
+                'description' => 'Tente ajustar os filtros ou buscar por outros termos para encontrar o que procura.',
+            ],
+        ],
+        'contact' => [
+            'meta' => [
+                'title' => 'Contato - Amazon Frigorífico',
+                'description' => 'Fale com a equipe Amazon Frigorífico. Estamos prontos para ajudar você e sua empresa.',
+            ],
+            'hero' => [
+                'title' => 'Contato',
+                'subtitle' => 'Entre em contato conosco. Estamos aqui para ajudar!',
+            ],
+            'form' => [
+                'title' => 'Envie sua Mensagem',
+                'success_title' => 'Mensagem enviada com sucesso!',
+                'fields' => [
+                    'name' => 'Nome Completo *',
+                    'email' => 'E-mail *',
+                    'phone' => 'Telefone',
+                    'subject' => 'Assunto',
+                    'message' => 'Mensagem *',
+                ],
+                'subject_options' => [
+                    'placeholder' => 'Selecione um assunto',
+                    'products' => 'Informações sobre Produtos',
+                    'partnership' => 'Parcerias Comerciais',
+                    'careers' => 'Trabalhe Conosco',
+                    'complaint' => 'Reclamações',
+                    'suggestion' => 'Sugestões',
+                    'other' => 'Outros Assuntos',
+                ],
+                'message_placeholder' => 'Escreva sua mensagem aqui...',
+                'submit' => 'Enviar Mensagem',
+            ],
+            'info' => [
+                'title' => 'Informações de Contato',
+                'phone' => [
+                    'title' => 'Telefone',
+                    'hours' => 'Segunda à sexta-feira - 8h às 18h',
+                ],
+                'email' => [
+                    'title' => 'E-mail',
+                    'response_time' => 'Respondemos em até 24 horas',
+                ],
+                'address' => [
+                    'title' => 'Endereço',
+                ],
+                'map' => [
+                    'title' => 'Onde Estamos',
+                    'button' => 'Abrir no Google Maps',
+                ],
+                'social' => [
+                    'title' => 'Redes Sociais',
+                    'empty' => 'Em breve disponibilizaremos nossas redes sociais.',
+                ],
+            ],
+        ],
+        'news' => [
+            'meta' => [
+                'title' => 'Notícias - Amazon Frigorífico',
+                'description' => 'Acompanhe as novidades, lançamentos e informações do Amazon Frigorífico.',
+            ],
+            'hero' => [
+                'title' => 'Notícias',
+                'subtitle' => 'Fique por dentro das novidades e tendências do setor',
+            ],
+            'dates' => [
+                'datetime_format' => 'd/m/Y H:i',
+                'date_format' => 'd/m/Y',
+                'full_date' => 'd \\d\\e F \\d\\e Y',
+            ],
+            'actions' => [
+                'read_more' => 'Ler no site',
+                'external_link' => 'Link externo',
+            ],
+            'featured' => [
+                'section_title' => 'Destaque',
+                'badge' => 'Destaque',
+                'published_at' => 'Publicado em :date',
+            ],
+            'list' => [
+                'section_title' => 'Últimas Notícias',
+                'images_count' => '{1} :count imagem|[2,*] :count imagens',
+            ],
+            'empty' => [
+                'title' => 'Nenhuma notícia publicada',
+                'description' => 'Em breve disponibilizaremos novidades e atualizações por aqui.',
+            ],
+            'show' => [
+                'gallery_title' => 'Galeria de imagens',
+                'gallery_image_alt' => 'Imagem adicional',
+                'related_title' => 'Outras notícias',
+                'view_all' => 'Ver todas',
+            ],
+        ],
+        'about' => [
+            'meta' => [
+                'title' => 'Sobre Nós - Amazon Frigorífico',
+                'description' => 'Conheça a história, os valores e a visão do Amazon Frigorífico.',
+            ],
+            'hero' => [
+                'title' => 'Sobre Nós',
+                'subtitle' => 'Tradição, qualidade e inovação em cada produto',
+            ],
+        ],
+        'history' => [
+            'meta' => [
+                'title' => 'Nossa História - Amazon Frigorífico',
+                'description' => 'Uma trajetória de tradição, qualidade e inovação no mercado de alimentos.',
+            ],
+            'hero' => [
+                'title' => 'Nossa História',
+                'subtitle' => 'Uma trajetória de tradição, qualidade e inovação',
+            ],
         ],
     ],
 

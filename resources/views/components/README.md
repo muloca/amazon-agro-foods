@@ -97,11 +97,9 @@ Componente para seções hero com título, subtítulo e ícone.
 
 ### CategoryCard
 - `frontend/home.blade.php` - Categorias principais
-- `frontend/categories.blade.php` - Lista de categorias
 
 ### HeroSection
 - `frontend/products.blade.php` - Header da página de produtos
-- `frontend/categories.blade.php` - Header da página de categorias
 
 ## 🚀 Benefícios
 

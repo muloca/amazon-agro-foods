@@ -55,7 +55,7 @@
 
             <!-- Action Buttons -->
             <div class="flex gap-3">
-                <a href="{{ route('frontend.category', $category) }}" 
+                <a href="{{ route('frontend.products', ['category' => $category->id]) }}" 
                    class="flex-1 bg-amazon-verde-600 text-white py-2 px-4 rounded-lg hover:bg-amazon-verde-700 transition-colors font-medium text-center">
                     {{ __('frontend.common.see_products') }}
                 </a>
@@ -117,7 +117,7 @@
                 </svg>
                 {{ trans_choice('frontend.common.products_count', $productCount, ['count' => $productCount]) }}
             </div>
-            <a href="{{ route('frontend.category', $category) }}" 
+            <a href="{{ route('frontend.products', ['category' => $category->id]) }}" 
                class="inline-flex items-center bg-gradient-to-r from-amazon-verde-600 to-amazon-verde-700 text-white px-8 py-3 rounded-xl font-semibold hover:from-amazon-verde-700 hover:to-amazon-verde-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                 {{ __('frontend.common.see_products') }}
                 <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

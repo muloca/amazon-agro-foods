@@ -192,7 +192,6 @@
                         $navLinks = [
                             ['route' => 'home', 'label' => __('frontend.nav.home')],
                             ['route' => 'frontend.products', 'label' => __('frontend.nav.products')],
-                            ['route' => 'frontend.categories', 'label' => __('frontend.nav.categories')],
                             ['route' => 'frontend.about', 'label' => __('frontend.nav.about')],
                             ['route' => 'frontend.history', 'label' => __('frontend.nav.history')],
                             ['route' => 'frontend.news', 'label' => __('frontend.nav.news')],
@@ -364,7 +363,6 @@
                     <ul class="space-y-2">
                         <li><a href="{{ route('home') }}" class="text-gray-300 hover:text-white">{{ __('frontend.footer.links.home') }}</a></li>
                         <li><a href="{{ route('frontend.products') }}" class="text-gray-300 hover:text-white">{{ __('frontend.footer.links.products') }}</a></li>
-                        <li><a href="{{ route('frontend.categories') }}" class="text-gray-300 hover:text-white">{{ __('frontend.footer.links.categories') }}</a></li>
                         <li><a href="{{ route('frontend.about') }}" class="text-gray-300 hover:text-white">{{ __('frontend.footer.links.about') }}</a></li>
                         <li><a href="{{ route('frontend.history') }}" class="text-gray-300 hover:text-white">{{ __('frontend.footer.links.history') }}</a></li>
                         <li><a href="{{ route('frontend.news') }}" class="text-gray-300 hover:text-white">{{ __('frontend.footer.links.news') }}</a></li>

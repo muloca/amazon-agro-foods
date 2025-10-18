@@ -1,12 +1,13 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Nossa História - Amazon Frigorífico')
+@section('title', __('frontend.pages.history.meta.title'))
+@section('description', __('frontend.pages.history.meta.description'))
 
 @section('content')
 <div class="min-h-screen bg-gray-50">
     <x-hero-section 
-        title="Nossa História"
-        subtitle="Uma trajetória de tradição, qualidade e inovação"
+        :title="__('frontend.pages.history.hero.title')"
+        :subtitle="__('frontend.pages.history.hero.subtitle')"
         icon="history"
         :show-pattern="true" />
 

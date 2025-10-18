@@ -1,12 +1,13 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Notícias - Amazon Frigorífico')
+@section('title', __('frontend.pages.news.meta.title'))
+@section('description', __('frontend.pages.news.meta.description'))
 
 @section('content')
 <div class="min-h-screen bg-gray-50">
     <x-hero-section 
-        title="Notícias"
-        subtitle="Fique por dentro das novidades e tendências do setor"
+        :title="__('frontend.pages.news.hero.title')"
+        :subtitle="__('frontend.pages.news.hero.subtitle')"
         icon="news"
         :show-pattern="true" />
 
@@ -20,7 +21,7 @@
             @endphp
 
             <div class="mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-8">Destaque</h2>
+                <h2 class="text-3xl font-bold text-gray-900 mb-8">{{ __('frontend.pages.news.featured.section_title') }}</h2>
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
                     <div class="grid grid-cols-1 lg:grid-cols-2">
                         <div class="h-64 lg:h-auto overflow-hidden">
@@ -28,8 +29,8 @@
                         </div>
                         <div class="p-8 flex flex-col">
                             <div class="flex items-center gap-3 mb-4 text-sm text-gray-500">
-                                <span class="inline-flex items-center bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-semibold">Destaque</span>
-                                <span>{{ optional($featured->published_at ?? $featured->created_at)->format('d/m/Y H:i') }}</span>
+                                <span class="inline-flex items-center bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-semibold">{{ __('frontend.pages.news.featured.badge') }}</span>
+                                <span>{{ optional($featured->published_at ?? $featured->created_at)->format(__('frontend.pages.news.dates.datetime_format')) }}</span>
                             </div>
                             <h3 class="text-3xl font-bold text-gray-900 mb-4">{{ $featured->title }}</h3>
                             <p class="text-gray-600 leading-relaxed mb-6">
@@ -37,21 +38,21 @@
                             </p>
                             <div class="mt-auto flex flex-wrap items-center gap-3">
                                 <a href="{{ route('frontend.news.show', $featured->slug) }}" class="inline-flex items-center bg-gradient-to-r from-amazon-verde-600 to-amazon-verde-700 text-white px-5 py-2.5 rounded-lg font-semibold hover:from-amazon-verde-700 hover:to-amazon-verde-800 transition-all duration-200 shadow-lg hover:shadow-xl">
-                                    Ler no site
+                                    {{ __('frontend.pages.news.actions.read_more') }}
                                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                     </svg>
                                 </a>
                                 @if($featured->link)
                                     <a href="{{ $featured->link }}" target="_blank" rel="noopener" class="inline-flex items-center text-amazon-verde-600 hover:text-amazon-verde-700 font-semibold">
-                                        Link externo
+                                        {{ __('frontend.pages.news.actions.external_link') }}
                                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                         </svg>
                                     </a>
                                 @endif
                                 <span class="inline-flex items-center text-sm text-gray-400">
-                                    Publicado em {{ optional($featured->published_at ?? $featured->created_at)->format('d \d\e F \d\e Y') }}
+                                    {{ __('frontend.pages.news.featured.published_at', ['date' => optional($featured->published_at ?? $featured->created_at)->translatedFormat(__('frontend.pages.news.dates.full_date'))]) }}
                                 </span>
                             </div>
                         </div>
@@ -61,7 +62,7 @@
 
             @if($otherNews->count())
                 <div class="mb-12">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-8">Últimas Notícias</h2>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-8">{{ __('frontend.pages.news.list.section_title') }}</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         @foreach($otherNews as $news)
                             <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 flex flex-col">
@@ -70,10 +71,10 @@
                                 </div>
                                 <div class="p-6 flex flex-col flex-grow">
                                     <div class="flex items-center justify-between text-sm text-gray-500 mb-3">
-                                        <span>{{ optional($news->published_at ?? $news->created_at)->format('d/m/Y H:i') }}</span>
+                                            <span>{{ optional($news->published_at ?? $news->created_at)->format(__('frontend.pages.news.dates.datetime_format')) }}</span>
                                         @if($news->additional_images_urls)
                                             <span class="inline-flex items-center bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
-                                                {{ count($news->additional_images_urls) }} imagem(ns)
+                                                {{ trans_choice('frontend.pages.news.list.images_count', count($news->additional_images_urls), ['count' => count($news->additional_images_urls)]) }}
                                             </span>
                                         @endif
                                     </div>
@@ -84,14 +85,14 @@
                                     <div class="mt-auto">
                                         <div class="flex items-center justify-between">
                                             <a href="{{ route('frontend.news.show', $news->slug) }}" class="inline-flex items-center text-amazon-verde-600 hover:text-amazon-verde-700 font-semibold">
-                                                Ler no site
+                                                {{ __('frontend.pages.news.actions.read_more') }}
                                                 <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                                 </svg>
                                             </a>
                                             @if($news->link)
                                                 <a href="{{ $news->link }}" target="_blank" rel="noopener" class="inline-flex items-center text-sm text-gray-500 hover:text-amazon-verde-600">
-                                                    Link externo
+                                                    {{ __('frontend.pages.news.actions.external_link') }}
                                                     <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                                     </svg>
@@ -120,8 +121,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V7a2 2 0 012-2h4l2-2h4l2 2h4a2 2 0 012 2v11a2 2 0 01-2 2z" />
                     </svg>
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">Nenhuma notícia publicada</h3>
-                <p class="text-gray-600">Em breve disponibilizaremos novidades e atualizações por aqui.</p>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">{{ __('frontend.pages.news.empty.title') }}</h3>
+                <p class="text-gray-600">{{ __('frontend.pages.news.empty.description') }}</p>
             </div>
         @endif
     </div>

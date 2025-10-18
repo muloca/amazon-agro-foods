@@ -7,10 +7,8 @@ use Illuminate\Support\Facades\Route;
 
 // Frontend Routes
 Route::get('/', [FrontendController::class, 'home'])->name('home');
-Route::get('/categorias', [FrontendController::class, 'categories'])->name('frontend.categories');
 Route::get('/produtos', [FrontendController::class, 'products'])->name('frontend.products');
 Route::get('/produto/{product}', [FrontendController::class, 'product'])->name('frontend.product');
-Route::get('/categoria/{category}', [FrontendController::class, 'category'])->name('frontend.category');
 Route::get('/sobre', [FrontendController::class, 'about'])->name('frontend.about');
 Route::get('/historia', [FrontendController::class, 'history'])->name('frontend.history');
 Route::get('/noticias', [FrontendController::class, 'news'])->name('frontend.news');

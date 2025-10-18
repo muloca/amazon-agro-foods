@@ -22,7 +22,6 @@ return [
     'nav' => [
         'home' => 'Home',
         'products' => 'Products',
-        'categories' => 'Categories',
         'about' => 'About',
         'history' => 'History',
         'news' => 'News',
@@ -40,6 +39,7 @@ return [
         'products_count' => '{0} No products|[1] :count product|[2,*] :count products',
         'coming_soon' => 'Coming soon',
         'learn_more' => 'Learn more',
+        'view_all_products' => 'View All Products',
     ],
 
     'home' => [
@@ -51,7 +51,6 @@ return [
             'default_title' => 'Welcome to Amazon Frigorífico',
             'default_subtitle' => 'Discover our high-quality products and family tradition.',
             'primary_cta' => 'View Products',
-            'secondary_cta' => 'View Categories',
         ],
         'sections' => [
             'products' => [
@@ -84,9 +83,141 @@ return [
             'about' => 'About',
             'history' => 'History',
             'products' => 'Products',
-            'categories' => 'Categories',
             'news' => 'News',
             'contact' => 'Contact',
+        ],
+    ],
+
+    'pages' => [
+        'products' => [
+            'meta' => [
+                'title' => 'Our Products - Amazon Frigorífico',
+                'description' => 'Explore the complete selection of fresh products from Amazon Frigorífico.',
+            ],
+            'hero' => [
+                'title' => 'Our Products',
+                'subtitle' => 'Discover our selection of fresh, high-quality products carefully curated for your family.',
+            ],
+            'filter' => [
+                'search_placeholder' => 'Search products...',
+                'all_categories' => 'All categories',
+            ],
+            'empty' => [
+                'title' => 'No products found',
+                'description' => 'Try adjusting the filters or search for different terms to find what you need.',
+            ],
+        ],
+        'contact' => [
+            'meta' => [
+                'title' => 'Contact - Amazon Frigorífico',
+                'description' => 'Get in touch with the Amazon Frigorífico team. We are ready to help you and your business.',
+            ],
+            'hero' => [
+                'title' => 'Contact',
+                'subtitle' => 'Reach out to us. We are here to help!',
+            ],
+            'form' => [
+                'title' => 'Send Your Message',
+                'success_title' => 'Message sent successfully!',
+                'fields' => [
+                    'name' => 'Full Name *',
+                    'email' => 'Email *',
+                    'phone' => 'Phone',
+                    'subject' => 'Subject',
+                    'message' => 'Message *',
+                ],
+                'subject_options' => [
+                    'placeholder' => 'Select a subject',
+                    'products' => 'Product information',
+                    'partnership' => 'Business partnerships',
+                    'careers' => 'Careers',
+                    'complaint' => 'Complaints',
+                    'suggestion' => 'Suggestions',
+                    'other' => 'Other subjects',
+                ],
+                'message_placeholder' => 'Write your message here...',
+                'submit' => 'Send Message',
+            ],
+            'info' => [
+                'title' => 'Contact Information',
+                'phone' => [
+                    'title' => 'Phone',
+                    'hours' => 'Monday to Friday - 8 a.m. to 6 p.m.',
+                ],
+                'email' => [
+                    'title' => 'Email',
+                    'response_time' => 'We reply within 24 hours',
+                ],
+                'address' => [
+                    'title' => 'Address',
+                ],
+                'map' => [
+                    'title' => 'Where We Are',
+                    'button' => 'Open in Google Maps',
+                ],
+                'social' => [
+                    'title' => 'Social Media',
+                    'empty' => 'Our social networks will be available soon.',
+                ],
+            ],
+        ],
+        'news' => [
+            'meta' => [
+                'title' => 'News - Amazon Frigorífico',
+                'description' => 'Stay up to date with Amazon Frigorífico news, insights, and announcements.',
+            ],
+            'hero' => [
+                'title' => 'News',
+                'subtitle' => 'Stay on top of the latest updates and industry trends',
+            ],
+            'dates' => [
+                'datetime_format' => 'm/d/Y H:i',
+                'date_format' => 'm/d/Y',
+                'full_date' => 'F j, Y',
+            ],
+            'actions' => [
+                'read_more' => 'Read on the site',
+                'external_link' => 'External link',
+            ],
+            'featured' => [
+                'section_title' => 'Featured',
+                'badge' => 'Featured',
+                'published_at' => 'Published on :date',
+            ],
+            'list' => [
+                'section_title' => 'Latest News',
+                'images_count' => '{1} :count image|[2,*] :count images',
+            ],
+            'empty' => [
+                'title' => 'No news published',
+                'description' => 'We will soon share updates and announcements here.',
+            ],
+            'show' => [
+                'gallery_title' => 'Image gallery',
+                'gallery_image_alt' => 'Additional image',
+                'related_title' => 'More news',
+                'view_all' => 'View all',
+            ],
+        ],
+        'about' => [
+            'meta' => [
+                'title' => 'About Us - Amazon Frigorífico',
+                'description' => 'Learn more about the history, values, and vision of Amazon Frigorífico.',
+            ],
+            'hero' => [
+                'title' => 'About Us',
+                'subtitle' => 'Tradition, quality, and innovation in every product',
+            ],
+        ],
+        'history' => [
+            'meta' => [
+                'title' => 'Our History - Amazon Frigorífico',
+                'description' => 'A journey built on tradition, quality, and innovation in the food market.',
+            ],
+            'hero' => [
+                'title' => 'Our History',
+                'subtitle' => 'A journey of tradition, quality, and innovation',
+            ],
         ],
     ],
 

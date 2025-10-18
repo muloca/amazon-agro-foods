@@ -22,7 +22,6 @@ return [
     'nav' => [
         'home' => 'الرئيسية',
         'products' => 'المنتجات',
-        'categories' => 'التصنيفات',
         'about' => 'من نحن',
         'history' => 'تاريخنا',
         'news' => 'الأخبار',
@@ -40,6 +39,7 @@ return [
         'products_count' => '{0} لا توجد منتجات|[1] منتج واحد|[2] منتجان|[3,*] :count منتجات',
         'coming_soon' => 'قريباً',
         'learn_more' => 'اعرف المزيد',
+        'view_all_products' => 'عرض جميع المنتجات',
     ],
 
     'home' => [
@@ -51,7 +51,6 @@ return [
             'default_title' => 'مرحباً بكم في Amazon Frigorífico',
             'default_subtitle' => 'اكتشفوا منتجاتنا عالية الجودة وإرثنا العائلي.',
             'primary_cta' => 'عرض المنتجات',
-            'secondary_cta' => 'عرض التصنيفات',
         ],
         'sections' => [
             'products' => [
@@ -84,9 +83,141 @@ return [
             'about' => 'من نحن',
             'history' => 'تاريخنا',
             'products' => 'المنتجات',
-            'categories' => 'التصنيفات',
             'news' => 'الأخبار',
             'contact' => 'اتصل بنا',
+        ],
+    ],
+
+    'pages' => [
+        'products' => [
+            'meta' => [
+                'title' => 'منتجاتنا - Amazon Frigorífico',
+                'description' => 'استكشف المجموعة الكاملة من المنتجات الطازجة لدى Amazon Frigorífico.',
+            ],
+            'hero' => [
+                'title' => 'منتجاتنا',
+                'subtitle' => 'اكتشف تشكيلتنا من المنتجات الطازجة عالية الجودة المختارة بعناية لعائلتك.',
+            ],
+            'filter' => [
+                'search_placeholder' => 'ابحث عن المنتجات...',
+                'all_categories' => 'جميع التصنيفات',
+            ],
+            'empty' => [
+                'title' => 'لم يتم العثور على منتجات',
+                'description' => 'حاول تعديل عوامل التصفية أو البحث بكلمات مختلفة للعثور على ما تحتاجه.',
+            ],
+        ],
+        'contact' => [
+            'meta' => [
+                'title' => 'اتصل بنا - Amazon Frigorífico',
+                'description' => 'تواصل مع فريق Amazon Frigorífico. نحن جاهزون لمساعدتك ولمؤسستك.',
+            ],
+            'hero' => [
+                'title' => 'اتصل بنا',
+                'subtitle' => 'تواصل معنا. نحن هنا لمساعدتك!',
+            ],
+            'form' => [
+                'title' => 'أرسل رسالتك',
+                'success_title' => 'تم إرسال الرسالة بنجاح!',
+                'fields' => [
+                    'name' => 'الاسم الكامل *',
+                    'email' => 'البريد الإلكتروني *',
+                    'phone' => 'الهاتف',
+                    'subject' => 'الموضوع',
+                    'message' => 'الرسالة *',
+                ],
+                'subject_options' => [
+                    'placeholder' => 'اختر موضوعاً',
+                    'products' => 'معلومات عن المنتجات',
+                    'partnership' => 'شراكات تجارية',
+                    'careers' => 'العمل معنا',
+                    'complaint' => 'شكاوى',
+                    'suggestion' => 'اقتراحات',
+                    'other' => 'مواضيع أخرى',
+                ],
+                'message_placeholder' => 'اكتب رسالتك هنا...',
+                'submit' => 'إرسال الرسالة',
+            ],
+            'info' => [
+                'title' => 'معلومات الاتصال',
+                'phone' => [
+                    'title' => 'الهاتف',
+                    'hours' => 'من الاثنين إلى الجمعة - 8 صباحاً حتى 6 مساءً',
+                ],
+                'email' => [
+                    'title' => 'البريد الإلكتروني',
+                    'response_time' => 'نرد خلال 24 ساعة',
+                ],
+                'address' => [
+                    'title' => 'العنوان',
+                ],
+                'map' => [
+                    'title' => 'موقعنا',
+                    'button' => 'افتح في خرائط Google',
+                ],
+                'social' => [
+                    'title' => 'وسائل التواصل الاجتماعي',
+                    'empty' => 'سنشارك حساباتنا على الشبكات الاجتماعية قريباً.',
+                ],
+            ],
+        ],
+        'news' => [
+            'meta' => [
+                'title' => 'الأخبار - Amazon Frigorífico',
+                'description' => 'تابع آخر الأخبار والتحديثات من Amazon Frigorífico.',
+            ],
+            'hero' => [
+                'title' => 'الأخبار',
+                'subtitle' => 'ابقَ على اطلاع بآخر المستجدات واتجاهات القطاع',
+            ],
+            'dates' => [
+                'datetime_format' => 'd/m/Y H:i',
+                'date_format' => 'd/m/Y',
+                'full_date' => 'd F Y',
+            ],
+            'actions' => [
+                'read_more' => 'اقرأ على الموقع',
+                'external_link' => 'رابط خارجي',
+            ],
+            'featured' => [
+                'section_title' => 'مقال مميز',
+                'badge' => 'مميز',
+                'published_at' => 'نُشر في :date',
+            ],
+            'list' => [
+                'section_title' => 'أحدث الأخبار',
+                'images_count' => '{1} :count صورة|[2,*] :count صور',
+            ],
+            'empty' => [
+                'title' => 'لا توجد أخبار منشورة',
+                'description' => 'سنشارك قريباً تحديثات وأخباراً جديدة هنا.',
+            ],
+            'show' => [
+                'gallery_title' => 'معرض الصور',
+                'gallery_image_alt' => 'صورة إضافية',
+                'related_title' => 'أخبار أخرى',
+                'view_all' => 'عرض الكل',
+            ],
+        ],
+        'about' => [
+            'meta' => [
+                'title' => 'من نحن - Amazon Frigorífico',
+                'description' => 'تعرّف على تاريخ Amazon Frigorífico ورؤيته وقيمه.',
+            ],
+            'hero' => [
+                'title' => 'من نحن',
+                'subtitle' => 'مسيرة من التقاليد والجودة والابتكار في كل منتج',
+            ],
+        ],
+        'history' => [
+            'meta' => [
+                'title' => 'تاريخنا - Amazon Frigorífico',
+                'description' => 'رحلة قائمة على التقاليد والجودة والابتكار في قطاع الأغذية.',
+            ],
+            'hero' => [
+                'title' => 'تاريخنا',
+                'subtitle' => 'رحلة من التقاليد والجودة والابتكار',
+            ],
         ],
     ],
 

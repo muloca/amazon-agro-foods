@@ -1,20 +1,21 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Nossos Produtos - Amazon Frigorífico')
+@section('title', __('frontend.pages.products.meta.title'))
+@section('description', __('frontend.pages.products.meta.description'))
 
 @section('content')
 <div class="min-h-screen bg-gray-50">
     <!-- Header Section -->
     <x-hero-section 
-        title="Nossos Produtos"
-        subtitle="Descubra nossa seleção de produtos frescos e de qualidade, cuidadosamente selecionados para sua família"
+        :title="__('frontend.pages.products.hero.title')"
+        :subtitle="__('frontend.pages.products.hero.subtitle')"
         icon="products"
         :show-pattern="true" />
 
     <!-- Filters Section -->
     <div class="bg-white shadow-lg border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <form method="GET" action="{{ route('frontend.products') }}" class="bg-gray-50 rounded-2xl p-6">
+            <form id="products-filter-form" method="GET" action="{{ route('frontend.products') }}" class="bg-gray-50 rounded-2xl p-6">
                 <div class="flex flex-col lg:flex-row gap-4">
                     <!-- Search -->
                     <div class="flex-1">
@@ -22,7 +23,7 @@
                             <input type="text" 
                                    name="search" 
                                    value="{{ request('search') }}"
-                                   placeholder="Buscar produtos..."
+                                   placeholder="{{ __('frontend.pages.products.filter.search_placeholder') }}"
                                    class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-amazon-verde-500 focus:border-amazon-verde-500 transition-all duration-200 text-gray-900 placeholder-gray-500 bg-white">
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                                 <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -34,8 +35,8 @@
 
                     <!-- Category Filter -->
                     <div class="lg:w-80">
-                        <select name="category" class="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-amazon-verde-500 focus:border-amazon-verde-500 transition-all duration-200 text-gray-900 bg-white">
-                            <option value="">Todas as categorias</option>
+                        <select name="category" class="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-amazon-verde-500 focus:border-amazon-verde-500 transition-all duration-200 text-gray-900 bg-white" onchange="this.form.submit()">
+                            <option value="">{{ __('frontend.pages.products.filter.all_categories') }}</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
                                     {{ $category->name }}
@@ -43,14 +44,6 @@
                             @endforeach
                         </select>
                     </div>
-
-                    <!-- Submit Button -->
-                    <button type="submit" class="px-8 py-4 bg-gradient-to-r from-amazon-verde-600 to-amazon-verde-700 text-white rounded-xl hover:from-amazon-verde-700 hover:to-amazon-verde-800 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                        <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z"></path>
-                        </svg>
-                        Filtrar
-                    </button>
                 </div>
             </form>
         </div>
@@ -81,14 +74,11 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path>
                     </svg>
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">Nenhum produto encontrado</h3>
-                <p class="text-gray-600 text-lg mb-8 max-w-md mx-auto">Tente ajustar os filtros ou buscar por outros termos para encontrar o que procura.</p>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">{{ __('frontend.pages.products.empty.title') }}</h3>
+                <p class="text-gray-600 text-lg mb-8 max-w-md mx-auto">{{ __('frontend.pages.products.empty.description') }}</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <a href="{{ route('frontend.products') }}" class="bg-gradient-to-r from-amazon-verde-600 to-amazon-verde-700 text-white px-8 py-3 rounded-xl hover:from-amazon-verde-700 hover:to-amazon-verde-800 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                        Ver Todos os Produtos
-                    </a>
-                    <a href="{{ route('frontend.categories') }}" class="bg-white text-amazon-verde-600 px-8 py-3 rounded-xl hover:bg-gray-50 transition-all duration-300 font-semibold border-2 border-amazon-verde-600 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                        Ver Categorias
+                        {{ __('frontend.common.view_all_products') }}
                     </a>
                 </div>
             </div>

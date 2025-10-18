@@ -1,12 +1,14 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Sobre Nós - Amazon Frigorífico')
+@section('title', __('frontend.pages.about.meta.title'))
+@section('description', __('frontend.pages.about.meta.description'))
+@section('description', __('frontend.pages.about.meta.description'))
 
 @section('content')
 <div class="min-h-screen bg-gray-50">
     <x-hero-section 
-        title="Sobre Nós"
-        subtitle="Tradição, qualidade e inovação em cada produto"
+        :title="__('frontend.pages.about.hero.title')"
+        :subtitle="__('frontend.pages.about.hero.subtitle')"
         icon="about"
         :show-pattern="true" />
 
@@ -218,8 +220,8 @@
                     Já pensou em fazer parte de uma equipe engajada e empenhada em fazer a diferença 
                     com produtos de qualidade? Então aqui é o seu lugar!
                 </p>
-                <a href="#contato" class="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors text-lg">
-                    Cadastre seu Currículo
+                <a href="{{ route('frontend.contact') }}" class="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors text-lg">
+                    Entre em Contato
                 </a>
             </div>
         </div>

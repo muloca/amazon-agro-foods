@@ -1,12 +1,13 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Contato - Amazon Frigorífico')
+@section('title', __('frontend.pages.contact.meta.title'))
+@section('description', __('frontend.pages.contact.meta.description'))
 
 @section('content')
 <div class="min-h-screen bg-gray-50">
     <x-hero-section 
-        title="Contato"
-        subtitle="Entre em contato conosco. Estamos aqui para ajudar!"
+        :title="__('frontend.pages.contact.hero.title')"
+        :subtitle="__('frontend.pages.contact.hero.subtitle')"
         icon="contact"
         :show-pattern="true" />
 
@@ -15,7 +16,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <!-- Contact Form -->
             <div>
-                <h2 class="text-3xl font-bold text-gray-900 mb-6">Envie sua Mensagem</h2>
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">{{ __('frontend.pages.contact.form.title') }}</h2>
 
                 @if (session('status'))
                     <div class="mb-6 rounded-xl border border-green-500 bg-green-100 text-green-900 px-5 py-4 flex items-start gap-3 shadow-sm">
@@ -23,7 +24,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         <div>
-                            <p class="font-semibold">Mensagem enviada com sucesso!</p>
+                            <p class="font-semibold">{{ __('frontend.pages.contact.form.success_title') }}</p>
                             <p class="text-sm text-green-800">{{ session('status') }}</p>
                         </div>
                     </div>
@@ -44,7 +45,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
-                                Nome Completo *
+                                {{ __('frontend.pages.contact.form.fields.name') }}
                             </label>
                             <input type="text" 
                                    id="name" 
@@ -55,7 +56,7 @@
                         </div>
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                                E-mail *
+                                {{ __('frontend.pages.contact.form.fields.email') }}
                             </label>
                             <input type="email" 
                                    id="email" 
@@ -69,7 +70,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
-                                Telefone
+                                {{ __('frontend.pages.contact.form.fields.phone') }}
                             </label>
                             <input type="tel" 
                                    id="phone" 
@@ -79,44 +80,44 @@
                         </div>
                         <div>
                             <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">
-                                Assunto
+                                {{ __('frontend.pages.contact.form.fields.subject') }}
                             </label>
                             <select id="subject" 
                                     name="subject"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                <option value="">Selecione um assunto</option>
-                                <option value="produtos" @selected(old('subject') === 'produtos')>Informações sobre Produtos</option>
-                                <option value="parceria" @selected(old('subject') === 'parceria')>Parcerias Comerciais</option>
-                                <option value="trabalho" @selected(old('subject') === 'trabalho')>Trabalhe Conosco</option>
-                                <option value="reclamacao" @selected(old('subject') === 'reclamacao')>Reclamações</option>
-                                <option value="sugestao" @selected(old('subject') === 'sugestao')>Sugestões</option>
-                                <option value="outro" @selected(old('subject') === 'outro')>Outro</option>
+                                <option value="">{{ __('frontend.pages.contact.form.subject_options.placeholder') }}</option>
+                                <option value="produtos" @selected(old('subject') === 'produtos')>{{ __('frontend.pages.contact.form.subject_options.products') }}</option>
+                                <option value="parceria" @selected(old('subject') === 'parceria')>{{ __('frontend.pages.contact.form.subject_options.partnership') }}</option>
+                                <option value="trabalho" @selected(old('subject') === 'trabalho')>{{ __('frontend.pages.contact.form.subject_options.careers') }}</option>
+                                <option value="reclamacao" @selected(old('subject') === 'reclamacao')>{{ __('frontend.pages.contact.form.subject_options.complaint') }}</option>
+                                <option value="sugestao" @selected(old('subject') === 'sugestao')>{{ __('frontend.pages.contact.form.subject_options.suggestion') }}</option>
+                                <option value="outro" @selected(old('subject') === 'outro')>{{ __('frontend.pages.contact.form.subject_options.other') }}</option>
                             </select>
                         </div>
                     </div>
 
                     <div>
                         <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
-                            Mensagem *
+                            {{ __('frontend.pages.contact.form.fields.message') }}
                         </label>
                         <textarea id="message" 
                                   name="message" 
                                   rows="6" 
                                   required
                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                  placeholder="Escreva sua mensagem aqui...">{{ old('message') }}</textarea>
+                                  placeholder="{{ __('frontend.pages.contact.form.message_placeholder') }}">{{ old('message') }}</textarea>
                     </div>
 
                     <button type="submit" 
                             class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-                        Enviar Mensagem
+                        {{ __('frontend.pages.contact.form.submit') }}
                     </button>
                 </form>
             </div>
 
             <!-- Contact Information -->
             <div>
-                <h2 class="text-3xl font-bold text-gray-900 mb-6">Informações de Contato</h2>
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">{{ __('frontend.pages.contact.info.title') }}</h2>
                 
                 <!-- Contact Cards -->
                 <div class="space-y-6">
@@ -130,14 +131,14 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-lg font-semibold text-gray-900">Telefone</h3>
+                                    <h3 class="text-lg font-semibold text-gray-900">{{ __('frontend.pages.contact.info.phone.title') }}</h3>
                                     @if(contact_phone())
                                         <p class="text-gray-600">{{ contact_phone() }}</p>
                                     @endif
                                     @if(contact_phone_secondary())
                                         <p class="text-gray-600">{{ contact_phone_secondary() }}</p>
                                     @endif
-                                    <p class="text-sm text-gray-500">Segunda à sexta-feira - 8h às 18h</p>
+                                    <p class="text-sm text-gray-500">{{ __('frontend.pages.contact.info.phone.hours') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -153,9 +154,9 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-lg font-semibold text-gray-900">E-mail</h3>
+                                    <h3 class="text-lg font-semibold text-gray-900">{{ __('frontend.pages.contact.info.email.title') }}</h3>
                                     <p class="text-gray-600">{{ contact_email() }}</p>
-                                    <p class="text-sm text-gray-500">Respondemos em até 24 horas</p>
+                                    <p class="text-sm text-gray-500">{{ __('frontend.pages.contact.info.email.response_time') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -172,7 +173,7 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-lg font-semibold text-gray-900">Endereço</h3>
+                                    <h3 class="text-lg font-semibold text-gray-900">{{ __('frontend.pages.contact.info.address.title') }}</h3>
                                     <p class="text-gray-600">{{ contact_address() }}</p>
                                 </div>
                             </div>
@@ -188,7 +189,7 @@
 
                 @if ($mapEmbedUrl)
                     <div class="mt-8">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Onde Estamos</h3>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">{{ __('frontend.pages.contact.info.map.title') }}</h3>
                         <div class="overflow-hidden rounded-xl shadow-lg border border-gray-200">
                             <iframe 
                                 src="{{ $mapEmbedUrl }}"
@@ -207,7 +208,7 @@
 
                             @if ($mapExternalLink)
                                 <a href="{{ $mapExternalLink }}" target="_blank" rel="noopener" class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition">
-                                    Abrir no Google Maps
+                                    {{ __('frontend.pages.contact.info.map.button') }}
                                 </a>
                             @endif
                         </div>
@@ -216,7 +217,7 @@
 
                 <!-- Social Media -->
                 <div class="mt-8">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Redes Sociais</h3>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">{{ __('frontend.pages.contact.info.social.title') }}</h3>
                     <div class="flex space-x-4">
                         @if (!empty($config['social_facebook']))
                             <a href="{{ $config['social_facebook'] }}" target="_blank" rel="noopener" class="bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition-colors">
@@ -241,7 +242,7 @@
                         @endif
                     </div>
                     @if (empty($config['social_facebook']) && empty($config['social_instagram']) && empty($config['social_whatsapp']))
-                        <p class="text-gray-500 mt-3">Em breve disponibilizaremos nossas redes sociais.</p>
+                        <p class="text-gray-500 mt-3">{{ __('frontend.pages.contact.info.social.empty') }}</p>
                     @endif
                 </div>
             </div>
