@@ -174,7 +174,7 @@
                 </div>
                 <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-8">
                     <div class="text-center">
-                        <div class="text-6xl mb-4">🐄</div>
+                        <div class="text-6xl mb-4">🐔</div>
                         <h5 class="text-xl font-semibold text-gray-900 mb-2">Bem-estar Animal</h5>
                         <p class="text-gray-600">
                             Respeito e cuidado em todas as etapas

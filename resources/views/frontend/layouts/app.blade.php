@@ -374,40 +374,98 @@
                 <div>
                     <h3 class="text-lg font-semibold mb-4">{{ __('frontend.footer.contact_title') }}</h3>
                     <ul class="space-y-2">
+                        @php $isContactRoute = request()->routeIs('frontend.contact'); @endphp
+
                         @if(contact_phone())
-                        <li class="flex items-center space-x-2">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
-                            </svg>
-                            <span class="text-gray-300">{{ contact_phone() }}</span>
+                        <li>
+                            @if($isContactRoute)
+                            <div class="flex items-center gap-3 p-2 rounded-lg text-gray-300 bg-white/5">
+                            @else
+                            <a href="{{ route('frontend.contact') }}" class="group flex items-center gap-3 p-2 rounded-lg text-gray-300 hover:text-white transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30">
+                            @endif
+                                <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                                </svg>
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <span class="font-medium transition {{ $isContactRoute ? 'text-white' : 'group-hover:text-white' }}">{{ contact_phone() }}</span>
+                                    <span class="inline-flex items-center gap-1 px-2 py-0.5 border border-green-400 text-green-400 rounded-full text-xs font-semibold transition {{ $isContactRoute ? 'border-white text-white' : 'group-hover:border-white group-hover:text-white' }}">
+                                        <svg class="w-3.5 h-3.5" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+                                            <path d="M16 2.667C8.636 2.667 2.667 8.636 2.667 16c0 2.75.873 5.296 2.357 7.38L3 29.333l6.154-1.955A13.26 13.26 0 0 0 16 29.333c7.364 0 13.333-5.969 13.333-13.333S23.364 2.667 16 2.667Zm0 24c-2.2 0-4.297-.633-6.123-1.83l-.438-.279-3.648 1.158 1.172-3.56-.29-.452A10.61 10.61 0 0 1 5.333 16c0-5.884 4.783-10.667 10.667-10.667 5.883 0 10.667 4.783 10.667 10.667 0 5.883-4.784 10.667-10.667 10.667Zm6.063-7.978c-.333-.167-1.966-.971-2.27-1.081-.303-.111-.524-.167-.746.167-.222.333-.857 1.08-1.051 1.303-.193.222-.386.25-.719.083-.333-.167-1.406-.519-2.678-1.654-.99-.883-1.658-1.973-1.852-2.306-.193-.333-.021-.513.146-.68.151-.15.333-.389.5-.583.167-.194.222-.333.333-.556.111-.222.055-.417-.028-.584-.084-.167-.746-1.8-1.022-2.47-.268-.645-.54-.558-.746-.568-.193-.01-.417-.012-.64-.012-.222 0-.583.083-.889.417-.306.333-1.167 1.14-1.167 2.78 0 1.639 1.195 3.223 1.363 3.445.167.222 2.35 3.588 5.698 5.03.797.344 1.422.55 1.908.705.802.255 1.53.219 2.108.133.643-.096 1.966-.804 2.245-1.58.278-.777.278-1.443.194-1.58-.084-.139-.306-.222-.64-.389Z"/>
+                                        </svg>
+                                        <span>WhatsApp</span>
+                                    </span>
+                                </div>
+                            @if($isContactRoute)
+                            </div>
+                            @else
+                            </a>
+                            @endif
                         </li>
                         @endif
 
                         @if(contact_phone_secondary())
-                        <li class="flex items-center space-x-2">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
-                            </svg>
-                            <span class="text-gray-300">{{ contact_phone_secondary() }}</span>
+                        <li>
+                            @if($isContactRoute)
+                            <div class="flex items-center gap-3 p-2 rounded-lg text-gray-300 bg-white/5">
+                            @else
+                            <a href="{{ route('frontend.contact') }}" class="group flex items-center gap-3 p-2 rounded-lg text-gray-300 hover:text-white transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30">
+                            @endif
+                                <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                                </svg>
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <span class="font-medium transition {{ $isContactRoute ? 'text-white' : 'group-hover:text-white' }}">{{ contact_phone_secondary() }}</span>
+                                    <span class="inline-flex items-center gap-1 px-2 py-0.5 border border-green-400 text-green-400 rounded-full text-xs font-semibold transition {{ $isContactRoute ? 'border-white text-white' : 'group-hover:border-white group-hover:text-white' }}">
+                                        <svg class="w-3.5 h-3.5" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+                                            <path d="M16 2.667C8.636 2.667 2.667 8.636 2.667 16c0 2.75.873 5.296 2.357 7.38L3 29.333l6.154-1.955A13.26 13.26 0 0 0 16 29.333c7.364 0 13.333-5.969 13.333-13.333S23.364 2.667 16 2.667Zm0 24c-2.2 0-4.297-.633-6.123-1.83l-.438-.279-3.648 1.158 1.172-3.56-.29-.452A10.61 10.61 0 0 1 5.333 16c0-5.884 4.783-10.667 10.667-10.667 5.883 0 10.667 4.783 10.667 10.667 0 5.883-4.784 10.667-10.667 10.667Zm6.063-7.978c-.333-.167-1.966-.971-2.27-1.081-.303-.111-.524-.167-.746.167-.222.333-.857 1.08-1.051 1.303-.193.222-.386.25-.719.083-.333-.167-1.406-.519-2.678-1.654-.99-.883-1.658-1.973-1.852-2.306-.193-.333-.021-.513.146-.68.151-.15.333-.389.5-.583.167-.194.222-.333.333-.556.111-.222.055-.417-.028-.584-.084-.167-.746-1.8-1.022-2.47-.268-.645-.54-.558-.746-.568-.193-.01-.417-.012-.64-.012-.222 0-.583.083-.889.417-.306.333-1.167 1.14-1.167 2.78 0 1.639 1.195 3.223 1.363 3.445.167.222 2.35 3.588 5.698 5.03.797.344 1.422.55 1.908.705.802.255 1.53.219 2.108.133.643-.096 1.966-.804 2.245-1.58.278-.777.278-1.443.194-1.58-.084-.139-.306-.222-.64-.389Z"/>
+                                        </svg>
+                                        <span>WhatsApp</span>
+                                    </span>
+                                </div>
+                            @if($isContactRoute)
+                            </div>
+                            @else
+                            </a>
+                            @endif
                         </li>
                         @endif
                         
                         @if(contact_email())
-                        <li class="flex items-center space-x-2">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-                            </svg>
-                            <span class="text-gray-300">{{ contact_email() }}</span>
+                        <li>
+                            @if($isContactRoute)
+                            <div class="flex items-center gap-3 p-2 rounded-lg text-gray-300 bg-white/5">
+                            @else
+                            <a href="{{ route('frontend.contact') }}" class="group flex items-center gap-3 p-2 rounded-lg text-gray-300 hover:text-white transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30">
+                            @endif
+                                <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                                </svg>
+                                <span class="font-medium transition {{ $isContactRoute ? 'text-white' : 'group-hover:text-white' }}">{{ contact_email() }}</span>
+                            @if($isContactRoute)
+                            </div>
+                            @else
+                            </a>
+                            @endif
                         </li>
                         @endif
                         
                         @if(contact_address())
-                        <li class="flex items-start space-x-2">
-                            <svg class="w-4 h-4 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
-                            </svg>
-                            <span class="text-gray-300 text-sm">{{ contact_address() }}</span>
+                        <li>
+                            @if($isContactRoute)
+                            <div class="flex items-start gap-3 p-2 rounded-lg text-gray-300 bg-white/5">
+                            @else
+                            <a href="{{ route('frontend.contact') }}" class="group flex items-start gap-3 p-2 rounded-lg text-gray-300 hover:text-white transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30">
+                            @endif
+                                <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                                </svg>
+                                <span class="text-sm transition {{ $isContactRoute ? 'text-white' : 'group-hover:text-white' }}">{{ contact_address() }}</span>
+                            @if($isContactRoute)
+                            </div>
+                            @else
+                            </a>
+                            @endif
                         </li>
                         @endif
                     </ul>

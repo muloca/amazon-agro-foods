@@ -3,6 +3,33 @@
 @section('title', __('frontend.pages.contact.meta.title'))
 @section('description', __('frontend.pages.contact.meta.description'))
 
+@php
+    use Illuminate\Support\Str;
+
+    $phoneEntries = collect([contact_phone(), contact_phone_secondary()])
+        ->filter(fn ($phone) => filled($phone))
+        ->map(function ($phone) {
+            $trimmed = trim($phone);
+            $digits = preg_replace('/\D+/', '', $trimmed);
+
+            if (blank($digits)) {
+                return null;
+            }
+
+            $internationalDigits = ltrim($digits, '0');
+            if (! Str::startsWith($internationalDigits, '55')) {
+                $internationalDigits = '55' . $internationalDigits;
+            }
+
+            return [
+                'display' => $phone,
+                'tel' => 'tel:+' . $internationalDigits,
+                'whatsapp' => 'https://wa.me/' . $internationalDigits,
+            ];
+        })
+        ->filter();
+@endphp
+
 @section('content')
 <div class="min-h-screen bg-gray-50">
     <x-hero-section 
@@ -132,13 +159,28 @@
                                 </div>
                                 <div>
                                     <h3 class="text-lg font-semibold text-gray-900">{{ __('frontend.pages.contact.info.phone.title') }}</h3>
-                                    @if(contact_phone())
-                                        <p class="text-gray-600">{{ contact_phone() }}</p>
-                                    @endif
-                                    @if(contact_phone_secondary())
-                                        <p class="text-gray-600">{{ contact_phone_secondary() }}</p>
-                                    @endif
-                                    <p class="text-sm text-gray-500">{{ __('frontend.pages.contact.info.phone.hours') }}</p>
+                                    @foreach($phoneEntries as $phone)
+                                        <div class="flex flex-wrap items-center gap-3 mt-3 first:mt-0">
+                                            @if($phone['tel'])
+                                                <a href="{{ $phone['tel'] }}" class="text-gray-700 hover:text-blue-600 font-medium transition">
+                                                    {{ $phone['display'] }}
+                                                </a>
+                                            @else
+                                                <span class="text-gray-600">{{ $phone['display'] }}</span>
+                                            @endif
+
+                                            @if($phone['whatsapp'])
+                                                <a href="{{ $phone['whatsapp'] }}" target="_blank" rel="noopener" aria-label="WhatsApp {{ $phone['display'] }}"
+                                                   class="inline-flex items-center gap-2 px-3 py-1 border border-green-500 text-green-600 rounded-full text-sm font-semibold hover:bg-green-50 hover:text-green-700 transition">
+                                                    <svg class="w-4 h-4" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+                                                        <path d="M16 2.667C8.636 2.667 2.667 8.636 2.667 16c0 2.75.873 5.296 2.357 7.38L3 29.333l6.154-1.955A13.26 13.26 0 0 0 16 29.333c7.364 0 13.333-5.969 13.333-13.333S23.364 2.667 16 2.667Zm0 24c-2.2 0-4.297-.633-6.123-1.83l-.438-.279-3.648 1.158 1.172-3.56-.29-.452A10.61 10.61 0 0 1 5.333 16c0-5.884 4.783-10.667 10.667-10.667 5.883 0 10.667 4.783 10.667 10.667 0 5.883-4.784 10.667-10.667 10.667Zm6.063-7.978c-.333-.167-1.966-.971-2.27-1.081-.303-.111-.524-.167-.746.167-.222.333-.857 1.08-1.051 1.303-.193.222-.386.25-.719.083-.333-.167-1.406-.519-2.678-1.654-.99-.883-1.658-1.973-1.852-2.306-.193-.333-.021-.513.146-.68.151-.15.333-.389.5-.583.167-.194.222-.333.333-.556.111-.222.055-.417-.028-.584-.084-.167-.746-1.8-1.022-2.47-.268-.645-.54-.558-.746-.568-.193-.01-.417-.012-.64-.012-.222 0-.583.083-.889.417-.306.333-1.167 1.14-1.167 2.78 0 1.639 1.195 3.223 1.363 3.445.167.222 2.35 3.588 5.698 5.03.797.344 1.422.55 1.908.705.802.255 1.53.219 2.108.133.643-.096 1.966-.804 2.245-1.58.278-.777.278-1.443.194-1.58-.084-.139-.306-.222-.64-.389Z"/>
+                                                    </svg>
+                                                    <span>WhatsApp</span>
+                                                </a>
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                    <p class="text-sm text-gray-500 mt-4">{{ __('frontend.pages.contact.info.phone.hours') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -155,7 +197,9 @@
                                 </div>
                                 <div>
                                     <h3 class="text-lg font-semibold text-gray-900">{{ __('frontend.pages.contact.info.email.title') }}</h3>
-                                    <p class="text-gray-600">{{ contact_email() }}</p>
+                                    <a href="mailto:{{ contact_email() }}" class="text-gray-600 hover:text-green-600 font-medium transition">
+                                        {{ contact_email() }}
+                                    </a>
                                     <p class="text-sm text-gray-500">{{ __('frontend.pages.contact.info.email.response_time') }}</p>
                                 </div>
                             </div>
