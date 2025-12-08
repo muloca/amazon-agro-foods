@@ -22,12 +22,10 @@
             <div class="relative flex items-center mb-16">
                 <div class="w-1/2 pr-8 text-right">
                     <div class="bg-white rounded-xl shadow-lg p-8">
-                        <div class="text-4xl font-bold text-blue-600 mb-2">1950</div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Os Primeiros Passos</h3>
+                        <div class="text-4xl font-bold text-blue-600 mb-2">{{ __('frontend.pages.history.timeline.foundation.year') }}</div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">{{ __('frontend.pages.history.timeline.foundation.title') }}</h3>
                         <p class="text-gray-600 leading-relaxed">
-                            O Amazon Frigorífico foi fundado com a visão de levar qualidade e frescor 
-                            para as famílias brasileiras. Desde o início, a empresa se dedicou à 
-                            melhoria contínua e à inovação tecnológica.
+                            {{ __('frontend.pages.history.timeline.foundation.description') }}
                         </p>
                     </div>
                 </div>
@@ -35,7 +33,7 @@
                 <div class="w-1/2 pl-8">
                     <div class="text-center">
                         <div class="text-6xl mb-4">🏭</div>
-                        <h4 class="text-lg font-semibold text-gray-700">Fundação</h4>
+                        <h4 class="text-lg font-semibold text-gray-700">{{ __('frontend.pages.history.timeline.foundation.label') }}</h4>
                     </div>
                 </div>
             </div>
@@ -45,18 +43,16 @@
                 <div class="w-1/2 pr-8">
                     <div class="text-center">
                         <div class="text-6xl mb-4">📈</div>
-                        <h4 class="text-lg font-semibold text-gray-700">Expansão</h4>
+                        <h4 class="text-lg font-semibold text-gray-700">{{ __('frontend.pages.history.timeline.expansion.label') }}</h4>
                     </div>
                 </div>
                 <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>
                 <div class="w-1/2 pl-8">
                     <div class="bg-white rounded-xl shadow-lg p-8">
-                        <div class="text-4xl font-bold text-blue-600 mb-2">1970</div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Crescimento e Modernização</h3>
+                        <div class="text-4xl font-bold text-blue-600 mb-2">{{ __('frontend.pages.history.timeline.expansion.year') }}</div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">{{ __('frontend.pages.history.timeline.expansion.title') }}</h3>
                         <p class="text-gray-600 leading-relaxed">
-                            A busca por melhorias levou o Amazon Frigorífico a expandir suas operações, 
-                            inaugurando novas instalações e estabelecendo-se como referência em qualidade 
-                            no mercado regional.
+                            {{ __('frontend.pages.history.timeline.expansion.description') }}
                         </p>
                     </div>
                 </div>
@@ -66,12 +62,10 @@
             <div class="relative flex items-center mb-16">
                 <div class="w-1/2 pr-8 text-right">
                     <div class="bg-white rounded-xl shadow-lg p-8">
-                        <div class="text-4xl font-bold text-blue-600 mb-2">1990</div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Revolução Tecnológica</h3>
+                        <div class="text-4xl font-bold text-blue-600 mb-2">{{ __('frontend.pages.history.timeline.technology.year') }}</div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">{{ __('frontend.pages.history.timeline.technology.title') }}</h3>
                         <p class="text-gray-600 leading-relaxed">
-                            Investimentos em tecnologia de ponta transformaram nossos processos, 
-                            garantindo maior eficiência, qualidade e segurança alimentar. 
-                            A modernização trouxe novos padrões de excelência.
+                            {{ __('frontend.pages.history.timeline.technology.description') }}
                         </p>
                     </div>
                 </div>
@@ -79,7 +73,7 @@
                 <div class="w-1/2 pl-8">
                     <div class="text-center">
                         <div class="text-6xl mb-4">💻</div>
-                        <h4 class="text-lg font-semibold text-gray-700">Tecnologia</h4>
+                        <h4 class="text-lg font-semibold text-gray-700">{{ __('frontend.pages.history.timeline.technology.label') }}</h4>
                     </div>
                 </div>
             </div>
@@ -89,18 +83,16 @@
                 <div class="w-1/2 pr-8">
                     <div class="text-center">
                         <div class="text-6xl mb-4">🏆</div>
-                        <h4 class="text-lg font-semibold text-gray-700">Qualidade</h4>
+                        <h4 class="text-lg font-semibold text-gray-700">{{ __('frontend.pages.history.timeline.quality.label') }}</h4>
                     </div>
                 </div>
                 <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>
                 <div class="w-1/2 pl-8">
                     <div class="bg-white rounded-xl shadow-lg p-8">
-                        <div class="text-4xl font-bold text-blue-600 mb-2">2000</div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Certificações e Qualidade</h3>
+                        <div class="text-4xl font-bold text-blue-600 mb-2">{{ __('frontend.pages.history.timeline.quality.year') }}</div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">{{ __('frontend.pages.history.timeline.quality.title') }}</h3>
                         <p class="text-gray-600 leading-relaxed">
-                            Obtivemos importantes certificações de qualidade e implementamos 
-                            rigorosos controles de segurança alimentar, estabelecendo novos 
-                            padrões de excelência no setor.
+                            {{ __('frontend.pages.history.timeline.quality.description') }}
                         </p>
                     </div>
                 </div>
@@ -110,12 +102,10 @@
             <div class="relative flex items-center mb-16">
                 <div class="w-1/2 pr-8 text-right">
                     <div class="bg-white rounded-xl shadow-lg p-8">
-                        <div class="text-4xl font-bold text-blue-600 mb-2">2010</div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Sustentabilidade</h3>
+                        <div class="text-4xl font-bold text-blue-600 mb-2">{{ __('frontend.pages.history.timeline.sustainability.year') }}</div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">{{ __('frontend.pages.history.timeline.sustainability.title') }}</h3>
                         <p class="text-gray-600 leading-relaxed">
-                            Implementamos práticas sustentáveis em toda nossa cadeia produtiva, 
-                            assumindo compromisso com o meio ambiente e a responsabilidade social, 
-                            sempre mantendo a qualidade dos nossos produtos.
+                            {{ __('frontend.pages.history.timeline.sustainability.description') }}
                         </p>
                     </div>
                 </div>
@@ -123,7 +113,7 @@
                 <div class="w-1/2 pl-8">
                     <div class="text-center">
                         <div class="text-6xl mb-4">🌱</div>
-                        <h4 class="text-lg font-semibold text-gray-700">Sustentabilidade</h4>
+                        <h4 class="text-lg font-semibold text-gray-700">{{ __('frontend.pages.history.timeline.sustainability.label') }}</h4>
                     </div>
                 </div>
             </div>
@@ -133,18 +123,16 @@
                 <div class="w-1/2 pr-8">
                     <div class="text-center">
                         <div class="text-6xl mb-4">🚀</div>
-                        <h4 class="text-lg font-semibold text-gray-700">Hoje</h4>
+                        <h4 class="text-lg font-semibold text-gray-700">{{ __('frontend.pages.history.timeline.today.label') }}</h4>
                     </div>
                 </div>
                 <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-green-600 rounded-full border-4 border-white shadow-lg"></div>
                 <div class="w-1/2 pl-8">
                     <div class="bg-gradient-to-r from-green-600 to-green-700 text-white rounded-xl shadow-lg p-8">
-                        <div class="text-4xl font-bold mb-2">{{ date('Y') }}</div>
-                        <h3 class="text-2xl font-bold mb-4">Presente e Futuro</h3>
-                        <p class="text-green-100 leading-relaxed">
-                            Hoje, o Amazon Frigorífico continua sua trajetória de excelência, 
-                            combinando tradição e inovação para levar até sua mesa produtos 
-                            de qualidade superior, sempre com responsabilidade social e ambiental.
+                        <div class="text-4xl font-bold mb-2" style="color: #ffffff !important;">{{ __('frontend.pages.history.timeline.today.year', ['year' => date('Y')]) }}</div>
+                        <h3 class="text-2xl font-bold mb-4" style="color: #ffffff !important;">{{ __('frontend.pages.history.timeline.today.title') }}</h3>
+                        <p class="leading-relaxed" style="color: #ffffff !important;">
+                            {{ __('frontend.pages.history.timeline.today.description') }}
                         </p>
                     </div>
                 </div>
@@ -155,35 +143,35 @@
         <div class="mt-20">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                    Nossos Valores
+                    {{ __('frontend.pages.history.values.title') }}
                 </h2>
                 <p class="text-xl text-gray-600">
-                    Os princípios que guiam nossa trajetória
+                    {{ __('frontend.pages.history.values.subtitle') }}
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="text-center p-8 bg-white rounded-xl shadow-lg">
                     <div class="text-5xl mb-4">🎯</div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Qualidade</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">{{ __('frontend.pages.history.values.items.quality.title') }}</h3>
                     <p class="text-gray-600">
-                        Compromisso com a excelência em cada produto, desde a origem até a entrega.
+                        {{ __('frontend.pages.history.values.items.quality.description') }}
                     </p>
                 </div>
 
                 <div class="text-center p-8 bg-white rounded-xl shadow-lg">
                     <div class="text-5xl mb-4">🤝</div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Confiança</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">{{ __('frontend.pages.history.values.items.trust.title') }}</h3>
                     <p class="text-gray-600">
-                        Construindo relacionamentos duradouros baseados na transparência e honestidade.
+                        {{ __('frontend.pages.history.values.items.trust.description') }}
                     </p>
                 </div>
 
                 <div class="text-center p-8 bg-white rounded-xl shadow-lg">
                     <div class="text-5xl mb-4">🌍</div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Sustentabilidade</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">{{ __('frontend.pages.history.values.items.sustainability.title') }}</h3>
                     <p class="text-gray-600">
-                        Responsabilidade com o meio ambiente e com as futuras gerações.
+                        {{ __('frontend.pages.history.values.items.sustainability.description') }}
                     </p>
                 </div>
             </div>

@@ -181,7 +181,7 @@
                         </div>
                         <div>
                             <h1 class="text-2xl font-bold text-gray-900">{{ $config['site_name'] ?? 'Amazon Frigorífico' }}</h1>
-                            <p class="text-sm text-gray-500">{{ $config['site_description'] ?? 'Especialistas em produtos de qualidade' }}</p>
+                            <p class="text-sm text-gray-500">{{ __('frontend.common.site_description') }}</p>
                         </div>
                     </a>
                 </div>
@@ -324,11 +324,11 @@
                         </div>
                         <div>
                             <h3 class="text-xl font-bold">{{ $config['site_name'] ?? 'Amazon Frigorífico' }}</h3>
-                            <p class="text-amazon-verde-300 text-sm">{{ $config['site_description'] ?? 'Especialistas em produtos de qualidade' }}</p>
+                            <p class="text-amazon-verde-300 text-sm">{{ __('frontend.common.site_description') }}</p>
                         </div>
                     </div>
                     <p class="text-gray-300 mb-6 leading-relaxed">
-                        {{ $config['site_description'] ?? 'Especialistas em produtos de qualidade para sua família' }}
+                        {{ __('frontend.common.site_description_family') }}
                     </p>
                     <div class="flex space-x-4">
                         @if(!empty($config['social_facebook']))

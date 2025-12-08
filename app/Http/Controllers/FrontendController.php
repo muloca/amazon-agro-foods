@@ -20,7 +20,7 @@ class FrontendController extends Controller
 
         return [
             'site_name' => Configuration::getValue('site_name', 'Amazon Frigorífico'),
-            'site_description' => Configuration::getValue('site_description', 'Especialistas em produtos de qualidade'),
+            'site_description' => Configuration::getValue('site_description'),
             'hero_title' => Configuration::getValue('hero_title', __('frontend.home.hero.default_title')),
             'hero_subtitle' => Configuration::getValue('hero_subtitle', __('frontend.home.hero.default_subtitle')),
             'cta_button_text' => Configuration::getValue('cta_button_text', __('frontend.home.hero.primary_cta')),

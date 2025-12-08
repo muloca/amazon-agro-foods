@@ -180,8 +180,8 @@
         <div class="mb-20">
             <div class="bg-gradient-to-r from-green-600 to-green-700 text-white rounded-2xl p-12">
                 <div class="text-center">
-                    <h3 class="text-3xl md:text-4xl font-bold mb-6">{{ __('frontend.pages.about.environmental.title') }}</h3>
-                    <p class="text-xl text-green-100 max-w-4xl mx-auto leading-relaxed">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-6" style="color: #ffffff !important;">{{ __('frontend.pages.about.environmental.title') }}</h3>
+                    <p class="text-xl max-w-4xl mx-auto leading-relaxed" style="color: #ffffff !important;">
                         {{ __('frontend.pages.about.environmental.description') }}
                     </p>
                 </div>
@@ -192,8 +192,8 @@
         <div class="mb-20">
             <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-2xl p-12">
                 <div class="text-center">
-                    <h3 class="text-3xl md:text-4xl font-bold mb-6">{{ __('frontend.pages.about.social.title') }}</h3>
-                    <p class="text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-6" style="color: #ffffff !important;">{{ __('frontend.pages.about.social.title') }}</h3>
+                    <p class="text-xl max-w-4xl mx-auto leading-relaxed" style="color: #ffffff !important;">
                         {{ __('frontend.pages.about.social.description') }}
                     </p>
                 </div>

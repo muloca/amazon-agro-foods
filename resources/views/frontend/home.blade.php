@@ -26,7 +26,7 @@
             </p>
             <div class="flex flex-col sm:flex-row gap-6 justify-center">
                 <a href="{{ route('frontend.products') }}" class="border-2 border-white text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-amazon-verde-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                    {{ $config['cta_button_text'] ?? __('frontend.home.hero.primary_cta') }}
+                    {{ __('frontend.home.hero.primary_cta') }}
                 </a>
                 <a href="{{ route('frontend.contact') }}" class="border-2 border-white text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-amazon-verde-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                     {{ __('frontend.common.contact_us') }}
