@@ -40,6 +40,8 @@ return [
         'coming_soon' => 'Em breve',
         'learn_more' => 'Saiba mais',
         'view_all_products' => 'Ver Todos os Produtos',
+        'site_description' => 'Especialistas em produtos de qualidade',
+        'site_description_family' => 'Especialistas em produtos de qualidade para sua família',
     ],
 
     'home' => [
@@ -201,12 +203,74 @@ return [
         ],
         'about' => [
             'meta' => [
-                'title' => 'Sobre Nós - Amazon Frigorífico',
-                'description' => 'Conheça a história, os valores e a visão do Amazon Frigorífico.',
+                'title' => 'Sobre - Amazon Frigorífico',
+                'description' => 'Conheça a Amazon Frigorífico, nossa história, valores e compromisso com a qualidade.',
             ],
             'hero' => [
                 'title' => 'Sobre Nós',
-                'subtitle' => 'Tradição, qualidade e inovação em cada produto',
+                'subtitle' => 'Conheça nossa trajetória, valores e compromisso com a qualidade.',
+            ],
+            'intro' => [
+                'title' => 'Amazon Frigorífico',
+                'description' => 'Somos uma empresa dedicada à produção de carnes e produtos frescos de alta qualidade, combinando tradição familiar com tecnologia moderna para levar até sua mesa produtos que reúnem sabor, frescor e confiança.',
+            ],
+            'technology' => [
+                'title' => 'Tecnologia',
+                'subtitle' => 'Tecnologia aliada à excelência em carnes e cortes',
+                'description' => 'Sabemos que a tecnologia é essencial em toda a cadeia produtiva. No Amazon Frigorífico investimos constantemente em soluções tecnológicas para otimizar processos e garantir a qualidade dos produtos, desde o abate até a entrega final.',
+                'highlights' => [
+                    'temperature' => 'Controle de temperatura automatizado',
+                    'traceability' => 'Sistema de rastreabilidade completo',
+                    'environment' => 'Processamento em ambiente controlado',
+                    'quality' => 'Qualidade garantida em cada etapa',
+                ],
+                'card' => [
+                    'title' => 'Inovação Constante',
+                    'description' => 'Investimos em tecnologia de ponta para garantir a melhor qualidade',
+                ],
+            ],
+            'food_safety' => [
+                'title' => 'Segurança Alimentar',
+                'subtitle' => 'Garantia e procedência para reunir',
+                'description' => 'No Amazon Frigorífico, a segurança alimentar é fundamental para garantir a qualidade dos produtos e proteger a saúde dos consumidores. Contamos com rigorosos protocolos de controle de qualidade em todas as etapas do processo.',
+                'highlights' => [
+                    'hygiene' => 'Protocolos rigorosos de higiene',
+                    'temperature' => 'Controle de temperatura rigoroso',
+                    'traceability' => 'Rastreabilidade completa',
+                    'inspection' => 'Inspeção contínua',
+                ],
+                'card' => [
+                    'title' => 'Segurança Alimentar',
+                    'description' => 'Garantia e procedência para reunir a família',
+                ],
+            ],
+            'humane' => [
+                'title' => 'Abate Humanitário',
+                'subtitle' => 'Comprometimento com o bem-estar animal',
+                'description' => 'O abate humanitário é uma prática central em nossas operações. Seguindo todos os protocolos nacionais e internacionais durante o processo, buscamos garantir que o abate ocorra da forma mais ética e respeitosa possível.',
+                'highlights' => [
+                    'welfare' => 'Protocolos de bem-estar animal',
+                    'ethical' => 'Processo ético e respeitoso',
+                    'compliance' => 'Conformidade com normas internacionais',
+                    'training' => 'Treinamento contínuo da equipe',
+                ],
+                'card' => [
+                    'title' => 'Bem-estar Animal',
+                    'description' => 'Respeito e cuidado em todas as etapas',
+                ],
+            ],
+            'environmental' => [
+                'title' => 'Responsabilidade Ambiental',
+                'description' => 'No Amazon Frigorífico, assumimos o compromisso com o futuro, fazendo da responsabilidade ambiental peça fundamental em todos os processos. Assim, garantimos o respeito com o meio ambiente e a qualidade dos produtos até a sua mesa.',
+            ],
+            'social' => [
+                'title' => 'Responsabilidade Social',
+                'description' => 'No Amazon Frigorífico, nosso objetivo vai além da produção de carne de alta qualidade. Somos formados por gente e entendemos o nosso compromisso e responsabilidade para com a sociedade após décadas de atuação.',
+            ],
+            'careers' => [
+                'title' => 'Trabalhe Conosco',
+                'description' => 'Já pensou em fazer parte de uma equipe engajada e empenhada em fazer a diferença com produtos de qualidade? Então aqui é o seu lugar!',
+                'cta' => 'Entre em Contato',
             ],
         ],
         'history' => [
@@ -217,6 +281,77 @@ return [
             'hero' => [
                 'title' => 'Nossa História',
                 'subtitle' => 'Uma trajetória de tradição, qualidade e inovação',
+            ],
+            'timeline' => [
+                'foundation' => [
+                    'year' => '1950',
+                    'title' => 'Os Primeiros Passos',
+                    'description' => 'O Amazon Frigorífico foi fundado com a visão de levar qualidade e frescor para as famílias brasileiras. Desde o início, a empresa se dedicou à melhoria contínua e à inovação tecnológica.',
+                    'label' => 'Fundação',
+                ],
+                'expansion' => [
+                    'year' => '1970',
+                    'title' => 'Crescimento e Modernização',
+                    'description' => 'A busca por melhorias levou o Amazon Frigorífico a expandir suas operações, inaugurando novas instalações e estabelecendo-se como referência em qualidade no mercado regional.',
+                    'label' => 'Expansão',
+                ],
+                'technology' => [
+                    'year' => '1990',
+                    'title' => 'Revolução Tecnológica',
+                    'description' => 'Investimentos em tecnologia de ponta transformaram nossos processos, garantindo maior eficiência, qualidade e segurança alimentar. A modernização trouxe novos padrões de excelência.',
+                    'label' => 'Tecnologia',
+                ],
+                'quality' => [
+                    'year' => '2000',
+                    'title' => 'Certificações e Qualidade',
+                    'description' => 'Obtivemos importantes certificações de qualidade e implementamos rigorosos controles de segurança alimentar, estabelecendo novos padrões de excelência no setor.',
+                    'label' => 'Qualidade',
+                ],
+                'sustainability' => [
+                    'year' => '2010',
+                    'title' => 'Sustentabilidade',
+                    'description' => 'Implementamos práticas sustentáveis em toda nossa cadeia produtiva, assumindo compromisso com o meio ambiente e a responsabilidade social, sempre mantendo a qualidade dos nossos produtos.',
+                    'label' => 'Sustentabilidade',
+                ],
+                'today' => [
+                    'year' => ':year',
+                    'title' => 'Presente e Futuro',
+                    'description' => 'Hoje, o Amazon Frigorífico continua sua trajetória de excelência, combinando tradição e inovação para levar até sua mesa produtos de qualidade superior, sempre com responsabilidade social e ambiental.',
+                    'label' => 'Hoje',
+                ],
+            ],
+            'values' => [
+                'title' => 'Nossos Valores',
+                'subtitle' => 'Os princípios que guiam nossa trajetória',
+                'items' => [
+                    'quality' => [
+                        'title' => 'Qualidade',
+                        'description' => 'Compromisso com a excelência em cada produto, desde a origem até a entrega.',
+                    ],
+                    'trust' => [
+                        'title' => 'Confiança',
+                        'description' => 'Construindo relacionamentos duradouros baseados na transparência e honestidade.',
+                    ],
+                    'sustainability' => [
+                        'title' => 'Sustentabilidade',
+                        'description' => 'Responsabilidade com o meio ambiente e com as futuras gerações.',
+                    ],
+                ],
+            ],
+        ],
+        'product' => [
+            'description_title' => 'Descrição',
+            'features_title' => 'Características',
+            'features' => [
+                'fresh' => 'Produto Fresco',
+                'family' => 'Tradição Familiar',
+                'quality' => 'Qualidade Garantida',
+                'delivery' => 'Entrega Rápida',
+            ],
+            'related' => [
+                'title' => 'Produtos Relacionados',
+                'subtitle' => 'Outros produtos que você pode gostar',
+                'details' => 'Ver Detalhes',
             ],
         ],
     ],

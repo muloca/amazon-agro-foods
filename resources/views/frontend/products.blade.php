@@ -5,19 +5,15 @@
 
 @section('content')
 <div class="min-h-screen bg-gray-50">
-    <!-- Header Section -->
     <x-hero-section 
         :title="__('frontend.pages.products.hero.title')"
         :subtitle="__('frontend.pages.products.hero.subtitle')"
         icon="products"
         :show-pattern="true" />
-
-    <!-- Filters Section -->
     <div class="bg-white shadow-lg border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <form id="products-filter-form" method="GET" action="{{ route('frontend.products') }}" class="bg-gray-50 rounded-2xl p-6">
                 <div class="flex flex-col lg:flex-row gap-4">
-                    <!-- Search -->
                     <div class="flex-1">
                         <div class="relative">
                             <input type="text" 
@@ -32,8 +28,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Category Filter -->
                     <div class="lg:w-80">
                         <select name="category" class="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-amazon-verde-500 focus:border-amazon-verde-500 transition-all duration-200 text-gray-900 bg-white" onchange="this.form.submit()">
                             <option value="">{{ __('frontend.pages.products.filter.all_categories') }}</option>
@@ -48,8 +42,6 @@
             </form>
         </div>
     </div>
-
-    <!-- Products Grid -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         @if($products->count() > 0)
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -57,8 +49,6 @@
                     <x-product-card :product="$product" variant="default" :show-line="false" />
                 @endforeach
             </div>
-
-            <!-- Pagination -->
             @if($products->hasPages())
                 <div class="mt-16 flex justify-center">
                     <div class="bg-white rounded-2xl shadow-lg p-4">
@@ -67,7 +57,6 @@
                 </div>
             @endif
         @else
-            <!-- Empty State -->
             <div class="text-center py-20">
                 <div class="inline-flex items-center justify-center w-24 h-24 bg-gray-100 rounded-full mb-8">
                     <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -111,12 +100,10 @@
     overflow: hidden;
 }
 
-/* Garantir contraste adequado para todos os textos */
 body {
     color: var(--text-body-color) !important;
 }
 
-/* Textos no header azul - FORÇAR BRANCO COM SOMBRA */
 .bg-gradient-to-br h1,
 .bg-gradient-to-br h2,
 .bg-gradient-to-br h3,
@@ -132,12 +119,10 @@ body {
     text-shadow: 1px 1px 2px rgba(0,0,0,0.3) !important;
 }
 
-/* Forçar branco em qualquer elemento dentro do header azul */
 .bg-gradient-to-br * {
     color: var(--hero-text-color) !important;
 }
 
-/* Específico para o container do header */
 .relative.bg-gradient-to-br h1,
 .relative.bg-gradient-to-br h2,
 .relative.bg-gradient-to-br h3,
@@ -150,7 +135,6 @@ body {
     color: var(--hero-text-color) !important;
 }
 
-/* Textos nos cards de produtos */
 .bg-white h1,
 .bg-white h2,
 .bg-white h3,
@@ -164,7 +148,6 @@ body {
     color: var(--text-secondary-color) !important;
 }
 
-/* Inputs e selects */
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -178,7 +161,6 @@ input::placeholder {
     color: var(--text-muted-color) !important;
 }
 
-/* Garantir que todos os textos tenham contraste */
 .text-gray-900 {
     color: var(--text-heading-color) !important;
 }
@@ -199,7 +181,6 @@ input::placeholder {
     color: #dbeafe !important;
 }
 
-/* FORÇAR BRANCO ABSOLUTO - Sobrescrever qualquer classe */
 .text-white,
 h1.text-white,
 h2.text-white,
@@ -214,12 +195,10 @@ div.text-white {
     text-shadow: 1px 1px 2px rgba(0,0,0,0.3) !important;
 }
 
-/* Garantir que textos grandes sejam brancos */
 h1, h2, h3, h4, h5, h6 {
     color: #1f2937 !important;
 }
 
-/* Mas no header azul, forçar branco */
 .bg-gradient-to-br h1,
 .bg-gradient-to-br h2,
 .bg-gradient-to-br h3,

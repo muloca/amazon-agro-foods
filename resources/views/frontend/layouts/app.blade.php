@@ -9,11 +9,9 @@
     <meta name="description" content="@yield('description', $config['meta_description'] ?? __('frontend.home.meta.description'))">
     <meta name="keywords" content="@yield('keywords', $config['meta_keywords'] ?? 'frigorífico, produtos, qualidade')">
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-    <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     
     @stack('styles')
@@ -45,7 +43,7 @@
             --footer-heading-color: {{ $config['footer_heading_color'] ?? '#ffffff' }};
             --footer-text-color: {{ $config['footer_text_color'] ?? '#d1d5db' }};
         }
-        /* Garantir que os textos estejam visíveis */
+
         body {
             color: var(--text-body-color) !important;
             background-color: #ffffff !important;
@@ -85,7 +83,6 @@
             color: var(--card-text-color) !important;
         }
 
-        /* Gradiente dinâmico para hero sections - sempre usa a cor primária configurada */
         .hero-primary-gradient {
             background: var(--hero-background);
             background-color: var(--hero-background-start);
@@ -169,11 +166,9 @@
         </div>
     @endif
 
-    <!-- Header -->
     <header x-data="{ mobileMenuOpen: false }" @keydown.window.escape="mobileMenuOpen = false" class="bg-white shadow-lg border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
                 <div class="flex items-center">
                     <a href="{{ route('home') }}" class="flex items-center space-x-3">
                         <div class="w-12 h-12 flex items-center justify-center">
@@ -181,12 +176,10 @@
                         </div>
                         <div>
                             <h1 class="text-2xl font-bold text-gray-900">{{ $config['site_name'] ?? 'Amazon Frigorífico' }}</h1>
-                            <p class="text-sm text-gray-500">{{ $config['site_description'] ?? 'Especialistas em produtos de qualidade' }}</p>
+                            <p class="text-sm text-gray-500">{{ __('frontend.common.site_description') }}</p>
                         </div>
                     </a>
                 </div>
-
-                <!-- Navigation -->
                 <div class="hidden md:flex items-center space-x-6 rtl:space-x-reverse">
                     @php
                         $navLinks = [
@@ -221,8 +214,6 @@
                         @endforeach
                     </div>
                 </div>
-
-                <!-- Auth Links -->
                 @guest
                     <div class="hidden md:flex items-center space-x-3 rtl:space-x-reverse">
                         @auth
@@ -306,17 +297,12 @@
             </div>
         </div>
     </header>
-
-    <!-- Main Content -->
     <main>
         @yield('content')
     </main>
-
-    <!-- Footer -->
     <footer class="bg-gradient-to-br from-amazon-verde-800 to-amazon-verde-900 text-white site-footer">
         <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <!-- Company Info -->
                 <div class="col-span-1 md:col-span-2">
                     <div class="flex items-center space-x-3 mb-6">
                         <div class="w-10 h-10 bg-gradient-to-br from-amazon-verde-500 to-amazon-verde-600 rounded-lg flex items-center justify-center">
@@ -324,11 +310,11 @@
                         </div>
                         <div>
                             <h3 class="text-xl font-bold">{{ $config['site_name'] ?? 'Amazon Frigorífico' }}</h3>
-                            <p class="text-amazon-verde-300 text-sm">{{ $config['site_description'] ?? 'Especialistas em produtos de qualidade' }}</p>
+                            <p class="text-amazon-verde-300 text-sm">{{ __('frontend.common.site_description') }}</p>
                         </div>
                     </div>
                     <p class="text-gray-300 mb-6 leading-relaxed">
-                        {{ $config['site_description'] ?? 'Especialistas em produtos de qualidade para sua família' }}
+                        {{ __('frontend.common.site_description_family') }}
                     </p>
                     <div class="flex space-x-4">
                         @if(!empty($config['social_facebook']))
@@ -356,8 +342,6 @@
                         @endif
                     </div>
                 </div>
-
-                <!-- Quick Links -->
                 <div>
                     <h3 class="text-lg font-semibold mb-4">{{ __('frontend.footer.quick_links') }}</h3>
                     <ul class="space-y-2">
@@ -369,8 +353,6 @@
                         <li><a href="{{ route('frontend.contact') }}" class="text-gray-300 hover:text-white">{{ __('frontend.footer.links.contact') }}</a></li>
                     </ul>
                 </div>
-
-                <!-- Contact -->
                 <div>
                     <h3 class="text-lg font-semibold mb-4">{{ __('frontend.footer.contact_title') }}</h3>
                     <ul class="space-y-2">

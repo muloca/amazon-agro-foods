@@ -4,9 +4,7 @@
 @section('description', $config['meta_description'] ?? __('frontend.home.meta.description'))
 
 @section('content')
-<!-- Hero Section -->
 <section class="relative hero-primary-gradient text-white overflow-hidden hero-section">
-    <!-- Background Pattern -->
     <div class="absolute inset-0 opacity-10">
         <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
     </div>
@@ -37,8 +35,6 @@
     
     
 </section>
-
-<!-- Features Section -->
 <section id="features" class="py-24 bg-gray-50 text-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-20">
@@ -69,8 +65,6 @@
         @endif
     </div>
 </section>
-
-<!-- Featured Products Section -->
 @if($featuredProducts->count() > 0)
 <section class="py-24 bg-white text-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -101,10 +95,7 @@
     </div>
 </section>
 @endif
-
-<!-- CTA Section -->
 <section class="py-24 bg-gradient-to-br from-amazon-verde-600 via-amazon-verde-700 to-amazon-verde-800 text-white relative overflow-hidden cta-highlight">
-    <!-- Background Pattern -->
     <div class="absolute inset-0 opacity-10">
         <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
     </div>
@@ -135,7 +126,7 @@
 
 @push('styles')
 <style>
-/* Garantir que os textos estejam visíveis */
+    
 body {
     color: var(--text-body-color) !important;
 }

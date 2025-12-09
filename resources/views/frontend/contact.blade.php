@@ -37,11 +37,8 @@
         :subtitle="__('frontend.pages.contact.hero.subtitle')"
         icon="contact"
         :show-pattern="true" />
-
-    <!-- Main Content -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <!-- Contact Form -->
             <div>
                 <h2 class="text-3xl font-bold text-gray-900 mb-6">{{ __('frontend.pages.contact.form.title') }}</h2>
 
@@ -141,14 +138,9 @@
                     </button>
                 </form>
             </div>
-
-            <!-- Contact Information -->
             <div>
                 <h2 class="text-3xl font-bold text-gray-900 mb-6">{{ __('frontend.pages.contact.info.title') }}</h2>
-                
-                <!-- Contact Cards -->
                 <div class="space-y-6">
-                    <!-- Phone -->
                     @if (contact_phone() || contact_phone_secondary())
                         <div class="bg-white rounded-xl shadow-lg p-6">
                             <div class="flex items-center">
@@ -185,8 +177,6 @@
                             </div>
                         </div>
                     @endif
-
-                    <!-- Email -->
                     @if (contact_email())
                         <div class="bg-white rounded-xl shadow-lg p-6">
                             <div class="flex items-center">
@@ -205,8 +195,6 @@
                             </div>
                         </div>
                     @endif
-
-                    <!-- Address -->
                     @if (contact_address())
                         <div class="bg-white rounded-xl shadow-lg p-6">
                             <div class="flex items-center">
@@ -224,8 +212,6 @@
                         </div>
                     @endif
                 </div>
-
-                <!-- Map Placeholder -->
                 @php
                     $mapEmbedUrl = contact_map_embed_url();
                     $mapExternalLink = contact_map_external_link();
@@ -258,8 +244,6 @@
                         </div>
                     </div>
                 @endif
-
-                <!-- Social Media -->
                 <div class="mt-8">
                     <h3 class="text-xl font-semibold text-gray-900 mb-4">{{ __('frontend.pages.contact.info.social.title') }}</h3>
                     <div class="flex space-x-4">

@@ -4,7 +4,6 @@
 
 @section('content')
 <div class="min-h-screen bg-gray-50">
-    <!-- Breadcrumb -->
     <div class="bg-white border-b">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <nav class="flex" aria-label="Breadcrumb">
@@ -21,7 +20,7 @@
                             <svg class="flex-shrink-0 h-5 w-5 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <a href="{{ route('frontend.products') }}" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">Produtos</a>
+                            <a href="{{ route('frontend.products') }}" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">{{ __('frontend.nav.products') }}</a>
                         </div>
                     </li>
                     <li>
@@ -39,17 +38,13 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <!-- Image Gallery -->
             <div x-data="imageGallery()" class="space-y-4">
-                <!-- Main Image -->
                 <div class="relative group">
                     <img 
                         :src="images[currentIndex]" 
                         :alt="$product.name"
                         @click="openFullscreen()"
                         class="w-full h-96 lg:h-[500px] object-cover rounded-lg cursor-pointer transition-transform duration-300 hover:scale-105 shadow-lg">
-                    
-                    <!-- Fullscreen Button -->
                     <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 rounded-lg flex items-center justify-center">
                         <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -57,10 +52,7 @@
                             </svg>
                         </div>
                     </div>
-
-                    <!-- Navigation Controls -->
                     <div x-show="images.length > 1" class="absolute inset-0 flex items-center justify-between pointer-events-none">
-                        <!-- Previous Button -->
                         <button 
                             @click="previousImage()"
                             class="pointer-events-auto ml-4 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-3 shadow-lg transition-all duration-300">
@@ -68,8 +60,6 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                             </svg>
                         </button>
-                        
-                        <!-- Next Button -->
                         <button 
                             @click="nextImage()"
                             class="pointer-events-auto mr-4 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-3 shadow-lg transition-all duration-300">
@@ -79,8 +69,6 @@
                         </button>
                     </div>
                 </div>
-
-                <!-- Thumbnail Navigation -->
                 <template x-if="images.length > 1">
                     <div class="flex space-x-2 overflow-x-auto pb-2">
                         <template x-for="(image, index) in images" :key="index">
@@ -93,16 +81,12 @@
                         </template>
                     </div>
                 </template>
-
-                <!-- Image Counter -->
                 <template x-if="images.length > 1">
                     <div class="text-center text-sm text-gray-500">
                         <span x-text="currentIndex + 1"></span> de <span x-text="images.length"></span>
                     </div>
                 </template>
             </div>
-
-            <!-- Product Info -->
             <div class="space-y-8">
                 <div>
                     <h1 class="text-4xl font-bold text-gray-900 mb-4">{{ $product->name }}</h1>
@@ -120,52 +104,48 @@
 
                 @if($product->description)
                     <div>
-                        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Descrição</h2>
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-4">{{ __('frontend.pages.product.description_title') }}</h2>
                         <div class="prose prose-lg text-gray-600 max-w-none">
                             <p>{{ $product->description }}</p>
                         </div>
                     </div>
                 @endif
-
-                <!-- Product Features -->
                 <div class="bg-white rounded-lg p-6 shadow-sm border">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Características</h3>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">{{ __('frontend.pages.product.features_title') }}</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="flex items-center space-x-3">
                             <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-600">Produto Fresco</span>
+                            <span class="text-gray-600">{{ __('frontend.pages.product.features.fresh') }}</span>
                         </div>
                         <div class="flex items-center space-x-3">
                             <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-600">Qualidade Garantida</span>
+                            <span class="text-gray-600">{{ __('frontend.pages.product.features.quality') }}</span>
                         </div>
                         <div class="flex items-center space-x-3">
                             <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-600">Tradição Familiar</span>
+                            <span class="text-gray-600">{{ __('frontend.pages.product.features.family') }}</span>
                         </div>
                         <div class="flex items-center space-x-3">
                             <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-gray-600">Entrega Rápida</span>
+                            <span class="text-gray-600">{{ __('frontend.pages.product.features.delivery') }}</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Related Products -->
         @if($relatedProducts->count() > 0)
             <div class="mt-20">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Produtos Relacionados</h2>
-                    <p class="text-lg text-gray-600">Outros produtos que você pode gostar</p>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">{{ __('frontend.pages.product.related.title') }}</h2>
+                    <p class="text-lg text-gray-600">{{ __('frontend.pages.product.related.subtitle') }}</p>
                 </div>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -182,7 +162,7 @@
                                 <p class="text-gray-600 text-sm mb-4">{{ $relatedProduct->category->name }}</p>
                                 <a href="{{ route('frontend.product', $relatedProduct) }}" 
                                    class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors duration-300">
-                                    Ver Detalhes
+                                    {{ __('frontend.pages.product.related.details') }}
                                     <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                                     </svg>
@@ -194,8 +174,6 @@
             </div>
         @endif
     </div>
-
-    <!-- Fullscreen Modal -->
     <div x-data="fullscreenModal()" 
          x-show="isOpen" 
          x-cloak
@@ -230,8 +208,6 @@
                     </button>
                 </div>
             </template>
-            
-            <!-- Image Counter in Fullscreen -->
             <template x-if="images.length > 1">
                 <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white bg-black bg-opacity-50 rounded-full px-4 py-2">
                     <span x-text="currentIndex + 1"></span> de <span x-text="images.length"></span>
@@ -256,7 +232,6 @@ function imageGallery() {
         },
         
         openFullscreen() {
-            // Find the fullscreen modal and open it
             const fullscreenModal = document.querySelector('[x-data*="fullscreenModal"]');
             if (fullscreenModal && fullscreenModal._x_dataStack) {
                 const modalData = fullscreenModal._x_dataStack[0];
@@ -290,8 +265,6 @@ function fullscreenModal() {
         }
     }
 }
-
-// Initialize Alpine.js components
 document.addEventListener('alpine:init', () => {
     Alpine.data('imageGallery', imageGallery);
     Alpine.data('fullscreenModal', fullscreenModal);

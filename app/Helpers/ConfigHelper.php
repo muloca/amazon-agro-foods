@@ -43,7 +43,7 @@ class ConfigHelper
      */
     public static function siteDescription()
     {
-        return self::get('site_description', 'Especialistas em produtos de qualidade');
+        return self::get('site_description');
     }
 
     /**

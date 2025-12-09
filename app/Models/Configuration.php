@@ -33,7 +33,10 @@ class Configuration extends Model
      */
     public static function getValue($key, $default = null)
     {
-        return Cache::remember("config.{$key}", 3600, function () use ($key, $default) {
+        $locale = app()->getLocale();
+        $cacheKey = "config.{$key}.{$locale}";
+
+        return Cache::remember($cacheKey, 3600, function () use ($key, $default, $locale) {
             $config = static::where('key', $key)
                 ->where('is_active', true)
                 ->first();
@@ -42,7 +45,7 @@ class Configuration extends Model
                 return $default;
             }
 
-            $localizedValue = $config->getLocalizedValue();
+            $localizedValue = $config->getLocalizedValue($locale);
 
             return $localizedValue ?? $default;
         });
