@@ -4,9 +4,7 @@
 @section('description', $config['meta_description'] ?? __('frontend.home.meta.description'))
 
 @section('content')
-<!-- Hero Section -->
 <section class="relative hero-primary-gradient text-white overflow-hidden hero-section">
-    <!-- Background Pattern -->
     <div class="absolute inset-0 opacity-10">
         <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
     </div>
@@ -26,7 +24,7 @@
             </p>
             <div class="flex flex-col sm:flex-row gap-6 justify-center">
                 <a href="{{ route('frontend.products') }}" class="border-2 border-white text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-amazon-verde-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                    {{ __('frontend.home.hero.primary_cta') }}
+                    {{ $config['cta_button_text'] ?? __('frontend.home.hero.primary_cta') }}
                 </a>
                 <a href="{{ route('frontend.contact') }}" class="border-2 border-white text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-amazon-verde-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                     {{ __('frontend.common.contact_us') }}

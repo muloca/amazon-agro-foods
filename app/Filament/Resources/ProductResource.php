@@ -30,16 +30,45 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->label('Nome')
-                    ->required()
-                    ->maxLength(255),
-                    
-                Forms\Components\Textarea::make('description')
-                    ->label('Descrição')
-                    ->rows(4)
-                    ->columnSpanFull(),
-                    
+                Forms\Components\Tabs::make('Translations')
+                    ->columnSpanFull()
+                    ->tabs([
+                        Forms\Components\Tabs\Tab::make('Português (PT)')
+                            ->schema([
+                                Forms\Components\TextInput::make('name')
+                                    ->label('Nome (PT)')
+                                    ->required()
+                                    ->maxLength(255),
+                                
+                                Forms\Components\Textarea::make('description')
+                                    ->label('Descrição (PT)')
+                                    ->rows(4)
+                                    ->columnSpanFull(),
+                            ]),
+                        Forms\Components\Tabs\Tab::make('English (EN)')
+                            ->schema([
+                                Forms\Components\TextInput::make('name_translations.en')
+                                    ->label('Name (EN)')
+                                    ->maxLength(255),
+                                
+                                Forms\Components\Textarea::make('description_translations.en')
+                                    ->label('Description (EN)')
+                                    ->rows(4)
+                                    ->columnSpanFull(),
+                            ]),
+                        Forms\Components\Tabs\Tab::make('العربية (AR)')
+                            ->schema([
+                                Forms\Components\TextInput::make('name_translations.ar')
+                                    ->label('الاسم (AR)')
+                                    ->maxLength(255),
+                                
+                                Forms\Components\Textarea::make('description_translations.ar')
+                                    ->label('الوصف (AR)')
+                                    ->rows(4)
+                                    ->columnSpanFull(),
+                            ]),
+                    ]),
+
                 Forms\Components\Select::make('line')
                     ->label('Linha do Produto')
                     ->options([
