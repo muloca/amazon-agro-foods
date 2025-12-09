@@ -339,6 +339,21 @@ return [
                 ],
             ],
         ],
+        'product' => [
+            'description_title' => 'Description',
+            'features_title' => 'Features',
+            'features' => [
+                'fresh' => 'Fresh Product',
+                'family' => 'Family Tradition',
+                'quality' => 'Guaranteed Quality',
+                'delivery' => 'Fast Delivery',
+            ],
+            'related' => [
+                'title' => 'Related Products',
+                'subtitle' => 'Other products you may like',
+                'details' => 'View Details',
+            ],
+        ],
     ],
 
     'category_card' => [

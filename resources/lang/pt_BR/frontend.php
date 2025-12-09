@@ -339,6 +339,21 @@ return [
                 ],
             ],
         ],
+        'product' => [
+            'description_title' => 'Descrição',
+            'features_title' => 'Características',
+            'features' => [
+                'fresh' => 'Produto Fresco',
+                'family' => 'Tradição Familiar',
+                'quality' => 'Qualidade Garantida',
+                'delivery' => 'Entrega Rápida',
+            ],
+            'related' => [
+                'title' => 'Produtos Relacionados',
+                'subtitle' => 'Outros produtos que você pode gostar',
+                'details' => 'Ver Detalhes',
+            ],
+        ],
     ],
 
     'category_card' => [

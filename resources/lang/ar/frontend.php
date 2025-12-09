@@ -339,6 +339,21 @@ return [
                 ],
             ],
         ],
+        'product' => [
+            'description_title' => 'الوصف',
+            'features_title' => 'الميزات',
+            'features' => [
+                'fresh' => 'منتج طازج',
+                'family' => 'تقاليد عائلية',
+                'quality' => 'جودة مضمونة',
+                'delivery' => 'توصيل سريع',
+            ],
+            'related' => [
+                'title' => 'منتجات ذات صلة',
+                'subtitle' => 'منتجات أخرى قد تعجبك',
+                'details' => 'عرض التفاصيل',
+            ],
+        ],
     ],
 
     'category_card' => [
