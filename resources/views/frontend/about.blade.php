@@ -11,10 +11,7 @@
         :subtitle="__('frontend.pages.about.hero.subtitle')"
         icon="about"
         :show-pattern="true" />
-
-    <!-- Main Content -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <!-- Introduction -->
         <div class="text-center mb-16">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 {{ __('frontend.pages.about.intro.title') }}
@@ -23,8 +20,6 @@
                 {{ __('frontend.pages.about.intro.description') }}
             </p>
         </div>
-
-        <!-- Technology Section -->
         <div class="mb-20">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
@@ -73,8 +68,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Food Safety Section -->
         <div class="mb-20">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="order-2 lg:order-1">
@@ -125,8 +118,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Humane Slaughter Section -->
         <div class="mb-20">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
@@ -175,8 +166,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Environmental Responsibility -->
         <div class="mb-20">
             <div class="bg-gradient-to-r from-green-600 to-green-700 text-white rounded-2xl p-12">
                 <div class="text-center">
@@ -187,8 +176,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Social Responsibility -->
         <div class="mb-20">
             <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-2xl p-12">
                 <div class="text-center">
@@ -199,8 +186,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Work With Us -->
         <div class="text-center">
             <div class="bg-gray-100 rounded-2xl p-12">
                 <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">{{ __('frontend.pages.about.careers.title') }}</h3>

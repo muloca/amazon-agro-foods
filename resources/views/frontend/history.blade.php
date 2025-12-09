@@ -11,14 +11,9 @@
         icon="history"
         :show-pattern="true" />
 
-    <!-- Main Content -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <!-- Timeline -->
         <div class="relative">
-            <!-- Timeline Line -->
             <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-blue-200"></div>
-
-            <!-- 1950s - Foundation -->
             <div class="relative flex items-center mb-16">
                 <div class="w-1/2 pr-8 text-right">
                     <div class="bg-white rounded-xl shadow-lg p-8">
@@ -37,8 +32,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- 1970s - Expansion -->
             <div class="relative flex items-center mb-16">
                 <div class="w-1/2 pr-8">
                     <div class="text-center">
@@ -57,8 +50,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- 1990s - Technology -->
             <div class="relative flex items-center mb-16">
                 <div class="w-1/2 pr-8 text-right">
                     <div class="bg-white rounded-xl shadow-lg p-8">
@@ -77,8 +68,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- 2000s - Quality -->
             <div class="relative flex items-center mb-16">
                 <div class="w-1/2 pr-8">
                     <div class="text-center">
@@ -97,8 +86,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- 2010s - Sustainability -->
             <div class="relative flex items-center mb-16">
                 <div class="w-1/2 pr-8 text-right">
                     <div class="bg-white rounded-xl shadow-lg p-8">
@@ -117,8 +104,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Today -->
             <div class="relative flex items-center">
                 <div class="w-1/2 pr-8">
                     <div class="text-center">
@@ -138,8 +123,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Values Section -->
         <div class="mt-20">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">

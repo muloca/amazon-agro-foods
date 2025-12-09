@@ -4,7 +4,6 @@
 
 @section('content')
 <div class="min-h-screen bg-gray-50">
-    <!-- Breadcrumb -->
     <div class="bg-white border-b">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <nav class="flex" aria-label="Breadcrumb">
@@ -39,17 +38,13 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <!-- Image Gallery -->
             <div x-data="imageGallery()" class="space-y-4">
-                <!-- Main Image -->
                 <div class="relative group">
                     <img 
                         :src="images[currentIndex]" 
                         :alt="$product.name"
                         @click="openFullscreen()"
                         class="w-full h-96 lg:h-[500px] object-cover rounded-lg cursor-pointer transition-transform duration-300 hover:scale-105 shadow-lg">
-                    
-                    <!-- Fullscreen Button -->
                     <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 rounded-lg flex items-center justify-center">
                         <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -57,10 +52,7 @@
                             </svg>
                         </div>
                     </div>
-
-                    <!-- Navigation Controls -->
                     <div x-show="images.length > 1" class="absolute inset-0 flex items-center justify-between pointer-events-none">
-                        <!-- Previous Button -->
                         <button 
                             @click="previousImage()"
                             class="pointer-events-auto ml-4 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-3 shadow-lg transition-all duration-300">
@@ -68,8 +60,6 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                             </svg>
                         </button>
-                        
-                        <!-- Next Button -->
                         <button 
                             @click="nextImage()"
                             class="pointer-events-auto mr-4 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-3 shadow-lg transition-all duration-300">
@@ -79,8 +69,6 @@
                         </button>
                     </div>
                 </div>
-
-                <!-- Thumbnail Navigation -->
                 <template x-if="images.length > 1">
                     <div class="flex space-x-2 overflow-x-auto pb-2">
                         <template x-for="(image, index) in images" :key="index">
@@ -93,16 +81,12 @@
                         </template>
                     </div>
                 </template>
-
-                <!-- Image Counter -->
                 <template x-if="images.length > 1">
                     <div class="text-center text-sm text-gray-500">
                         <span x-text="currentIndex + 1"></span> de <span x-text="images.length"></span>
                     </div>
                 </template>
             </div>
-
-            <!-- Product Info -->
             <div class="space-y-8">
                 <div>
                     <h1 class="text-4xl font-bold text-gray-900 mb-4">{{ $product->name }}</h1>
@@ -126,8 +110,6 @@
                         </div>
                     </div>
                 @endif
-
-                <!-- Product Features -->
                 <div class="bg-white rounded-lg p-6 shadow-sm border">
                     <h3 class="text-lg font-semibold text-gray-900 mb-4">{{ __('frontend.pages.product.features_title') }}</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -159,8 +141,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Related Products -->
         @if($relatedProducts->count() > 0)
             <div class="mt-20">
                 <div class="text-center mb-12">
@@ -194,8 +174,6 @@
             </div>
         @endif
     </div>
-
-    <!-- Fullscreen Modal -->
     <div x-data="fullscreenModal()" 
          x-show="isOpen" 
          x-cloak
@@ -230,8 +208,6 @@
                     </button>
                 </div>
             </template>
-            
-            <!-- Image Counter in Fullscreen -->
             <template x-if="images.length > 1">
                 <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white bg-black bg-opacity-50 rounded-full px-4 py-2">
                     <span x-text="currentIndex + 1"></span> de <span x-text="images.length"></span>
@@ -256,7 +232,6 @@ function imageGallery() {
         },
         
         openFullscreen() {
-            // Find the fullscreen modal and open it
             const fullscreenModal = document.querySelector('[x-data*="fullscreenModal"]');
             if (fullscreenModal && fullscreenModal._x_dataStack) {
                 const modalData = fullscreenModal._x_dataStack[0];
@@ -290,8 +265,6 @@ function fullscreenModal() {
         }
     }
 }
-
-// Initialize Alpine.js components
 document.addEventListener('alpine:init', () => {
     Alpine.data('imageGallery', imageGallery);
     Alpine.data('fullscreenModal', fullscreenModal);
