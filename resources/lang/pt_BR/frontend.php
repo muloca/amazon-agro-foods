@@ -46,11 +46,11 @@ return [
 
     'home' => [
         'meta' => [
-            'title' => 'Início - Amazon Frigorífico',
+            'title' => 'Início - Amazon Agro Foods',
             'description' => 'Sistema completo de gestão para frigoríficos',
         ],
         'hero' => [
-            'default_title' => 'Bem-vindo ao Amazon Frigorífico',
+            'default_title' => 'Bem-vindo ao Amazon Agro Foods',
             'default_subtitle' => 'Descubra nossos produtos de qualidade e tradição familiar.',
             'primary_cta' => 'Ver Produtos',
         ],
@@ -93,8 +93,8 @@ return [
     'pages' => [
         'products' => [
             'meta' => [
-                'title' => 'Nossos Produtos - Amazon Frigorífico',
-                'description' => 'Explore a linha completa de produtos frescos e selecionados do Amazon Frigorífico.',
+                'title' => 'Nossos Produtos - Amazon Agro Foods',
+                'description' => 'Explore a linha completa de produtos frescos e selecionados do Amazon Agro Foods.',
             ],
             'hero' => [
                 'title' => 'Nossos Produtos',
@@ -111,8 +111,8 @@ return [
         ],
         'contact' => [
             'meta' => [
-                'title' => 'Contato - Amazon Frigorífico',
-                'description' => 'Fale com a equipe Amazon Frigorífico. Estamos prontos para ajudar você e sua empresa.',
+                'title' => 'Contato - Amazon Agro Foods',
+                'description' => 'Fale com a equipe Amazon Agro Foods. Estamos prontos para ajudar você e sua empresa.',
             ],
             'hero' => [
                 'title' => 'Contato',
@@ -165,8 +165,8 @@ return [
         ],
         'news' => [
             'meta' => [
-                'title' => 'Notícias - Amazon Frigorífico',
-                'description' => 'Acompanhe as novidades, lançamentos e informações do Amazon Frigorífico.',
+                'title' => 'Notícias - Amazon Agro Foods',
+                'description' => 'Acompanhe as novidades, lançamentos e informações do Amazon Agro Foods.',
             ],
             'hero' => [
                 'title' => 'Notícias',
@@ -203,21 +203,21 @@ return [
         ],
         'about' => [
             'meta' => [
-                'title' => 'Sobre - Amazon Frigorífico',
-                'description' => 'Conheça a Amazon Frigorífico, nossa história, valores e compromisso com a qualidade.',
+                'title' => 'Sobre - Amazon Agro Foods',
+                'description' => 'Conheça a Amazon Agro Foods, nossa história, valores e compromisso com a qualidade.',
             ],
             'hero' => [
                 'title' => 'Sobre Nós',
                 'subtitle' => 'Conheça nossa trajetória, valores e compromisso com a qualidade.',
             ],
             'intro' => [
-                'title' => 'Amazon Frigorífico',
+                'title' => 'Amazon Agro Foods',
                 'description' => 'Somos uma empresa dedicada à produção de carnes e produtos frescos de alta qualidade, combinando tradição familiar com tecnologia moderna para levar até sua mesa produtos que reúnem sabor, frescor e confiança.',
             ],
             'technology' => [
                 'title' => 'Tecnologia',
                 'subtitle' => 'Tecnologia aliada à excelência em carnes e cortes',
-                'description' => 'Sabemos que a tecnologia é essencial em toda a cadeia produtiva. No Amazon Frigorífico investimos constantemente em soluções tecnológicas para otimizar processos e garantir a qualidade dos produtos, desde o abate até a entrega final.',
+                'description' => 'Sabemos que a tecnologia é essencial em toda a cadeia produtiva. No Amazon Agro Foods investimos constantemente em soluções tecnológicas para otimizar processos e garantir a qualidade dos produtos, desde o abate até a entrega final.',
                 'highlights' => [
                     'temperature' => 'Controle de temperatura automatizado',
                     'traceability' => 'Sistema de rastreabilidade completo',
@@ -232,7 +232,7 @@ return [
             'food_safety' => [
                 'title' => 'Segurança Alimentar',
                 'subtitle' => 'Garantia e procedência para reunir',
-                'description' => 'No Amazon Frigorífico, a segurança alimentar é fundamental para garantir a qualidade dos produtos e proteger a saúde dos consumidores. Contamos com rigorosos protocolos de controle de qualidade em todas as etapas do processo.',
+                'description' => 'No Amazon Agro Foods, a segurança alimentar é fundamental para garantir a qualidade dos produtos e proteger a saúde dos consumidores. Contamos com rigorosos protocolos de controle de qualidade em todas as etapas do processo.',
                 'highlights' => [
                     'hygiene' => 'Protocolos rigorosos de higiene',
                     'temperature' => 'Controle de temperatura rigoroso',
@@ -261,11 +261,11 @@ return [
             ],
             'environmental' => [
                 'title' => 'Responsabilidade Ambiental',
-                'description' => 'No Amazon Frigorífico, assumimos o compromisso com o futuro, fazendo da responsabilidade ambiental peça fundamental em todos os processos. Assim, garantimos o respeito com o meio ambiente e a qualidade dos produtos até a sua mesa.',
+                'description' => 'No Amazon Agro Foods, assumimos o compromisso com o futuro, fazendo da responsabilidade ambiental peça fundamental em todos os processos. Assim, garantimos o respeito com o meio ambiente e a qualidade dos produtos até a sua mesa.',
             ],
             'social' => [
                 'title' => 'Responsabilidade Social',
-                'description' => 'No Amazon Frigorífico, nosso objetivo vai além da produção de carne de alta qualidade. Somos formados por gente e entendemos o nosso compromisso e responsabilidade para com a sociedade após décadas de atuação.',
+                'description' => 'No Amazon Agro Foods, nosso objetivo vai além da produção de carne de alta qualidade. Somos formados por gente e entendemos o nosso compromisso e responsabilidade para com a sociedade após décadas de atuação.',
             ],
             'careers' => [
                 'title' => 'Trabalhe Conosco',
@@ -275,7 +275,7 @@ return [
         ],
         'history' => [
             'meta' => [
-                'title' => 'Nossa História - Amazon Frigorífico',
+                'title' => 'Nossa História - Amazon Agro Foods',
                 'description' => 'Uma trajetória de tradição, qualidade e inovação no mercado de alimentos.',
             ],
             'hero' => [
@@ -286,13 +286,13 @@ return [
                 'foundation' => [
                     'year' => '1950',
                     'title' => 'Os Primeiros Passos',
-                    'description' => 'O Amazon Frigorífico foi fundado com a visão de levar qualidade e frescor para as famílias brasileiras. Desde o início, a empresa se dedicou à melhoria contínua e à inovação tecnológica.',
+                    'description' => 'O Amazon Agro Foods foi fundado com a visão de levar qualidade e frescor para as famílias brasileiras. Desde o início, a empresa se dedicou à melhoria contínua e à inovação tecnológica.',
                     'label' => 'Fundação',
                 ],
                 'expansion' => [
                     'year' => '1970',
                     'title' => 'Crescimento e Modernização',
-                    'description' => 'A busca por melhorias levou o Amazon Frigorífico a expandir suas operações, inaugurando novas instalações e estabelecendo-se como referência em qualidade no mercado regional.',
+                    'description' => 'A busca por melhorias levou o Amazon Agro Foods a expandir suas operações, inaugurando novas instalações e estabelecendo-se como referência em qualidade no mercado regional.',
                     'label' => 'Expansão',
                 ],
                 'technology' => [
@@ -316,7 +316,7 @@ return [
                 'today' => [
                     'year' => ':year',
                     'title' => 'Presente e Futuro',
-                    'description' => 'Hoje, o Amazon Frigorífico continua sua trajetória de excelência, combinando tradição e inovação para levar até sua mesa produtos de qualidade superior, sempre com responsabilidade social e ambiental.',
+                    'description' => 'Hoje, o Amazon Agro Foods continua sua trajetória de excelência, combinando tradição e inovação para levar até sua mesa produtos de qualidade superior, sempre com responsabilidade social e ambiental.',
                     'label' => 'Hoje',
                 ],
             ],

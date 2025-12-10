@@ -34,21 +34,18 @@ class Configuration extends Model
     public static function getValue($key, $default = null)
     {
         $locale = app()->getLocale();
-        $cacheKey = "config.{$key}.{$locale}";
 
-        return Cache::remember($cacheKey, 3600, function () use ($key, $default, $locale) {
-            $config = static::where('key', $key)
-                ->where('is_active', true)
-                ->first();
+        $config = static::where('key', $key)
+            ->where('is_active', true)
+            ->first();
 
-            if (! $config) {
-                return $default;
-            }
+        if (! $config) {
+            return $default;
+        }
 
-            $localizedValue = $config->getLocalizedValue($locale);
+        $localizedValue = $config->getLocalizedValue($locale);
 
-            return $localizedValue ?? $default;
-        });
+        return $localizedValue ?? $default;
     }
 
     /**
@@ -102,12 +99,10 @@ class Configuration extends Model
      */
     public static function getByGroup($group)
     {
-        return Cache::remember("config.group.{$group}", 3600, function () use ($group) {
-            return static::where('group', $group)
-                ->where('is_active', true)
-                ->orderBy('sort_order')
-                ->get();
-        });
+        return static::where('group', $group)
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
     }
 
     /**

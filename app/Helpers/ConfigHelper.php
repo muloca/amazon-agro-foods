@@ -35,7 +35,7 @@ class ConfigHelper
      */
     public static function siteName()
     {
-        return self::get('site_name', 'Amazon Frigorífico');
+        return self::get('site_name', 'Amazon Agro Foods');
     }
 
     /**

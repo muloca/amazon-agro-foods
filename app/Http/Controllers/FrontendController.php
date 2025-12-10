@@ -19,7 +19,7 @@ class FrontendController extends Controller
         $heroEndColor = Configuration::getValue('hero_background_end_color', $heroStartColor);
 
         return [
-            'site_name' => Configuration::getValue('site_name', 'Amazon Frigorífico'),
+            'site_name' => Configuration::getValue('site_name', 'Amazon Agro Foods'),
             'site_description' => Configuration::getValue('site_description'),
             'hero_title' => Configuration::getValue('hero_title', __('frontend.home.hero.default_title')),
             'hero_subtitle' => Configuration::getValue('hero_subtitle', __('frontend.home.hero.default_subtitle')),

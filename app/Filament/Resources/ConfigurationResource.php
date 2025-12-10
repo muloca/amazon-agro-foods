@@ -15,6 +15,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Arr;
 
 class ConfigurationResource extends Resource
 {
@@ -194,12 +195,20 @@ class ConfigurationResource extends Resource
             return $data;
         }
 
-        $fallback = $data['value_pt'] ?? $data['value'] ?? $data['value_en'] ?? $data['value_ar'] ?? null;
+        $valuePt = Arr::get($data, 'value_pt');
+        $valueEn = Arr::get($data, 'value_en');
+        $valueAr = Arr::get($data, 'value_ar');
+        $valueBase = Arr::get($data, 'value');
 
-        $data['value'] = $fallback;
-        $data['value_pt'] = $data['value_pt'] ?? $fallback;
-        $data['value_en'] = $data['value_en'] ?? $fallback;
-        $data['value_ar'] = $data['value_ar'] ?? $fallback;
+        $fallback = $valuePt ?? $valueBase ?? $valueEn ?? $valueAr ?? null;
+
+        // Forçar preenchimento das 3 línguas sempre que salvar.
+        $data['value_pt'] = $valuePt ?? $fallback;
+        $data['value_en'] = $valueEn ?? $fallback;
+        $data['value_ar'] = $valueAr ?? $fallback;
+
+        // Valor base (coluna value) segue o PT para manter consistência.
+        $data['value'] = $data['value_pt'];
 
         return $data;
     }

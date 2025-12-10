@@ -37,12 +37,14 @@ class CategoryResource extends Resource
                                 Forms\Components\TextInput::make('name')
                                     ->label('Nome (PT)')
                                     ->required()
-                                    ->maxLength(255),
+                                    ->maxLength(255)
+                                    ->formatStateUsing(fn ($record) => $record?->getRawOriginal('name')),
                                 
                                 Forms\Components\Textarea::make('description')
                                     ->label('Descrição (PT)')
                                     ->rows(3)
-                                    ->columnSpanFull(),
+                                    ->columnSpanFull()
+                                    ->formatStateUsing(fn ($record) => $record?->getRawOriginal('description')),
                             ]),
                         Forms\Components\Tabs\Tab::make('English (EN)')
                             ->schema([

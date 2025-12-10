@@ -46,11 +46,11 @@ return [
 
     'home' => [
         'meta' => [
-            'title' => 'Home - Amazon Frigorífico',
+            'title' => 'Home - Amazon Agro Foods',
             'description' => 'Complete management suite for meat processing businesses',
         ],
         'hero' => [
-            'default_title' => 'Welcome to Amazon Frigorífico',
+            'default_title' => 'Welcome to Amazon Agro Foods',
             'default_subtitle' => 'Discover our high-quality products and family tradition.',
             'primary_cta' => 'View Products',
         ],
@@ -93,8 +93,8 @@ return [
     'pages' => [
         'products' => [
             'meta' => [
-                'title' => 'Our Products - Amazon Frigorífico',
-                'description' => 'Explore the complete selection of fresh products from Amazon Frigorífico.',
+                'title' => 'Our Products - Amazon Agro Foods',
+                'description' => 'Explore the complete selection of fresh products from Amazon Agro Foods.',
             ],
             'hero' => [
                 'title' => 'Our Products',
@@ -111,8 +111,8 @@ return [
         ],
         'contact' => [
             'meta' => [
-                'title' => 'Contact - Amazon Frigorífico',
-                'description' => 'Get in touch with the Amazon Frigorífico team. We are ready to help you and your business.',
+                'title' => 'Contact - Amazon Agro Foods',
+                'description' => 'Get in touch with the Amazon Agro Foods team. We are ready to help you and your business.',
             ],
             'hero' => [
                 'title' => 'Contact',
@@ -165,8 +165,8 @@ return [
         ],
         'news' => [
             'meta' => [
-                'title' => 'News - Amazon Frigorífico',
-                'description' => 'Stay up to date with Amazon Frigorífico news, insights, and announcements.',
+                'title' => 'News - Amazon Agro Foods',
+                'description' => 'Stay up to date with Amazon Agro Foods news, insights, and announcements.',
             ],
             'hero' => [
                 'title' => 'News',
@@ -203,21 +203,21 @@ return [
         ],
         'about' => [
             'meta' => [
-                'title' => 'About - Amazon Frigorífico',
-                'description' => 'Get to know Amazon Frigorífico—our history, values, and commitment to quality.',
+                'title' => 'About - Amazon Agro Foods',
+                'description' => 'Get to know Amazon Agro Foods—our history, values, and commitment to quality.',
             ],
             'hero' => [
                 'title' => 'About Us',
                 'subtitle' => 'Learn about our journey, values, and commitment to quality.',
             ],
             'intro' => [
-                'title' => 'Amazon Frigorífico',
+                'title' => 'Amazon Agro Foods',
                 'description' => 'We are dedicated to producing high-quality meats and fresh products, blending family tradition with modern technology to bring you flavor, freshness, and trust.',
             ],
             'technology' => [
                 'title' => 'Technology',
                 'subtitle' => 'Technology aligned with excellence in meats and cuts',
-                'description' => 'Technology is essential across the entire production chain. At Amazon Frigorífico we continually invest in tech solutions to optimize processes and ensure quality from slaughter to final delivery.',
+                'description' => 'Technology is essential across the entire production chain. At Amazon Agro Foods we continually invest in tech solutions to optimize processes and ensure quality from slaughter to final delivery.',
                 'highlights' => [
                     'temperature' => 'Automated temperature control',
                     'traceability' => 'Full traceability system',
@@ -275,7 +275,7 @@ return [
         ],
         'history' => [
             'meta' => [
-                'title' => 'Our History - Amazon Frigorífico',
+                'title' => 'Our History - Amazon Agro Foods',
                 'description' => 'A journey built on tradition, quality, and innovation in the food market.',
             ],
             'hero' => [
@@ -286,13 +286,13 @@ return [
                 'foundation' => [
                     'year' => '1950',
                     'title' => 'The First Steps',
-                    'description' => 'Amazon Frigorífico was founded with the vision of bringing quality and freshness to Brazilian families. From the start, the company focused on continuous improvement and technological innovation.',
+                    'description' => 'Amazon Agro Foods was founded with the vision of bringing quality and freshness to Brazilian families. From the start, the company focused on continuous improvement and technological innovation.',
                     'label' => 'Foundation',
                 ],
                 'expansion' => [
                     'year' => '1970',
                     'title' => 'Growth and Modernization',
-                    'description' => 'The drive for improvement led Amazon Frigorífico to expand operations, opening new facilities and becoming a regional benchmark for quality.',
+                    'description' => 'The drive for improvement led Amazon Agro Foods to expand operations, opening new facilities and becoming a regional benchmark for quality.',
                     'label' => 'Expansion',
                 ],
                 'technology' => [
@@ -316,7 +316,7 @@ return [
                 'today' => [
                     'year' => ':year',
                     'title' => 'Present and Future',
-                    'description' => 'Today, Amazon Frigorífico continues its path of excellence, combining tradition and innovation to deliver superior quality products with social and environmental responsibility.',
+                    'description' => 'Today, Amazon Agro Foods continues its path of excellence, combining tradition and innovation to deliver superior quality products with social and environmental responsibility.',
                     'label' => 'Today',
                 ],
             ],

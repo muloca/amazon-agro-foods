@@ -46,11 +46,11 @@ return [
 
     'home' => [
         'meta' => [
-            'title' => 'الرئيسية - Amazon Frigorífico',
+            'title' => 'الرئيسية - Amazon Agro Foods',
             'description' => 'منصة متكاملة لإدارة شركات تصنيع اللحوم',
         ],
         'hero' => [
-            'default_title' => 'مرحباً بكم في Amazon Frigorífico',
+            'default_title' => 'مرحباً بكم في Amazon Agro Foods',
             'default_subtitle' => 'اكتشفوا منتجاتنا عالية الجودة وإرثنا العائلي.',
             'primary_cta' => 'عرض المنتجات',
         ],
@@ -93,8 +93,8 @@ return [
     'pages' => [
         'products' => [
             'meta' => [
-                'title' => 'منتجاتنا - Amazon Frigorífico',
-                'description' => 'استكشف المجموعة الكاملة من المنتجات الطازجة لدى Amazon Frigorífico.',
+                'title' => 'منتجاتنا - Amazon Agro Foods',
+                'description' => 'استكشف المجموعة الكاملة من المنتجات الطازجة لدى Amazon Agro Foods.',
             ],
             'hero' => [
                 'title' => 'منتجاتنا',
@@ -111,8 +111,8 @@ return [
         ],
         'contact' => [
             'meta' => [
-                'title' => 'اتصل بنا - Amazon Frigorífico',
-                'description' => 'تواصل مع فريق Amazon Frigorífico. نحن جاهزون لمساعدتك ولمؤسستك.',
+                'title' => 'اتصل بنا - Amazon Agro Foods',
+                'description' => 'تواصل مع فريق Amazon Agro Foods. نحن جاهزون لمساعدتك ولمؤسستك.',
             ],
             'hero' => [
                 'title' => 'اتصل بنا',
@@ -165,8 +165,8 @@ return [
         ],
         'news' => [
             'meta' => [
-                'title' => 'الأخبار - Amazon Frigorífico',
-                'description' => 'تابع آخر الأخبار والتحديثات من Amazon Frigorífico.',
+                'title' => 'الأخبار - Amazon Agro Foods',
+                'description' => 'تابع آخر الأخبار والتحديثات من Amazon Agro Foods.',
             ],
             'hero' => [
                 'title' => 'الأخبار',
@@ -203,21 +203,21 @@ return [
         ],
         'about' => [
             'meta' => [
-                'title' => 'من نحن - Amazon Frigorífico',
-                'description' => 'تعرّف على Amazon Frigorífico، تاريخنا وقيمنا والتزامنا بالجودة.',
+                'title' => 'من نحن - Amazon Agro Foods',
+                'description' => 'تعرّف على Amazon Agro Foods، تاريخنا وقيمنا والتزامنا بالجودة.',
             ],
             'hero' => [
                 'title' => 'من نحن',
                 'subtitle' => 'اكتشف مسيرتنا وقيمنا والتزامنا بالجودة.',
             ],
             'intro' => [
-                'title' => 'Amazon Frigorífico',
+                'title' => 'Amazon Agro Foods',
                 'description' => 'نحن شركة متخصصة في إنتاج اللحوم والمنتجات الطازجة عالية الجودة، نمزج بين تقاليد العائلة والتكنولوجيا الحديثة لنقدم لكم منتجات تجمع بين الطعم الطازج والثقة.',
             ],
             'technology' => [
                 'title' => 'التكنولوجيا',
                 'subtitle' => 'التكنولوجيا في خدمة التميز في اللحوم والقطع',
-                'description' => 'التكنولوجيا ضرورية في جميع مراحل سلسلة الإنتاج. في Amazon Frigorífico نستثمر باستمرار في حلول تقنية لتحسين العمليات وضمان الجودة من الذبح حتى التسليم النهائي.',
+                'description' => 'التكنولوجيا ضرورية في جميع مراحل سلسلة الإنتاج. في Amazon Agro Foods نستثمر باستمرار في حلول تقنية لتحسين العمليات وضمان الجودة من الذبح حتى التسليم النهائي.',
                 'highlights' => [
                     'temperature' => 'تحكم آلي في درجات الحرارة',
                     'traceability' => 'نظام تتبع شامل',
@@ -275,7 +275,7 @@ return [
         ],
         'history' => [
             'meta' => [
-                'title' => 'تاريخنا - Amazon Frigorífico',
+                'title' => 'تاريخنا - Amazon Agro Foods',
                 'description' => 'رحلة قائمة على التقاليد والجودة والابتكار في قطاع الأغذية.',
             ],
             'hero' => [
@@ -286,7 +286,7 @@ return [
                 'foundation' => [
                     'year' => '1950',
                     'title' => 'البدايات',
-                    'description' => 'تأسست Amazon Frigorífico برؤية تقديم الجودة والطزاجة للأسر البرازيلية. منذ البداية كرست الشركة جهودها للتحسين المستمر والابتكار التكنولوجي.',
+                    'description' => 'تأسست Amazon Agro Foods برؤية تقديم الجودة والطزاجة للأسر البرازيلية. منذ البداية كرست الشركة جهودها للتحسين المستمر والابتكار التكنولوجي.',
                     'label' => 'التأسيس',
                 ],
                 'expansion' => [
@@ -316,7 +316,7 @@ return [
                 'today' => [
                     'year' => ':year',
                     'title' => 'الحاضر والمستقبل',
-                    'description' => 'اليوم تواصل Amazon Frigorífico مسيرتها نحو التميز، تمزج بين التقاليد والابتكار لتقديم منتجات عالية الجودة مع مسؤولية اجتماعية وبيئية.',
+                    'description' => 'اليوم تواصل Amazon Agro Foods مسيرتها نحو التميز، تمزج بين التقاليد والابتكار لتقديم منتجات عالية الجودة مع مسؤولية اجتماعية وبيئية.',
                     'label' => 'اليوم',
                 ],
             ],

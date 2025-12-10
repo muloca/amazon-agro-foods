@@ -38,12 +38,14 @@ class ProductResource extends Resource
                                 Forms\Components\TextInput::make('name')
                                     ->label('Nome (PT)')
                                     ->required()
-                                    ->maxLength(255),
+                                    ->maxLength(255)
+                                    ->formatStateUsing(fn ($record) => $record?->getRawOriginal('name')),
                                 
                                 Forms\Components\Textarea::make('description')
                                     ->label('Descrição (PT)')
                                     ->rows(4)
-                                    ->columnSpanFull(),
+                                    ->columnSpanFull()
+                                    ->formatStateUsing(fn ($record) => $record?->getRawOriginal('description')),
                             ]),
                         Forms\Components\Tabs\Tab::make('English (EN)')
                             ->schema([
@@ -124,11 +126,13 @@ class ProductResource extends Resource
                     
                 Tables\Columns\TextColumn::make('name')
                     ->label('Nome')
+                    ->formatStateUsing(fn ($state, $record) => $record?->getRawOriginal('name'))
                     ->searchable()
                     ->sortable(),
                     
                 Tables\Columns\TextColumn::make('category.name')
                     ->label('Categoria')
+                    ->formatStateUsing(fn ($state, $record) => $record?->category?->getRawOriginal('name'))
                     ->searchable()
                     ->sortable(),
                     
@@ -150,6 +154,7 @@ class ProductResource extends Resource
                     
                 Tables\Columns\TextColumn::make('description')
                     ->label('Descrição')
+                    ->formatStateUsing(fn ($state, $record) => $record?->getRawOriginal('description'))
                     ->limit(50)
                     ->searchable(),
                     

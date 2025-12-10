@@ -22,7 +22,7 @@
             <p class="text-xl text-white max-w-3xl mx-auto leading-relaxed hero-text" style="color: var(--hero-text-color) !important; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">
                 {{ $config['hero_subtitle'] ?? __('frontend.home.hero.default_subtitle') }}
             </p>
-            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+            <div class="flex flex-col sm:flex-row gap-6 justify-center mt-6">
                 <a href="{{ route('frontend.products') }}" class="border-2 border-white text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-amazon-verde-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                     {{ $config['cta_button_text'] ?? __('frontend.home.hero.primary_cta') }}
                 </a>

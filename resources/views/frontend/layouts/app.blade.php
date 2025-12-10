@@ -175,7 +175,7 @@
                             <x-application-logo class="w-12 h-12" />
                         </div>
                         <div>
-                            <h1 class="text-2xl font-bold text-gray-900">{{ $config['site_name'] ?? 'Amazon Frigorífico' }}</h1>
+                            <h1 class="text-2xl font-bold text-gray-900">{{ $config['site_name'] ?? 'Amazon Agro Foods' }}</h1>
                             <p class="text-sm text-gray-500">{{ __('frontend.common.site_description') }}</p>
                         </div>
                     </a>
@@ -309,7 +309,7 @@
                             <span class="text-white text-lg font-bold">A</span>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold">{{ $config['site_name'] ?? 'Amazon Frigorífico' }}</h3>
+                            <h3 class="text-xl font-bold">{{ $config['site_name'] ?? 'Amazon Agro Foods' }}</h3>
                             <p class="text-amazon-verde-300 text-sm">{{ __('frontend.common.site_description') }}</p>
                         </div>
                     </div>
@@ -456,7 +456,7 @@
 
             <div class="border-t border-gray-700 mt-8 pt-8 text-center">
                 <p class="text-gray-300">
-                    © {{ date('Y') }} {{ $config['site_name'] ?? 'Amazon Frigorífico' }}. {{ __('frontend.footer.rights') }}
+                    © {{ date('Y') }} {{ $config['site_name'] ?? 'Amazon Agro Foods' }}. {{ __('frontend.footer.rights') }}
                 </p>
             </div>
         </div>
