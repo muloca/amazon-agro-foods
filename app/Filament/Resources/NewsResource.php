@@ -11,7 +11,6 @@ use Filament\Tables;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Str;
 
 class NewsResource extends Resource
 {
@@ -33,48 +32,107 @@ class NewsResource extends Resource
             ->schema([
                 Forms\Components\Section::make('Informações principais')
                     ->schema([
-                        Forms\Components\TextInput::make('title')
-                            ->label('Título')
-                            ->required()
-                            ->maxLength(255)
-                            ->reactive()
-                            ->afterStateUpdated(function ($state, callable $set, callable $get) {
-                                if (blank($get('slug'))) {
-                                    $set('slug', Str::slug($state));
-                                }
-                            }),
+                        Forms\Components\Tabs::make('translations')
+                            ->columnSpanFull()
+                            ->tabs([
+                                Forms\Components\Tabs\Tab::make('Português (PT)')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('title')
+                                            ->label('Título (PT)')
+                                            ->required()
+                                            ->maxLength(255)
+                                            ->unique(ignoreRecord: true)
+                                            ->formatStateUsing(fn ($record) => $record?->getRawOriginal('title')),
+
+                                        Forms\Components\Textarea::make('summary')
+                                            ->label('Resumo (PT)')
+                                            ->rows(3)
+                                            ->placeholder('Resumo breve da notícia (opcional)')
+                                            ->columnSpanFull()
+                                            ->formatStateUsing(fn ($record) => $record?->getRawOriginal('summary')),
+
+                                        Forms\Components\RichEditor::make('content')
+                                            ->label('Texto principal (PT)')
+                                            ->required()
+                                            ->columnSpanFull()
+                                            ->formatStateUsing(fn ($record) => $record?->getRawOriginal('content'))
+                                            ->toolbarButtons([
+                                                'bold',
+                                                'italic',
+                                                'strike',
+                                                'bulletList',
+                                                'orderedList',
+                                                'link',
+                                                'blockquote',
+                                                'h2',
+                                                'h3',
+                                                'undo',
+                                                'redo',
+                                            ]),
+                                    ]),
+                                Forms\Components\Tabs\Tab::make('English (EN)')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('title_translations.en')
+                                            ->label('Title (EN)')
+                                            ->maxLength(255),
+                                        Forms\Components\Textarea::make('summary_translations.en')
+                                            ->label('Summary (EN)')
+                                            ->rows(3)
+                                            ->columnSpanFull(),
+                                        Forms\Components\RichEditor::make('content_translations.en')
+                                            ->label('Content (EN)')
+                                            ->columnSpanFull()
+                                            ->toolbarButtons([
+                                                'bold',
+                                                'italic',
+                                                'strike',
+                                                'bulletList',
+                                                'orderedList',
+                                                'link',
+                                                'blockquote',
+                                                'h2',
+                                                'h3',
+                                                'undo',
+                                                'redo',
+                                            ]),
+                                    ]),
+                                Forms\Components\Tabs\Tab::make('العربية (AR)')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('title_translations.ar')
+                                            ->label('العنوان (AR)')
+                                            ->maxLength(255),
+                                        Forms\Components\Textarea::make('summary_translations.ar')
+                                            ->label('الملخص (AR)')
+                                            ->rows(3)
+                                            ->columnSpanFull(),
+                                        Forms\Components\RichEditor::make('content_translations.ar')
+                                            ->label('المحتوى (AR)')
+                                            ->columnSpanFull()
+                                            ->toolbarButtons([
+                                                'bold',
+                                                'italic',
+                                                'strike',
+                                                'bulletList',
+                                                'orderedList',
+                                                'link',
+                                                'blockquote',
+                                                'h2',
+                                                'h3',
+                                                'undo',
+                                                'redo',
+                                            ]),
+                                    ]),
+                            ]),
 
                         Forms\Components\TextInput::make('slug')
                             ->label('Slug')
+                            ->disabled()
+                            ->dehydrated()
                             ->unique(ignoreRecord: true)
                             ->maxLength(255)
-                            ->helperText('Identificador único usado nas URLs. Deixe vazio para gerar automaticamente.'),
-
-                        Forms\Components\Textarea::make('summary')
-                            ->label('Resumo')
-                            ->rows(3)
-                            ->placeholder('Resumo breve da notícia (opcional)')
-                            ->columnSpanFull(),
-
-                        Forms\Components\RichEditor::make('content')
-                            ->label('Texto principal')
-                            ->required()
-                            ->columnSpanFull()
-                            ->toolbarButtons([
-                                'bold',
-                                'italic',
-                                'strike',
-                                'bulletList',
-                                'orderedList',
-                                'link',
-                                'blockquote',
-                                'h2',
-                                'h3',
-                                'undo',
-                                'redo',
-                            ]),
+                            ->helperText('Gerado automaticamente a partir do título.'),
                     ])
-                    ->columns(2),
+                    ->columns(1),
 
                 Forms\Components\Section::make('Mídia e publicação')
                     ->collapsed()
@@ -123,6 +181,7 @@ class NewsResource extends Resource
                     ->circular(),
                 Tables\Columns\TextColumn::make('title')
                     ->label('Título')
+                    ->formatStateUsing(fn ($state, $record) => $record?->getRawOriginal('title'))
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('published_at')

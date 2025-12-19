@@ -125,6 +125,22 @@ class ConfigurationResource extends Resource
                                 }
                             })
                             ->helperText('Use uma cor da identidade visual sem precisar copiar o código.'),
+                        Forms\Components\Toggle::make('enable_translations')
+                            ->label('Usar traduções?')
+                            ->helperText('Desative para usar apenas um valor em todos os idiomas.')
+                            ->reactive()
+                            ->default(true)
+                            ->dehydrated(true)
+                            ->visible(fn (Get $get) => in_array($get('type'), ['text', 'textarea'])
+                                && ! in_array($get('key'), [
+                                    'social_facebook',
+                                    'social_instagram',
+                                    'social_whatsapp',
+                                    'contact_map_latitude',
+                                    'contact_map_longitude',
+                                    'contact_phone',
+                                    'contact_phone_secondary',
+                                ])),
                         Forms\Components\Tabs::make('value_translations')
                             ->tabs([
                                 Forms\Components\Tabs\Tab::make('Português')
@@ -152,18 +168,60 @@ class ConfigurationResource extends Resource
                                             ->helperText('المحتوى المعروض للزوار باللغة العربية.'),
                                     ]),
                             ])
-                            ->visible(fn (Get $get) => in_array($get('type'), ['text', 'textarea', 'url', 'email']))
+                            ->visible(fn (Get $get) => in_array($get('type'), ['text', 'textarea'])
+                                && ! in_array($get('key'), [
+                                    'social_facebook',
+                                    'social_instagram',
+                                    'social_whatsapp',
+                                    'contact_map_latitude',
+                                    'contact_map_longitude',
+                                    'contact_phone',
+                                    'contact_phone_secondary',
+                                ])
+                                && ($get('enable_translations') ?? true))
                             ->columnSpanFull(),
+                        Forms\Components\Textarea::make('value')
+                            ->label('Valor')
+                            ->rows(fn (Get $get) => $get('type') === 'textarea' ? 5 : 3)
+                            ->columnSpanFull()
+                            ->visible(fn (Get $get) => in_array($get('type'), ['text', 'textarea'])
+                                && (
+                                    ($get('enable_translations') === false)
+                                    || in_array($get('key'), [
+                                        'social_facebook',
+                                        'social_instagram',
+                                        'social_whatsapp',
+                                        'contact_map_latitude',
+                                        'contact_map_longitude',
+                                        'contact_phone',
+                                        'contact_phone_secondary',
+                                    ])
+                                ))
+                            ->helperText('Valor atual da configuração'),
                         Forms\Components\ColorPicker::make('value')
                             ->label('Valor')
                             ->visible(fn (Get $get) => $get('type') === 'color')
                             ->default('#ffffff')
                             ->helperText('Selecione a cor desejada'),
+                        Forms\Components\TextInput::make('value')
+                            ->label(fn (Get $get) => $get('type') === 'url' ? 'Link' : 'Valor')
+                            ->visible(fn (Get $get) => in_array($get('type'), ['url', 'email', 'number'])
+                                || in_array($get('key'), [
+                                    'contact_map_latitude',
+                                    'contact_map_longitude',
+                                    'contact_phone',
+                                    'contact_phone_secondary',
+                                ]))
+                            ->url(fn (Get $get) => $get('type') === 'url')
+                            ->email(fn (Get $get) => $get('type') === 'email')
+                            ->numeric(fn (Get $get) => $get('type') === 'number')
+                            ->default(fn (Get $get) => $get('value') ?? $get('value_pt') ?? $get('value_en') ?? $get('value_ar'))
+                            ->helperText('Valor atual da configuração'),
                         Forms\Components\Textarea::make('value')
                             ->label('Valor')
                             ->rows(3)
                             ->columnSpanFull()
-                            ->visible(fn (Get $get) => ! in_array($get('type'), ['color', 'text', 'textarea', 'url', 'email']))
+                            ->visible(fn (Get $get) => ! in_array($get('type'), ['color', 'text', 'textarea', 'url', 'email', 'number']))
                             ->helperText('Valor atual da configuração'),
                     ])
                     ->columns(1),
@@ -184,13 +242,35 @@ class ConfigurationResource extends Resource
     public static function prepareLocalizedData(array $data): array
     {
         $type = $data['type'] ?? null;
+        $key = $data['key'] ?? null;
+        $translationsEnabled = $data['enable_translations'] ?? true;
+        unset($data['enable_translations']);
 
-        if ($type === 'color') {
-            $color = $data['value'] ?? $data['value_pt'] ?? null;
-            $data['value'] = $color;
-            $data['value_pt'] = $color;
-            $data['value_en'] = $color;
-            $data['value_ar'] = $color;
+        if (in_array($type, ['color', 'url', 'email', 'number'])
+            || in_array($key, [
+                'social_facebook',
+                'social_instagram',
+                'social_whatsapp',
+                'contact_map_latitude',
+                'contact_map_longitude',
+                'contact_phone',
+                'contact_phone_secondary',
+            ])) {
+            $value = $data['value'] ?? $data['value_pt'] ?? null;
+            $data['value'] = $value;
+            $data['value_pt'] = $value;
+            $data['value_en'] = $value;
+            $data['value_ar'] = $value;
+
+            return $data;
+        }
+
+        if (in_array($type, ['text', 'textarea']) && $translationsEnabled === false) {
+            $value = $data['value'] ?? $data['value_pt'] ?? $data['value_en'] ?? $data['value_ar'] ?? null;
+            $data['value'] = $value;
+            $data['value_pt'] = $value;
+            $data['value_en'] = $value;
+            $data['value_ar'] = $value;
 
             return $data;
         }
@@ -202,13 +282,9 @@ class ConfigurationResource extends Resource
 
         $fallback = $valuePt ?? $valueBase ?? $valueEn ?? $valueAr ?? null;
 
-        // Forçar preenchimento das 3 línguas sempre que salvar.
         $data['value_pt'] = $valuePt ?? $fallback;
         $data['value_en'] = $valueEn ?? $fallback;
         $data['value_ar'] = $valueAr ?? $fallback;
-
-        // Valor base (coluna value) segue o PT para manter consistência.
-        $data['value'] = $data['value_pt'];
 
         return $data;
     }
@@ -297,9 +373,7 @@ class ConfigurationResource extends Resource
                 Tables\Actions\EditAction::make()
                     ->label('Editar')
                     ->after(function (Configuration $record) {
-                        // Limpar cache individual
-                        Cache::forget("config.{$record->key}");
-                        // Limpar cache do grupo
+                        Cache::forget("config.{$record->key}");               
                         Cache::forget("config.group.{$record->group}");
                     }),
             ])
@@ -308,7 +382,6 @@ class ConfigurationResource extends Resource
                     Tables\Actions\DeleteBulkAction::make()
                         ->label('Excluir selecionados')
                         ->after(function ($records) {
-                            // Limpar cache de todos os registros excluídos
                             foreach ($records as $record) {
                                 Cache::forget("config.{$record->key}");
                                 Cache::forget("config.group.{$record->group}");
