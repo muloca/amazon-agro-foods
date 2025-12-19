@@ -125,22 +125,6 @@ class ConfigurationResource extends Resource
                                 }
                             })
                             ->helperText('Use uma cor da identidade visual sem precisar copiar o código.'),
-                        Forms\Components\Toggle::make('enable_translations')
-                            ->label('Usar traduções?')
-                            ->helperText('Desative para usar apenas um valor em todos os idiomas.')
-                            ->reactive()
-                            ->default(true)
-                            ->dehydrated(true)
-                            ->visible(fn (Get $get) => in_array($get('type'), ['text', 'textarea'])
-                                && ! in_array($get('key'), [
-                                    'social_facebook',
-                                    'social_instagram',
-                                    'social_whatsapp',
-                                    'contact_map_latitude',
-                                    'contact_map_longitude',
-                                    'contact_phone',
-                                    'contact_phone_secondary',
-                                ])),
                         Forms\Components\Tabs::make('value_translations')
                             ->tabs([
                                 Forms\Components\Tabs\Tab::make('Português')
@@ -177,27 +161,8 @@ class ConfigurationResource extends Resource
                                     'contact_map_longitude',
                                     'contact_phone',
                                     'contact_phone_secondary',
-                                ])
-                                && ($get('enable_translations') ?? true))
+                                ]))
                             ->columnSpanFull(),
-                        Forms\Components\Textarea::make('value')
-                            ->label('Valor')
-                            ->rows(fn (Get $get) => $get('type') === 'textarea' ? 5 : 3)
-                            ->columnSpanFull()
-                            ->visible(fn (Get $get) => in_array($get('type'), ['text', 'textarea'])
-                                && (
-                                    ($get('enable_translations') === false)
-                                    || in_array($get('key'), [
-                                        'social_facebook',
-                                        'social_instagram',
-                                        'social_whatsapp',
-                                        'contact_map_latitude',
-                                        'contact_map_longitude',
-                                        'contact_phone',
-                                        'contact_phone_secondary',
-                                    ])
-                                ))
-                            ->helperText('Valor atual da configuração'),
                         Forms\Components\ColorPicker::make('value')
                             ->label('Valor')
                             ->visible(fn (Get $get) => $get('type') === 'color')
@@ -243,8 +208,6 @@ class ConfigurationResource extends Resource
     {
         $type = $data['type'] ?? null;
         $key = $data['key'] ?? null;
-        $translationsEnabled = $data['enable_translations'] ?? true;
-        unset($data['enable_translations']);
 
         if (in_array($type, ['color', 'url', 'email', 'number'])
             || in_array($key, [
@@ -257,16 +220,6 @@ class ConfigurationResource extends Resource
                 'contact_phone_secondary',
             ])) {
             $value = $data['value'] ?? $data['value_pt'] ?? null;
-            $data['value'] = $value;
-            $data['value_pt'] = $value;
-            $data['value_en'] = $value;
-            $data['value_ar'] = $value;
-
-            return $data;
-        }
-
-        if (in_array($type, ['text', 'textarea']) && $translationsEnabled === false) {
-            $value = $data['value'] ?? $data['value_pt'] ?? $data['value_en'] ?? $data['value_ar'] ?? null;
             $data['value'] = $value;
             $data['value_pt'] = $value;
             $data['value_en'] = $value;
