@@ -329,9 +329,7 @@
                             </p>
                         </div>
                     </div>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
-                        {{ $config['site_description'] ?? __('frontend.common.site_description_family') }}
-                    </p>
+                    
                     <div class="flex space-x-4">
                         @if(!empty($config['social_facebook']))
                         <a href="{{ $config['social_facebook'] }}" target="_blank" class="w-10 h-10 bg-amazon-verde-700 hover:bg-amazon-azul-600 rounded-lg flex items-center justify-center transition-colors duration-200">
