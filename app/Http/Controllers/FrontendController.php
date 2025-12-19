@@ -15,12 +15,11 @@ class FrontendController extends Controller
     {
         $primaryColor = Configuration::getValue('primary_color', '#03662c');
         $secondaryColor = Configuration::getValue('secondary_color', '#58ac43');
-        $heroStartColor = Configuration::getValue('hero_background_start_color', $primaryColor);
-        $heroEndColor = Configuration::getValue('hero_background_end_color', $heroStartColor);
 
         return [
             'site_name' => Configuration::getValue('site_name', 'Amazon Agro Foods'),
             'site_description' => Configuration::getValue('site_description'),
+            'logo_url' => Configuration::getValue('logo_url'),
             'hero_title' => Configuration::getValue('hero_title', __('frontend.home.hero.default_title')),
             'hero_subtitle' => Configuration::getValue('hero_subtitle', __('frontend.home.hero.default_subtitle')),
             'cta_button_text' => Configuration::getValue('cta_button_text', __('frontend.home.hero.primary_cta')),
@@ -43,8 +42,6 @@ class FrontendController extends Controller
             'text_muted_color' => Configuration::getValue('text_muted_color', '#6b7280'),
             'hero_heading_color' => Configuration::getValue('hero_heading_color', '#ffffff'),
             'hero_text_color' => Configuration::getValue('hero_text_color', '#f8fafc'),
-            'hero_background_start_color' => $heroStartColor,
-            'hero_background_end_color' => $heroEndColor,
             'card_title_color' => Configuration::getValue('card_title_color', '#111827'),
             'card_text_color' => Configuration::getValue('card_text_color', '#4b5563'),
             'footer_heading_color' => Configuration::getValue('footer_heading_color', '#ffffff'),
@@ -76,12 +73,10 @@ class FrontendController extends Controller
     {
         $query = Product::where('is_active', true)->with('category');
         
-        // Filtro por categoria
         if ($request->filled('category')) {
             $query->where('category_id', $request->category);
         }
         
-        // Busca por nome
         if ($request->filled('search')) {
             $query->where('name', 'like', '%' . $request->search . '%');
         }

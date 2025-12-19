@@ -135,10 +135,6 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-heading-color) !important;
 }
 
-p {
-    color: var(--text-secondary-color) !important;
-}
-
 .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;

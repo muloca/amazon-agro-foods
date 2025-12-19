@@ -17,11 +17,9 @@
     @stack('styles')
     
     @php
-        $heroBackgroundStart = $config['hero_background_start_color'] ?? ($config['primary_color'] ?? '#03662c');
-        $heroBackgroundEnd = $config['hero_background_end_color'] ?? $heroBackgroundStart;
-        $heroBackground = strtolower($heroBackgroundStart) === strtolower($heroBackgroundEnd)
-            ? $heroBackgroundStart
-            : "linear-gradient(135deg, {$heroBackgroundStart} 0%, {$heroBackgroundEnd} 100%)";
+        $heroBackgroundStart = $config['primary_color'] ?? '#03662c';
+        $heroBackgroundEnd = $config['primary_color'] ?? '#03662c';
+        $heroBackground = $heroBackgroundStart;
     @endphp
 
     <style>
@@ -52,11 +50,11 @@
         h1, h2, h3, h4, h5, h6 {
             color: var(--text-heading-color) !important;
         }
-        
+
         p, span, div {
-            color: var(--text-secondary-color) !important;
+            color: var(--text-body-color);
         }
-        
+
         .text-gray-900 {
             color: var(--text-heading-color) !important;
         }
@@ -172,11 +170,20 @@
                 <div class="flex items-center">
                     <a href="{{ route('home') }}" class="flex items-center space-x-3">
                         <div class="w-12 h-12 flex items-center justify-center">
-                            <x-application-logo class="w-12 h-12" />
+                            @php
+                                $logoUrl = $config['logo_url'] ?? null;
+                            @endphp
+                            @if($logoUrl)
+                                <img src="{{ $logoUrl }}" alt="{{ $config['site_name'] ?? 'Logo' }}" class="w-12 h-12 object-contain">
+                            @else
+                                <x-application-logo class="w-12 h-12" />
+                            @endif
                         </div>
                         <div>
                             <h1 class="text-2xl font-bold text-gray-900">{{ $config['site_name'] ?? 'Amazon Agro Foods' }}</h1>
-                            <p class="text-sm text-gray-500">{{ __('frontend.common.site_description') }}</p>
+                            <p class="text-sm text-gray-500">
+                                {{ $config['site_description'] ?? __('frontend.common.site_description') }}
+                            </p>
                         </div>
                     </a>
                 </div>
@@ -306,15 +313,24 @@
                 <div class="col-span-1 md:col-span-2">
                     <div class="flex items-center space-x-3 mb-6">
                         <div class="w-10 h-10 bg-gradient-to-br from-amazon-verde-500 to-amazon-verde-600 rounded-lg flex items-center justify-center">
-                            <span class="text-white text-lg font-bold">A</span>
+                            @php
+                                $logoUrl = $config['logo_url'] ?? null;
+                            @endphp
+                            @if($logoUrl)
+                                <img src="{{ $logoUrl }}" alt="{{ $config['site_name'] ?? 'Logo' }}" class="w-8 h-8 object-contain">
+                            @else
+                                <span class="text-white text-lg font-bold">A</span>
+                            @endif
                         </div>
                         <div>
                             <h3 class="text-xl font-bold">{{ $config['site_name'] ?? 'Amazon Agro Foods' }}</h3>
-                            <p class="text-amazon-verde-300 text-sm">{{ __('frontend.common.site_description') }}</p>
+                            <p class="text-amazon-verde-300 text-sm">
+                                {{ $config['site_description'] ?? __('frontend.common.site_description') }}
+                            </p>
                         </div>
                     </div>
                     <p class="text-gray-300 mb-6 leading-relaxed">
-                        {{ __('frontend.common.site_description_family') }}
+                        {{ $config['site_description'] ?? __('frontend.common.site_description_family') }}
                     </p>
                     <div class="flex space-x-4">
                         @if(!empty($config['social_facebook']))
@@ -327,8 +343,10 @@
                         
                         @if(!empty($config['social_instagram']))
                         <a href="{{ $config['social_instagram'] }}" target="_blank" class="w-10 h-10 bg-amazon-verde-700 hover:bg-pink-600 rounded-lg flex items-center justify-center transition-colors duration-200">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.746-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm0 0" />
+                                <path d="M12 7a5 5 0 1 1 0 10a5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6a3 3 0 0 0 0-6Z" />
+                                <circle cx="17.5" cy="6.5" r="1" />
                             </svg>
                         </a>
                         @endif

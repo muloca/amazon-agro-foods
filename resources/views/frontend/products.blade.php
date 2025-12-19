@@ -145,7 +145,7 @@ body {
 }
 
 .bg-white p {
-    color: var(--text-secondary-color) !important;
+    color: var(--text-body-color) !important;
 }
 
 input[type="text"],
@@ -196,7 +196,7 @@ div.text-white {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #1f2937 !important;
+    color: var(--text-heading-color) !important;
 }
 
 .bg-gradient-to-br h1,

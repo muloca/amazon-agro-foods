@@ -9,9 +9,12 @@ class News extends Model
 {
     protected $fillable = [
         'title',
+        'title_translations',
         'slug',
         'summary',
+        'summary_translations',
         'content',
+        'content_translations',
         'primary_image',
         'additional_images',
         'link',
@@ -21,6 +24,9 @@ class News extends Model
     protected $casts = [
         'additional_images' => 'array',
         'published_at' => 'datetime',
+        'title_translations' => 'array',
+        'summary_translations' => 'array',
+        'content_translations' => 'array',
     ];
 
     protected static function booted(): void
@@ -36,6 +42,43 @@ class News extends Model
                 $news->slug = static::generateUniqueSlug($news->title, $news->id);
             }
         });
+    }
+
+    public function getTitleAttribute($value): string
+    {
+        return $this->getTranslatedField($value, $this->title_translations);
+    }
+
+    public function getSummaryAttribute($value): ?string
+    {
+        return $this->getTranslatedField($value, $this->summary_translations);
+    }
+
+    public function getContentAttribute($value): string
+    {
+        return $this->getTranslatedField($value, $this->content_translations);
+    }
+
+    private function getTranslatedField($base, ?array $translations)
+    {
+        $translations = $translations ?? [];
+        $locale = $this->normalizeLocale(app()->getLocale());
+
+        if ($locale === 'pt_BR') {
+            return $base;
+        }
+
+        return $translations[$locale] ?? $translations[$this->shortLocale($locale)] ?? $base;
+    }
+
+    private function normalizeLocale(?string $locale): string
+    {
+        return str_replace('-', '_', $locale ?? 'pt_BR');
+    }
+
+    private function shortLocale(string $locale): string
+    {
+        return explode('_', $locale)[0] ?: $locale;
     }
 
     protected static function generateUniqueSlug(string $title, ?int $ignoreId = null): string
